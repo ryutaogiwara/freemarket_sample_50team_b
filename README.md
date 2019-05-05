@@ -1,27 +1,46 @@
-# README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+|column  |Type    |Option |
+|--------|--------|-------|
+|id      |integer |null: false|
+|nickname|string  |null: false, unique: true|
+|email   |string  |null: false|
+|password|string  |null: false|
+|password_confirmation|string|null: false|
 
-Things you may want to cover:
+### Association
+- has_many :item_users
+- has_many :items, through: :item_users
 
-* Ruby version
 
-* System dependencies
+## itemsテーブル
+|column  |Type    |Option |
+|id      |integer |null: false|
+|name    |string  |null: false|
+|image   |string  |null: false|
+|description|text |null: false|
+|state   |string  |null: false|
+|postage |string  |null: false|
+|region  |string  |null: false|
+|shipping_data|string|null: false|
+|price   |integer |null: false|
+|saler_id|integer |null: false|
+|category|string  |null: false|
+|brand   |string  ||
+|shipping_cost|integer||
+|shipping|string  |null: false|
 
-* Configuration
+### Association
+- has_many :item_users
+- has_many :users, through: :item_users
 
-* Database creation
+## item_usersテーブル
+|column  |Type    |Option |
+|--------|--------|-------|
+|item_id |integer |null: false, foreign_key: true|
+|buyer_id|integer |foreign_key: true|
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-aaa
-bbb
-ccc
+### Association
+- belongs_to :user
+- belongs_to :item
