@@ -27,8 +27,8 @@
 |price   |integer |null: false|
 |saler_id|integer |null: false|
 |category|string  |null: false|
-|brand   |string  ||
-|shipping_cost|integer||
+|brand   |string  |
+|shipping_cost|integer|
 |shipping|string  |null: false|
 
 ### Association
