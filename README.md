@@ -16,6 +16,7 @@
 
 ## itemsテーブル
 |column  |Type    |Option |
+|--------|--------|-------|
 |id      |integer |null: false|
 |name    |string  |null: false|
 |image   |string  |null: false|
