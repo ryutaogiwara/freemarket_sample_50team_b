@@ -13,14 +13,18 @@
 |first_name_kana|string|null: false|
 |last_name_kana |string|null: false|
 |birth_date|integer|null: false|
+|profile_id|references|null: false, index: true, foreign_key: true|
+|address_id|references|null: false, index: true, foreign_key: true|
+|card_info_id|references|null: false, index: true, foreign_key: true|
+|user_info_id|references|null: false, index: true, foreign_key: true|
 
 ### Association
-- has_one :profile
-- has_one :address
-- has_one :card_info
-- has_one :user_info
-- has_many :items
-- has_many :transactions
+- has_one :profile, dependent: :destroy
+- has_one :address, dependent: :destroy
+- has_one :card_info, dependent: :destroy
+- has_one :user_info, dependent: :destroy
+- has_many :items, dependent: :destroy
+- has_many :transactions, dependent: :destroy
 
 ## profileテーブル(User情報[子])
 |column  |Type    |Option |
@@ -41,17 +45,19 @@
 |address |string|null: false|
 |building_name|string||
 |phone_number|integer||
+|user_id |references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
 
-##card_info(User情報[子])
+## card_info(User情報[子])
 |column  |Type    |Option |
 |--------|--------|-------|
 |number  |integer |null: false|
 |month   |integer |null: false|
 |day     |integer |null: false|
 |security_code|integer|null: false|
+|user_id |references |null: false, foreign_key|
 
 ### Association
 - belongs_to :user
@@ -83,13 +89,14 @@
 |shipping_data|string|null: false|
 |shipping_cost|integer|
 |price   |integer |null: false|
-|saler_id|references|null: false, foreign_key: true|
 |category|string  |null: false|
 |size    |string  |null: false|
 |brand   |string  ||
+|saler_id|references|null: false, foreign_key: true|
+|transaction_id|integer|null: false, foreign_key: true|
 
 ### Association
-- has_many :transactions
+- has_many :transactions, dependent: :destroy
 - belongs_to :user
 
 ## transactionテーブル
