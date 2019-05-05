@@ -26,7 +26,7 @@
 |region  |string  |null: false|
 |shipping_data|string|null: false|
 |price   |integer |null: false|
-|saler_id|integer |null: false|
+|saler_id|references|null: false, foreign_key: true|
 |category|string  |null: false|
 |brand   |string  |
 |shipping_cost|integer|
@@ -39,8 +39,8 @@
 ## item_usersテーブル
 |column  |Type    |Option |
 |--------|--------|-------|
-|item_id |integer |null: false, foreign_key: true|
-|buyer_id|integer |foreign_key: true|
+|item_id |references|null: false, foreign_key: true|
+|buyer_id|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
