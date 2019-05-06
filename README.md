@@ -29,8 +29,8 @@
 ## profileテーブル(User情報[子])
 |column  |Type    |Option |
 |--------|--------|-------|
-|user_id |integer |null: false, foreign_key: true|
-|nickname|string  |null: false|
+|user_id |references |null: false, foreign_key: true|
+|nickname|string  |null: false, unique: true|
 |profile |text    ||
 
 ### Association
@@ -87,13 +87,12 @@
 |region  |string  |null: false|
 |shipping|string  |null: false|
 |shipping_data|string|null: false|
-|shipping_cost|integer|
 |price   |integer |null: false|
 |category|string  |null: false|
 |size    |string  |null: false|
 |brand   |string  ||
 |saler_id|references|null: false, foreign_key: true|
-|transaction_id|integer|null: false, foreign_key: true|
+|transaction_id|ireferences|null: false, foreign_key: true|
 
 ### Association
 - has_many :transactions, dependent: :destroy
