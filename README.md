@@ -1,5 +1,5 @@
 # ruby ver 2.5.1
-
+# rails ver 5.2.3
 
 
 # DB設計
