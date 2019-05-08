@@ -1,3 +1,7 @@
+# ruby ver 2.3.1
+# rails ver 5.2.3
+
+
 # DB設計
 
 ## usersテーブル(User情報[親])
