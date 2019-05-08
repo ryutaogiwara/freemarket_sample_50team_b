@@ -1,4 +1,4 @@
-# ruby ver 2.5.1
+# ruby ver 2.3.1
 # rails ver 5.2.3
 
 
