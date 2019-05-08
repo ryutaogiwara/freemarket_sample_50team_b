@@ -1,0 +1,130 @@
+.app__banner {
+  background: url(https://www.mercari.com/jp/assets/img/common/jp/top/download_bg_pc.jpg?62593201) no-repeat center center;
+  background-position: center;
+  background-size: cover;
+  display: block;
+  &__info {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 750px;
+    height: 260px;
+    margin: 0 auto;
+    color: #fff;
+    .app__smartphone {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 300px;
+      height: 100%;
+      &-img {
+        width: 100%;
+      }
+    }
+    &__inner {
+      left: 0;
+      height: 166px;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      &-msgapp {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      &-download {
+        font-size: 35px;
+        margin: 10px 0 0;
+      }
+      .app__banner__icon {
+        margin: 20px 0 0;
+        &__mercari__icon {
+          float: left;
+          &-picture {
+            vertical-align: middle;
+            width: 68px;
+            height: 68px;
+          }
+        }
+        &__store {
+          float: left;
+          margin-left: 24px;
+          line-height: 68px;
+          &-app {
+            float: left;
+            &-link {
+              display: inline-block;
+              line-height: 68px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  color: #fff;
+  background-color: #212121;
+  padding: 0 20px 10px 20px;
+  width: auto;
+  @include clearfix;
+  &__nav {
+    width: 1020px;
+    margin: 0 auto;
+    @include clearfix;
+    &__aboutMercari {
+      padding-right: 30px;
+      width: 20%;
+      @include footerContent;
+    }
+    &__helpGuide {
+      padding-right: 30px;
+      width: 23%;
+      vertical-align: top;
+      @include footerContent;
+    }
+    &__privacy {
+      padding-right: 30px;
+      width: 42%;
+      @include footerContent;
+      &-inner {
+        float: left;
+        margin-right: 20px;
+      }
+    }
+    &__country {
+      width: auto;
+      @include footerContent;
+    }
+    &-title {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 100;
+    }
+    .footer-item {
+      margin-top: 20px;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+    .font__icon {
+        float: left;
+        padding-right: 20px;
+        .i {
+          font-size: 30px;
+          color: #fff;
+        }
+    }
+  }
+  &__bottom {
+    margin: 30px auto 20px;
+    width: 1020px;
+    display: flex;
+    &-copyright {
+      font-size: 5px;
+      margin-left: 330px;
+      display: inline-block;
+      line-height: 33px;
+    }
+  }
+}
