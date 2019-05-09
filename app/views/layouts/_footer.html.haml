@@ -1,0 +1,99 @@
+%aside.app__banner
+  .app__banner__info
+    .app__smartphone
+      %img.app__smartphone-img{src: "https://www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?4194600336"}/
+    .app__banner__info__inner
+      %h2.app__banner__info__inner-msgapp
+        スマホでかんたんフリマアプリ
+      %p.app__banner__info__inner-download
+        今すぐ無料ダウンロード！
+      .app__banner__icon
+        .app__banner__icon__mercari__icon
+          %img.app__banner__icon__mercari__icon-picture{src: "https://www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?4194600336"}/
+        %ul.app__banner__icon__store
+          %li.app__banner__icon__store-app
+            = link_to image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4194600336"), 'https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8', class:"app__banner__icon__store-app-link"
+          %li.app__banner__icon__store-app
+            = link_to image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4194600336"), 'https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja', class:"app__banner__icon__store-app-link"
+
+%footer.footer
+  .footer__nav
+    .footer__nav__aboutMercari
+      %h2.footer__nav-title
+        メルカリについて
+      %ul
+        %li.footer-item
+          会社概要(運営会社)
+        %li.footer-item
+          採用情報
+        %li.footer-item
+          プレスリリース
+        %li.footer-item
+          公式ブログ
+        %li.footer-item
+          メルカリロゴ利用ガイドライン
+          %li.footer-item.font__icon
+            %i.fa.fa-twitter.i
+          %li.footer-item.font__icon
+            %i.fa.fa-facebook-official.i
+
+    .footer__nav__helpGuide
+      %h2.footer__nav-title
+        ヘルプ&ガイド
+      %ul
+        %li.footer-item
+          メルカリガイド
+        %li.footer-item
+          らくらくメルカリ便
+        %li.footer-item
+          ゆうゆうメルカリ便
+        %li.footer-item
+          大型メルカリ便
+        %li.footer-item
+          車体取引ガイド
+        %li.footer-item
+          メルカリあんしん・あんぜん宣言！
+        %li.footer-item
+          偽ブランド品撲滅への取り組み
+        %li.footer-item
+          メルカリボックス
+
+    .footer__nav__privacy
+      %h2.footer__nav-title
+        プライバシーと利用規約
+      .footer__nav__privacy-inner
+        %ul
+          %li.footer-item
+            プライバシポリシー
+          %li.footer-item
+            メルカリ利用規約
+          %li.footer-item
+            あんしんスマホサポート制度に関する利用規約
+          %li.footer-item
+            コンプライアンスポリシー
+      .footer__nav__privacy-inner
+        %ul
+          %li.footer-item
+            個人データの安全管理に係る基本方針
+          %li.footer-item
+            特定商取引に関する表記
+          %li.footer-item
+            資金決済法に基づく表示
+          %li.footer-item
+            法令厳守と犯罪防止のために
+          %li.footer-item
+            返品・返金ポリシー
+
+    .footer__nav__country
+      %h2.footer__nav-title
+        国
+      %ul
+        %li.footer-item
+          日本
+        %li.footer-item
+          United States
+
+  .footer__bottom
+    = link_to image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?4194600336"), root_path, class:"footer__bottom-logo"
+    %span.footer__bottom-copyright
+      © 2019 Mercari
