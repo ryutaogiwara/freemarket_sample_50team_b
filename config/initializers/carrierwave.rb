@@ -4,7 +4,7 @@ require 'carrierwave/storage/fog'
 
 CarrierWave.configure do |config|
   if Rails.env.development? || Rails.env.test? #本番環境とテスト、ローカルの保存先を分ける
-    config.strage = :file
+    config.storage = :file
   elsif Rails.env.production?
     config.storage = :fog
     config.fog_provider = 'fog/aws'
