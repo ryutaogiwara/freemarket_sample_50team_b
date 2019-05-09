@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', function () {
-  new Swiper('.swiper-container', {
+  var mySwiper = new Swiper('.swiper-container', {
     centeredSlides: true,
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
