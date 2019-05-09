@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
-  protect_form_forgery with: :exception
+  protect_from_forgery with: :exception
 
   private
 
