@@ -1,0 +1,72 @@
+.solo-countainer{
+  padding: 0 0 220px;
+  position: relative;
+  .solo-header{
+    height: 128px;
+    text-align: center;
+    .logo{
+      margin: 40px 0 0;
+      display: inline-block;
+      .session-home{
+        width: 185px;
+        height: 49px;
+        line-height: 49px;
+        display: inline-block;
+        margin: 0 8px 0 0;
+      }
+    }
+  }
+  .solo-main{
+    display: block;
+    .container{
+      width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      .main-head{
+        padding: 32px 16px;
+        font-size: 22px;
+        line-height: 1.5;
+        text-align: center;
+        font-weight: 500;
+      }
+      .main-inner{
+        padding: 64px;
+        border-top: 1px solid #f5f5f5;
+        .main-content{
+          width: 320px;
+          margin: 0 auto;
+          @include buttont;
+        }
+      }
+    }
+  }
+  .solo-footer{
+    width: 456px;
+    height: 140px;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 40px 0;
+    text-align: center;
+    li{
+      display: inline-block;
+      font-size: 11px;
+    }
+    .hooter-image {
+      display: block;
+      color: #333;
+    }
+    p{
+      margin: 8px 0 0;
+      font-size: 11px;
+    }
+    .solo-footer-logo {
+    width: 80px;
+    height: 65px;
+    margin: 40px auto 0;
+    }
+  }
+}

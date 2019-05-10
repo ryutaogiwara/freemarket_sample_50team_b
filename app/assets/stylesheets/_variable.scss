@@ -12,3 +12,60 @@
   float: left;
 }
 $main-color: #f5f5f5;
+
+@mixin buttont{
+  .btn-default {
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+    .btn-red {
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    color: #fff;
+    padding: 0;
+    }
+    .btn-mail {
+      position: relative;
+      background: #eee;
+      color: #000;
+      padding: 0;
+      border: 1px solid transparent;
+      margin-bottom: 16px;
+      i {
+        color: #ccc;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        transform: translate(0, -50%);
+      }
+    }
+    .btn-sns {
+      position: relative;
+      i {
+        font-size: 26px;
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        transform: translate(0, -50%);
+      }
+      .btn-sns-facebook {
+      margin: 0px 0 0;
+      background: #385185;
+      color: #fff;
+      padding: 0;
+      }
+      .btn-sns-google {
+      margin: 16px 0 0;
+      background: #fff url(https://www.mercari.com/jp/assets/img/common/common/google.svg) no-repeat 3px top;
+      border: #979797 solid 1px;
+      color: #333;
+      padding: 0;
+      }
+    }
+  }
+}
