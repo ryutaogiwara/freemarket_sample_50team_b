@@ -1,7 +1,5 @@
 .solo-countainer
-  .solo-header
-    .logo
-      = link_to image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg", alt: "mercari"), :back, class: 'session-home'
+  =render "layouts/session-header"
   .solo-main
     .panel
       .login-newuser
