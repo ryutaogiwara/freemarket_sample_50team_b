@@ -212,12 +212,15 @@
         
   .socialMedia__box
     %ul.socialMedia__box-link
-      %li.socialMedia__box-link-facebook
-        %i
-      %li.socialMedia__box-link-twitter
-        %i
-      %li.socialMedia__box-link-pinterest
-        %i
+      %a.socialMedia__box-link-list{href: "http://www.facebook.com/share.php?u=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm70068440240%2F"}
+        %li.socialMedia__box-link-list-facebook
+          %i.fa.fa-facebook-official.socialMedia__box-link-list-facebook-icon
+      %a.socialMedia__box-link-list{href: root_path}
+        %li.socialMedia__box-link-list-twitter
+          %i.fa.fa-twitter-square.socialMedia__box-link-list-twitter-icon
+      %a.socialMedia__box-link-list{href: root_path}
+        %li.socialMedia__box-link-list-pinterest
+          %i.fa.fa-pinterest-square.socialMedia__box-link-list-pinterest-icon
   .items__user__profile
 
   =render "layouts/footer"

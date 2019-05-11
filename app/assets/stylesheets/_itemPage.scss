@@ -247,5 +247,48 @@
   }
 }
 .socialMedia__box {
-  
+  width: 700px;
+  margin: 24px auto;
+  padding: 32px 0 24px;
+  background-color: #fff;
+  &-link {
+    margin-top: 16px;
+    text-align: center;
+    &-list {
+      text-decoration: none;
+      &-facebook {
+        @include icon;
+        &-icon {
+          color: #385185;
+          font-size: 44px;
+          border-radius: 4px;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+      &-twitter {
+        @include icon;
+        &-icon {
+          color: #5d9dc9;
+          font-size: 44px;
+          border-radius: 4px;
+          &:hover {
+            opacity: .7;
+          }
+        }
+      }
+      &-pinterest {
+        @include icon;
+        &-icon{
+          color: #aa262a;
+          font-size: 44px;
+          border-radius: 4px;
+          &:hover {
+            opacity: .7;
+          }
+        }
+      }
+    }
+  }
 }
