@@ -131,25 +131,85 @@
           %i.fa.fa-lock
           %span
             あんしん・あんぜんへの取り組み
+
   .item__message
     .item__message__container
       .item__message__container__content
         %ul.item__message__container__content__message
-          %li
-            .item__message__container__content__message-user
-            .item__message__container__content__message-body
-              .item__message__container__content__message-body-text
-              .item__message__container__content__message-body-icon
-                %time.item__message__container__content__message-body-icon-left
-                  %i 
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?376951604"}/
+                %figcaption
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                出品者がコメントを削除しました
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
                   %span
-                .item__message__container__content__message-body-icon-right
-              .item__message__container__content__message-body-right
+                    193 日前
+                .item__message__container__content__message__list-body-icon-right
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+                %figcaption.item__message__container__content__message__list-user-name
+                  sora
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    175 日前
+                .item__message__container__content__message__list-body-icon-right
+                  %i.fa.fa-flag-o
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+                %figcaption.item__message__container__content__message__list-user-name
+                  BOON90sリバイバル@フォロー割
+              -# .item__message__list-user-seller
+                出品者
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                おまたせしました。
+                %br
+                先ほど確認しましたところ、画像にある底部に若干の汚れが見られる程度で、後はそれといって汚れはございませんでした。
+                %br
+                よろしくおねがいします。
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    174 日前
+                .item__message__container__content__message__list-body-icon-right
+                  %i.fa.fa-flag-o
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
   %ul.nav__items__link
     %li.nav__items__link-prev
-      %a
+      %a.nav__items__link-prev-text{href: root_path}
+        %i.fa.fa-chevron-left
+        ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018
     %li.nav__items__link-next
-      %a
+      %a.nav__items__link-next-text{href: root_path}
+        楽天パンダ ノート&マスキングテープセット
+        %i.fa.fa-chevron-right
+        
   .socialMedia__box
     %ul.socialMedia__box-link
       %li.socialMedia__box-link-facebook
