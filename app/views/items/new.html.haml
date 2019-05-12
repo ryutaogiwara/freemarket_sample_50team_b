@@ -9,48 +9,49 @@
             / ここからフォーム後でform_forに置き換え
             %form.sell-form
               .upload-box
-                %h3.sell-upload-box
-                  %label.new-item-name
+                %h3.upload-box--guide
+                  %label.item-info-guide
                     出品画像
-                    %span.info-required
+                    %span.item-info-required
                       必須
-                %p.upload-notes 最大10枚までアップロードできます
-                .dropbox-container
+                %p.upload-box--text 最大10枚までアップロードできます
+                .upload-box-container
                   //画像追加用div
-                  .upload-items
+                  .upload-box-container--items
                   //image投稿用フォーム
-                  %label.upload-dropbox
+                  %label.upload-box-container--area
                     //サーバーサイドと並行して表記変更file_field
                     %input{type: 'file', name: "image[image][]", style: "display: none;"}
-                    %pre.dropbox-info
+                    %pre.upload-box-container--area-info
                       ドラッグアンドドロップ
                       %br
                       またはクリックしてファイルをアップロード
               / 商品名、説明入力
               .item-info
-                .item-name-form
-                  %label.new-item-name
+                .item-info-form
+                  //共通部分
+                  %label.item-info-guide
                     商品名
-                    %span.info-required
+                    %span.item-info-required
                       必須
-                  .item-name-text
+                  .item-info-form--nametext
                     / =f.form_text
-                    %input{type: 'text', placeholder: '商品名（必須40文字まで）', class: 'item-name-textfield'}
+                    %input{type: 'text', placeholder: '商品名（必須40文字まで）', class: 'item-info-form--nametext-textfield'}
                 .item-description
-                  %label.new-item-name
+                  %label.item-info-guide
                     商品の説明
-                    %span.info-required
+                    %span.item-info-required
                       必須
-                  %textarea{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5", class: 'item-textarea'}
+                  %textarea{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5", class: 'item-description-textarea'}
               / 商品の詳細
               .item-info
                 %h3.sell-sub-head
                   商品の詳細
                 .sell-form-box
                   .form-group
-                    %label.new-item-name
+                    %label.item-info-guide
                       カテゴリー
-                      %span.info-required
+                      %span.item-info-required
                         必須
                     //ここにJSカテゴリhtml追加
                     %div
@@ -73,9 +74,9 @@
                           %option{value: ""} その他
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
-                    %label.new-item-name
+                    %label.item-info-guide
                       商品の状態
-                      %span.info-required
+                      %span.item-info-required
                         必須
                     %div
                       .select-wrap
@@ -93,13 +94,13 @@
                 %h3.sell-sub-head
                   配送について
                   //余裕があったらlink_toで
-                .form-question
+                .sell-sub-head--question
                   ?
                 .sell-form-box
                   .form-group
-                    %label.new-item-name
+                    %label.item-info-guide
                       配送料の負担
-                      %span.info-required
+                      %span.item-info-required
                         必須
                     %div
                       .select-wrap
@@ -109,9 +110,9 @@
                           %option{value: ""} 着払い(購入者負担)
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
-                    %label.new-item-name
+                    %label.item-info-guide
                       発送元の地域
-                      %span.info-required
+                      %span.item-info-required
                         必須
                     %div
                       .select-wrap
@@ -120,9 +121,9 @@
                           %option{value: ""} 都道府県
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
-                    %label.new-item-name
+                    %label.item-info-guide
                       発送までの日数
-                      %span.info-required
+                      %span.item-info-required
                         必須
                     %div
                       .select-wrap
@@ -137,48 +138,48 @@
                 %h3.sell-sub-head
                   販売価格(300〜9,999,999)
                   //余裕があったらlink_toで
-                .form-question
+                .sell-sub-head--question
                   ?
                 .sell-form-box
                   %ul.sell-price-form
                     %li.form-group
-                      .price-form
-                        %label.new-item-price
+                      .price-input-form
+                        %label.item-info-price
                           価格
-                          %span.info-required-price
+                          %span.item-info-required-price
                             必須
-                        .sell-price-input
+                        .price-input-area
                           ¥
                           //= text_field :price, placeholder: "例)300"
-                          .sell-price-input__div
+                          .price-input-area--form
                             //JS計算、DB作成後 = text_field
-                            %input{type: 'text', placeholder: '例)  300', class: "sell-price-area"}
+                            %input{type: 'text', placeholder: '例)  300', class: "price-input-area__text"}
                     %li.sale-fee
-                      .fee-left
+                      .sale-fee--left
                         販売手数料(10%)
-                      .fee-right -
+                      .sale-fee--right -
                     %li.sale-profit
-                      .profit-left
+                      .sale-profit--left
                         販売利益
-                      .profit-right -
+                      .sale-profit--right -
               /出品、もどるボタン
-              .sell-btn-box
-                .notes
-                  %p.notes-text
-                    %a{href: "#", class: "notes-text-link"}禁止されている出品
+              .exhibition-btn
+                .exhibition-btn-box
+                  %p.exhibition-btn-box--notes-text
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}禁止されている出品
                     、
-                    %a{href: "#", class: "notes-text-link"}行為
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}行為
                     を必ずご確認ください。
-                  %p.notes-text
+                  %p.exhibition-btn-box--notes-text
                     またブランド品でシリアルナンバー等がある場合はご記載ください。
-                    %a{href: "#", class: "notes-text-link"}偽ブランドの販売
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}偽ブランドの販売
                     は犯罪であり処罰される可能性があります。
-                  %p.notes-text
+                  %p.exhibition-btn-box--notes-text
                     また、出品をもちまして
-                    %a{href: "#", class: "notes-text-link"}加盟店規約
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}加盟店規約
                     に同意したことになります。
                     //= f.submitに書き換え
-                %button{type: 'submit', class: 'exhibition-btn'}出品する
+                %button{type: 'submit', class: 'exhibition__submit'}出品する
                 = link_to 'もどる', '#', class: 'back-btn'
 
     = render "layouts/session-footer"
