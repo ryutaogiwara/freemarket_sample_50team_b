@@ -8,64 +8,80 @@
       正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ
     %p.item__box__container-itemDescription
       『正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ』は、911回の取引実績を持つ
-      %a.item__box__container-itemDescription-link{href: root_path} BOON90sリバイバル@フォロー割
+      = link_to "BOON90sリバイバル@フォロー割", root_path, class:"item__box__container-itemDescription-link"
       さんから出品されました。
-      %a.item__box__container-itemDescription-link{href: root_path} コーチ
+      = link_to "コーチ", root_path, class:"item__box__container-itemDescription-link"
       （
-      %a.item__box__container-itemDescription-link{href: root_path} ショルダーバッグ/レディース
+      = link_to "ショルダーバッグ/レディース", root_path, class:"item__box__container-itemDescription-link"
       ）の商品で、兵庫県から1~2日で発送されます。
     .item__box__container-main
       .item__box__container-main-photo
+        .swiper-container
+          .swiper-wrapper
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/
+     
+          .swiper-my-pagination
+
       %table.item__box__container-main-table
         %tr
-          %th
+          %th.item__box__container-main-table-title
             出品者
-          %td
-            %a.lightBlue-underline{href: root_path} BOON90sリバイバル@フォロー割
+          %td.item__box__container-main-table-display
+            = link_to "BOON90sリバイバル@フォロー割", root_path, class:"item__box__container-main-table-link"
             .user-evaluation
               .user-evaluation-icon
-                %i
-                %span
+                %i.fa.fa-smile-o.user-evaluation-icon-smile
+                %span.user-evaluation-icon-like
+                  916
               .user-evaluation-icon
-                %i
-                %span
+                %i.fa.fa-meh-o.user-evaluation-icon-normal
+                %span.user-evaluation-icon-like
+                  27
               .user-evaluation-icon
-                %i
-                %span
+                %i.fa.fa-frown-o.user-evaluation-icon-sad
+                %span.user-evaluation-icon-like
+                  4
         %tr
-          %th
+          %th.item__box__container-main-table-title
             カテゴリー
             %td
-              %a.lightBlue-underline{href: root_path} レディース
-              %a.lightBlue-underline{href: root_path} バッグ
-              %a.lightBlue-underline{href: root_path} ショルダーバッグ
+              = link_to "レディース", root_path, class:"item__box__container-main-table-link"
+              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
+              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"                        
         %tr
-          %th
+          %th.item__box__container-main-table-title
             ブランド
             %td
-              %a.lightBlue-underline{href: root_path} コーチ
+              = link_to "コーチ", root_path, class:"item__box__container-main-table-link"
         %tr
-          %th
+          %th.item__box__container-main-table-title
             商品の状態
           %td
             やや傷や汚れあり
         %tr
-          %th
+          %th.item__box__container-main-table-title
             配送料の負担
           %td
             送料込み(出品者負担)
         %tr
-          %th
+          %th.item__box__container-main-table-title
             配送の方法
           %td
             らくらくメルカリ便
         %tr
-          %th
+          %th.item__box__container-main-table-title
             発送元地域
           %td
-            %a.lightBlue-underline{href: root_path} 沖縄県
+            = link_to "沖縄県", root_path, class:"item__box__container-main-table-link"
         %tr
-          %th
+          %th.item__box__container-main-table-title
             発送日の目安
           %td
             1~2日で発送

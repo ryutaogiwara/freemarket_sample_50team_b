@@ -33,3 +33,13 @@ window.addEventListener('DOMContentLoaded', function () {
     },
   });
 }, false);
+
+var swiper = new Swiper('.swiper-container', {
+  pagination: {
+    el: '.swiper-my-pagination',
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + '<img src="https://haniwaman.com/wp-content/uploads/2018/05/swiper-thumbnail' + (index + 1) + '.png" alt="">' + '</span>';
+    },
+  },
+});
