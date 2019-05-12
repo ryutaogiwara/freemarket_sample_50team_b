@@ -1,14 +1,95 @@
-=render "layouts/header"
-.bread-crumbs
-  %ul
-    %li
-      ="メルカリ "
-    %li
-      ="> マイページ"
-.mypage-main
-  .content
-    .credit-inner
+/クレジットカード情報入力
+#wrapper
+  =render 'layouts/header'
+  =render 'layouts/breadCrumbs'
+  .mypage-main
+    .content
+      .content__credit
+        %h2.credit-head
+          ="クレジットカード情報入力"
+        .credit-inner
+          .credit-content
+            .credit-form-group
+              %label
+                = "カード番号"
+                .credit-form-must
+                  ="必須"
+              = text_field_tag :keyword, '', class: 'credit-input', placeholder: '半角数字のみ'
+              %ul.card-list
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/visa.svg", size: "49x20", class: ".image"
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/master-card.svg", size: "34x20", class: ".image"
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg", size: "30x20", class: ".image"
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/jcb.svg", size: "32x20", class: ".image"
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/american_express.svg", size: "21x20", class: ".image"
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg", size: "32x20", class: ".image"
+                %li.card-list-item
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/discover.svg", size: "32x20", class: ".image"
+            .credit-form-group
+              %label
+                = "有効期限"
+                .credit-form-must
+                  ="必須"
+              .credit-select
+                %ul
+                  %li
+                    %select.credit-month-input
+                      %option{value: ""} 01
+                      %option{value: ""} 02
+                      %option{value: ""} 03
+                      %option{value: ""} 04
+                      %option{value: ""} 05
+                      %option{value: ""} 06
+                      %option{value: ""} 07
+                      %option{value: ""} 08
+                      %option{value: ""} 09
+                      %option{value: ""} 10
+                      %option{value: ""} 11
+                      %option{value: ""} 12
+                    = fa_icon 'angle-down', class: 'credit-arrow-down'
+                  %li
+                    ="月"
+                %ul
+                  %li
+                    %select.credit-month-input
+                      %option{value: ""} 19
+                      %option{value: ""} 20
+                      %option{value: ""} 21
+                      %option{value: ""} 22
+                      %option{value: ""} 23
+                      %option{value: ""} 24
+                      %option{value: ""} 25
+                      %option{value: ""} 26
+                      %option{value: ""} 27
+                      %option{value: ""} 28
+                      %option{value: ""} 29
+                    = fa_icon 'angle-down', class: 'credit-arrow-down'
+                  %li
+                    ="年"
+            .credit-form-group
+              %label
+                = "セキュリティコード"
+                .credit-form-must
+                  ="必須"
+              %input{type: 'text', placeholder: 'カード背面4桁もしくは3桁の番号', class: 'credit-input'}
+                .signup-code
+                  .credit-question
+                    ="?"
+                  .credit-note
+                    ="カード裏面の番号とは？"
+            .form-group
+              .btn-default
+                %button.btn-default.btn-red
+                  ="追加する"
 
-  =render "layouts/sidemenu"
-=render "layouts/footer"
+
+
+    =render "layouts/sidemenu"
+
+  =render "layouts/footer"
 
