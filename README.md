@@ -11,7 +11,6 @@
 |nickname|string  |null: false, unique: true|
 |email   |string  |null: false|
 |password|string  |null: false|
-|password_confirmation|string|null: false|
 |first_name|string|null: false|
 |last_name |string|null: false|
 |first_name_kana|string|null: false|
@@ -34,7 +33,6 @@
 |column  |Type    |Option |
 |--------|--------|-------|
 |user_id |references |null: false, foreign_key: true|
-|nickname|string  |null: false, unique: true|
 |profile |text    ||
 
 ### Association
@@ -59,7 +57,7 @@
 |--------|--------|-------|
 |number  |integer |null: false|
 |month   |integer |null: false|
-|day     |integer |null: false|
+|year    |integer |null: false|
 |security_code|integer|null: false|
 |user_id |references |null: false, foreign_key|
 
@@ -74,7 +72,7 @@
 |city    |string  ||
 |address |string  ||
 |building_name|string||
-|user_id |integer |null: false|
+|user_id |references |null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -84,7 +82,6 @@
 |--------|--------|-------|
 |id      |integer |null: false|
 |name    |string  |null: false|
-|image   |string  |null: false|
 |description|text |null: false|
 |state   |string  |null: false|
 |postage |string  |null: false|
@@ -100,7 +97,17 @@
 
 ### Association
 - has_many :transactions, dependent: :destroy
+- has_many :images, dependent: :destroy
 - belongs_to :user
+
+## imagesテーブル
+|column  |Type    |Option |
+|--------|--------|-------|
+|item_id |references |null: false, foreign_key: true|
+|image   |string  |null: false|
+
+### Association
+- belongs_to :item
 
 ## transactionテーブル
 |column  |Type    |Option |
