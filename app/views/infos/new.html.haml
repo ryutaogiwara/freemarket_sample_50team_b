@@ -1,0 +1,59 @@
+.solo-container
+  =render "layouts/session-header"
+
+  %main.solo-main
+    %section.main-container
+      %h2.main-container__head
+        購入を確定しますか？
+      %section.main-container__content
+        .content-inner
+          %h3.content-inner__image
+            %img(src="https://static.mercdn.net/thumb/photos/m52245248091_1.jpg?1557480967" alt="")/
+          %p.content-inner__name
+            Polo Ralph Lauren ポロシャツ 刺繍 ネイビー
+          %form(action="" class="buy-form")
+            %p.price-ja
+              ¥ 3,480
+              %span.shopping-fee
+                送料込み
+            %ul.point
+              %li.point-parent
+                .point-parent-toggle
+                  ポイントはありません
+            %ul.price
+              %li.buy-price
+                .buy-price__cell
+                  支払い金額
+                .buy-price__cell
+                  %span
+                    ¥ 3,480
+            %button(type="submit" class="btn-default")
+              購入する
+      %section.main-container__user-info
+        .user-info-inner
+          %h3 配送先
+          %address.user-info-inner__address
+            〒123-4567
+            %br
+            東京都 渋谷区 アジアビル9F
+            %br
+            チームB
+          %p.user-info-inner__text
+          = link_to root_path, class: "user-info-inner__edit" do
+            %span 変更する
+            %i.fa.fa-angle-right
+      %section.main-container__card-data
+        .card-data-inner
+          %h3
+            支払い方法
+          %p.card-data-inner__text
+            123456789
+            %br
+            01 / 23
+          %img(src="//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?376951604" width="26" height="20" alt="jcb")
+          %p
+          = link_to root_path, class: "card-data-inner__edit" do
+            %span 変更する
+            %i.fa.fa-angle-right
+
+  =render "layouts/session-footer"
