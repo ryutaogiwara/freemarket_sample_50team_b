@@ -1,0 +1,34 @@
+/登録済みクレジットカード情報
+#wrapper
+  =render 'layouts/header'
+  =render 'layouts/breadCrumbs'
+  .mypage-main
+    .content
+      .content__credit
+        %h2.credit-head
+          ="支払い方法"
+        .credit-inner
+          %section
+            .credit-content
+              .sub-credit-head
+                ="クレジットカード一覧"
+            .payment-content
+              %ul
+                %li
+                  .payment-inside
+                    = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/master-card.svg", size: "34x20", class: ".image"
+                    .payment-num
+                      ="************8548"
+                    .payment-num
+                      ="10 / 20"
+                    %button.payment-remove
+                      ="削除する"
+
+              .setting-register
+                .setting-register-block
+                  %a
+                    ="支払い方法について"
+                    %i.fa.fa-angle-right
+    =render "layouts/sidemenu"
+
+  =render "layouts/footer"

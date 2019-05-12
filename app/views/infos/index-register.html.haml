@@ -1,0 +1,25 @@
+/クレジットカード情報がない場合の画面
+#wrapper
+  =render 'layouts/header'
+  =render 'layouts/breadCrumbs'
+  .mypage-main
+    .content
+      .content__credit
+        %h2.credit-head
+          ="支払い方法"
+        .credit-inner
+          %section
+            .credit-content
+              .sub-credit-head
+                ="クレジットカード一覧"
+            .payment-content
+              .add-payment
+                .add-payment-content
+                  .form-group
+                    .btn-default
+                      %button.btn-default.btn-red
+                        %i.fa.fa-credit-card
+                        ="クレジットカードを追加する"
+    =render "layouts/sidemenu"
+
+  =render "layouts/footer"
