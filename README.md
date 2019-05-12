@@ -33,7 +33,6 @@
 |column  |Type    |Option |
 |--------|--------|-------|
 |user_id |references |null: false, foreign_key: true|
-|nickname|string  |null: false, unique: true|
 |profile |text    ||
 
 ### Association
@@ -58,7 +57,7 @@
 |--------|--------|-------|
 |number  |integer |null: false|
 |month   |integer |null: false|
-|day     |integer |null: false|
+|year    |integer |null: false|
 |security_code|integer|null: false|
 |user_id |references |null: false, foreign_key|
 
@@ -73,7 +72,7 @@
 |city    |string  ||
 |address |string  ||
 |building_name|string||
-|user_id |integer |null: false|
+|user_id |references |null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -98,6 +97,7 @@
 
 ### Association
 - has_many :transactions, dependent: :destroy
+- has_many :images, dependent: :destroy
 - belongs_to :user
 
 ## imagesテーブル
