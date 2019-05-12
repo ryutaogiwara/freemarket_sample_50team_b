@@ -1,0 +1,169 @@
+.solo-container {
+  padding: 0 0 220px;
+  .solo-main {
+    display: block;
+    .main-container {
+      width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      &__head {
+        padding: 32px 16px;
+        font-size: 22px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      &__content {
+        margin: 0;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        text-align: center;
+        .content-inner {
+          max-width: 320px;
+          margin: 0 auto;
+            img {
+              width: 148px;
+            }
+          &__name {
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 600;
+          }
+          .buy-form {
+            .price-ja {
+              margin: 8px 0 0;
+              line-height: 1.5;
+              font-size: 20px;
+              font-weight: 600;
+              .shopping-fee {
+                margin: 0 0 0 8px;
+                font-size: 14px;
+                font-weight: 400;
+                display: inline-block;
+              }
+            }
+            .point {
+              background: #ccc;
+              margin: 16px 0 0;
+              &-parent {
+                &-toggle {
+                  cursor: default;
+                  padding: 16px;
+                  border: 1px solid #ccc;
+                  position: relative;
+                }
+              }
+            }
+            .price {
+              display: table;
+              border-collapse: collapse;
+              width: 100%;
+              .buy-price {
+                font-size: 28px;
+                display: table-row;
+                font-weight: 600;
+                &__cell {
+                  display: table-cell;
+                  padding: 16px 0;
+                  text-align: right;
+                  &:first-child {
+                    text-align: left;
+                  }
+                }
+              }
+            }
+            .btn-default {
+              margin: 16px 0 0;
+              background: #ea352d;
+              border: 1px solid #ea352d;
+              color: #fff;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              font-weight: 600;
+              transition: all ease-out .3s;
+              cursor: pointer;
+              text-align: center;
+            }
+          }
+        }
+      }
+      &__user-info {
+        margin: 40px 0 0;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        .user-info-inner {
+          max-width: 320px;
+          margin: 0 auto;
+          h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          &__address {
+            display: block;
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          &__text {
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          &__edit {
+            display: block;
+            text-align: right;
+            color: #0099e8;
+            text-decoration: none;
+            span {
+              vertical-align: middle;
+            }
+            i {
+              vertical-align: middle;
+              margin: 0 0 0 8px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      &__card-data {
+        margin: 40px 0 0;
+        padding: 40px 12.5%;
+        border-top: 1px solid #f5f5f5;
+        .card-data-inner {
+          max-width: 320px;
+          margin: 0 auto;
+          h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          &__text {
+            margin: 8px 0 0;
+            font-size: 12px;
+            line-height: 1.4;
+          }
+          img {
+            vertical-align: middle;
+          }
+          &__edit {
+            display: block;
+            text-align: right;
+            color: #0099e8;
+            text-decoration: none;
+            span {
+              vertical-align: middle;
+            }
+            i {
+              vertical-align: middle;
+              margin: 0 0 0 8px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
