@@ -432,49 +432,29 @@
     }
   }
 }
-.swiper3 {
-  height: 80px;
+.swiper3.swiper-container {
+    width: 100%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
 }
-/* 2個目のSwiperのスライドのスタイル */
-.swiper3 .swiper-slide {
-	height: 80px;
-	line-height: 80px;
-	-webkit-filter: brightness(0.5);
-	filter: brightness(0.5);
+.swiper3.swiper-slide {
+    background-size: cover;
+    background-position: center;
 }
-/* 2個目のSwiperの現在のスライドのスタイル */
-.swiper3 .swiper-slide-active {
-	-webkit-filter: brightness(1);
-	filter: brightness(1);
+.wrapper3{
+    height: 80%;
+    width: 100%;
 }
-.wrapper3 {
-  margin-left: -130px;
+.wrapper3{
+    height: 20%;
+    box-sizing: border-box;
 }
-
-//   .wrapper2 .swiper-container {
-//     width: 100%;
-//     height: 300px;
-//     margin-left: auto;
-//     margin-right: auto;
-// }
-// .wrapper2 .swiper-slide {
-//     background-size: cover;
-//     background-position: center;
-// }
-// .wrapper2 {
-//     height: 80%;
-//     width: 100%;
-// }
-// .swiper3{
-//     height: 20%;
-//     box-sizing: border-box;
-//     padding: 10px 0;
-// }
-// .swiper3 .swiper-slide {
-//     width: 25%;
-//     height: 100%;
-//     opacity: 0.4;
-// }
-// .swiper3 .swiper-slide-active {
-//     opacity: 1;
-// }
+.wrapper3 .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+}
+.wrapper3 .swiper-slide-active {
+    opacity: 1;
+}
