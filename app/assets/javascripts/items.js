@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function () {
   });
 
   $(function () {
-    /*クリックイベント*/
+    //  TODO: クリックイベントを実装  
     // $('.owl-dot').on('mouseover', function () {
 
     var myswiper2 = new Swiper('.swiper2', {
