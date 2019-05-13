@@ -1,0 +1,29 @@
+.mypage-headder
+  =render"layouts/header"
+.bread-crumbs
+  %ul
+    %li
+      ="メルカリ "
+    %li
+      ="> マイページ"
+    %li
+      ="> プロフィール"
+.mypage-main
+  .content
+    .profile__container
+      .profile__container__headder
+        %h2
+          ="プロフィール"
+      .profile__container__form
+        .profile__container__form-icon
+          %figure
+            = image_tag "member_photo_noimage_thumb.png", size: "60x60", alt: "顔写真", class: ".image"
+          %input(type="text" placeholder="Write NAME" class="input-default")
+        .profile__container__form-content
+          %textarea(name="introduction" placeholder="Write Introduction" class="textarea-default")
+          %button(type="submit" class="btn-default btn-red")
+            ="更新する"
+            
+  =render "layouts/sidemenu"
+.mypage-footer
+  =render"layouts/footer"
