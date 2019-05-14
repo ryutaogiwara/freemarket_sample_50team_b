@@ -19,23 +19,22 @@
           line-height: 1.5;
         }
         .text-right{
+          color: #0099e8;
           text-align: right;
           a{
-            color: #0099e8;
-            text-decoration: none;
+            @include lightBlue-underline;
           }
-            p.icon-arrow-right{
-              display: inline-block;
-              font-family: 'icon-font';
-              speak: none;
-              font-style: normal;
-              font-weight: 400;
-              font-variant: normal;
-              text-transform: none;
-              line-height: 1;
-              -webkit-font-smoothing: antialiased;
-            }
+          i{
+            display: inline-block;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
           }
+        }
         .form-group{
           margin: 40px 0 0;
           label{
@@ -46,7 +45,7 @@
             margin: 8px 0 0;
             line-height: 1.5;
           }
-          span{
+          .form-ability{
             background: #ccc;
             margin: 0 0 0 8px;
             padding: 2px 4px;
@@ -66,30 +65,34 @@
             line-height: 1.5;
             font-size: 16px;
           }
-          select{
-            width: 100%;
-            position: relative;
-            z-index: 2;
-            height: 48px;
-            padding: 0 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            background: 0;
-            font-size: 16px;
-            line-height: 1.5;
-            .select-wrap{
-              .select-default{
-                position: absolute;
-                right: 16px;
-                top: 50%;
-                z-index: 2;
-                color: #888;
-                font-size: 8px;
-                transform: translate(0, -50%);
-              }
+          .select-wrap{
+              margin: 8px 0 0;
+              position: relative;
+              background: #fff;
+            .select-default{
+              width: 100%;
+              position: relative;
+              z-index: 2;
+              height: 48px;
+              padding: 0 16px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: 0;
+              font-size: 16px;
+              line-height: 1.5;
+              -webkit-appearance: none;
             }
+            .icon-arrow-down{
+              position: absolute;
+              right: 16px;
+              top: 25%;
+              z-index: 2;
+              font-size: 1.7rem;
+              color: #888;
+            } 
           }
         }
+      }
         .btn-default.btn-red{
         margin: 40px 0 0 0;
         background: #ea352d;
@@ -101,5 +104,5 @@
         font-size: 14px;
         min-height: 1.5em;
         }      
-      }
+      
 }
