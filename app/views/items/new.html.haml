@@ -6,8 +6,7 @@
         .sell-container
           .sell-container-inner
             %h2.single-head 商品の情報を入力
-            / ここからフォーム後でform_forに置き換え
-            %form.sell-form
+            = form_for @item, html: {class: 'sell-form'} do |f|
               .upload-box
                 %h3.upload-box--guide
                   %label.item-info-guide
@@ -16,16 +15,17 @@
                       必須
                 %p.upload-box--text 最大10枚までアップロードできます
                 .upload-box-container
-                  //画像追加用div
-                  .upload-box-container--items
-                  //image投稿用フォーム
-                  %label.upload-box-container--area
-                    //サーバーサイドと並行して表記変更file_field
-                    %input{type: 'file', name: "image[image][]", style: "display: none;"}
-                    %pre.upload-box-container--area-info
-                      ドラッグアンドドロップ
-                      %br
-                      またはクリックしてファイルをアップロード
+                  = f.fields_for :images do |image|
+                    //画像追加用div
+                    .upload-box-container--items#preview
+                    .upload-box-container--items#preview2
+                    //image投稿用フォーム
+                    = image.label :image, class: 'upload-box-container--area', id: 'drop_zone' do
+                      = image.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0
+                      %pre.upload-box-container--area-info
+                        ドラッグアンドドロップ
+                        %br
+                        またはクリックしてファイルをアップロード
               / 商品名、説明入力
               .item-info
                 .item-info-form
@@ -179,7 +179,8 @@
                     %a{href: "#", class: "exhibition-btn-box--notes-text-link"}加盟店規約
                     に同意したことになります。
                     //= f.submitに書き換え
-                %button{type: 'submit', class: 'exhibition__submit'}出品する
+                = f.submit '出品する', class: 'exhibition__submit', id: 'new_item'
+                -# %button{type: 'submit', id: 'new_item', class: 'exhibition__submit'}出品する
                 = link_to 'もどる', '#', class: 'back-btn'
 
     = render "layouts/session-footer"
