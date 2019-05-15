@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.includes(:user).order("id DESC")
   end
 
   def new

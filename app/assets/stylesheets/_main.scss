@@ -122,6 +122,9 @@
         width: 99.5%;
         text-align: right;
         color: #0099e8;
+        &-link {
+          @include lightBlue-underline;
+        }          
       }
     }
   }
