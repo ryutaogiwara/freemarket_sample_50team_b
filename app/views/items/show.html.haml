@@ -1,14 +1,456 @@
 #wrapper
-  =render 'layouts/header'
-  =render 'layouts/breadCrumbs'
-  .mypage-main
-    .content
-      .content__logout
-        %form.content__logout__page
-          .content__logout__page__box
-            %buttom.content__logout__page__box-btn 
-              ログアウト
-            %input{type: "hidden", name: "", value: ""}
-    =render "layouts/sidemenu"
+  =render "layouts/header"
 
+  =render "layouts/breadCrumbs"
+
+  .item__box__container
+    %h1.item__box__container-name
+      正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ
+    %p.item__box__container-itemDescription
+      『正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ』は、911回の取引実績を持つ
+      = link_to "BOON90sリバイバル@フォロー割", root_path, class:"item__box__container-itemDescription-link"
+      さんから出品されました。
+      = link_to "コーチ", root_path, class:"item__box__container-itemDescription-link"
+      （
+      = link_to "ショルダーバッグ/レディース", root_path, class:"item__box__container-itemDescription-link"
+      ）の商品で、兵庫県から1~2日で発送されます。
+    .item__box__container-main
+      .item__box__container-main-photo
+        .swiper-container.swiper2
+          .swiper-wrapper
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/ 
+            .swiper-slide
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/                           
+
+        .swiper-container.swiper3
+          .swiper-wrapper.wrapper3
+            .swiper-slide.owl-dot
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
+            .swiper-slide.owl-dot
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/
+            .swiper-slide.owl-dot
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/
+            .swiper-slide.owl-dot
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/ 
+            .swiper-slide.owl-dot
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/  
+            .swiper-slide.owl-dot
+              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/                                    
+                                      
+          .swiper-my-pagination
+
+        .item__box__container-main-photo-sold
+          .item__box__container-main-photo-sold-out
+            SOLD
+
+      %table.item__box__container-main-table
+        %tr
+          %th.item__box__container-main-table-title
+            出品者
+          %td.item__box__container-main-table-display
+            = link_to "BOON90sリバイバル@フォロー割", root_path, class:"item__box__container-main-table-link"
+            .user-evaluation
+              .user-evaluation-icon
+                %i.fa.fa-smile-o.user-evaluation-icon-smile
+                %span.user-evaluation-icon-like
+                  916
+              .user-evaluation-icon
+                %i.fa.fa-meh-o.user-evaluation-icon-normal
+                %span.user-evaluation-icon-like
+                  27
+              .user-evaluation-icon
+                %i.fa.fa-frown-o.user-evaluation-icon-sad
+                %span.user-evaluation-icon-like
+                  4
+        %tr
+          %th.item__box__container-main-table-title
+            カテゴリー
+            %td
+              = link_to "レディース", root_path, class:"item__box__container-main-table-link"
+              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
+              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"                        
+        %tr
+          %th.item__box__container-main-table-title
+            ブランド
+            %td
+              = link_to "コーチ", root_path, class:"item__box__container-main-table-link"
+        %tr
+          %th.item__box__container-main-table-title
+            商品の状態
+          %td
+            やや傷や汚れあり
+        %tr
+          %th.item__box__container-main-table-title
+            配送料の負担
+          %td
+            送料込み(出品者負担)
+        %tr
+          %th.item__box__container-main-table-title
+            配送の方法
+          %td
+            らくらくメルカリ便
+        %tr
+          %th.item__box__container-main-table-title
+            発送元地域
+          %td
+            = link_to "沖縄県", root_path, class:"item__box__container-main-table-link"
+        %tr
+          %th.item__box__container-main-table-title
+            発送日の目安
+          %td
+            1~2日で発送
+    .item__box__container-priceBox
+      %span.item__box__container-priceBox-price
+        ¥ 3,380
+      %span.item__box__container-priceBox-tax
+        (税込)
+      %span.item__box__container-priceBox-shippingFee
+        送料込み
+    .item__box__container-buyBtn
+      売り切れました
+    .item__box__container-detail
+      %p.item__box__container-detail-inner
+        ■商品ご覧頂き、誠にありがとうございます。
+        ※今だけ、フォロワーになって下さった方に、300円のお値引きサービス中！！
+        質問がありましたらコメントでよろしくお願いします！
+        ■ 商品説明 ■
+        まずはプロフを確認してください☆
+
+        ■ 商品詳細 ■
+        シンプルな落ち着いたお色味でどんな場面にも合い、
+        どんな服にも合わせやすいお鞄です。使用感有！角擦れはございませんが
+        多少の汚れはあります。内側はとても綺麗です☆
+        使わなくなったのでどなたか使っていただける方お願いします。
+        製造番号　H2K-9294
+
+        【ブランド】
+        COACH　コーチ
+
+        【商品名】
+        コーチ大き目シンプル
+
+        【仕様】
+        外ポケット１　内ポケット４
+
+        【サイズ】
+        縦：32
+        横：31
+        幅：7
+        紐：130 多少調節可能
+
+        ＊他にも数多くの商品を出品しているので、ぜひご覧ください。
+        ＊複数購入、お取り置き(５日まで)もできるので、お気軽にお声がけくださいませ。
+        ＊中古品になりますので、予めご理解いただきますよう、お願い致します^_^
+        ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
+        、お願い致します^_^
+        ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
+    .item__box__container-bottom
+      .item__box__container-bottom-left
+        %a.item__box__container-bottom-left-link{href: root_path}
+          %i.fa.fa-heart-o.like
+          %span
+            いいね!
+          %span
+            7
+        %a.item__box__container-bottom-left-link{href: root_path}
+          %i.fa.fa-flag-o
+          %span
+            不適切な商品の報告
+      .item__box__container-bottom-right
+        %a.item__box__container-bottom-right-link{href: "https://www.mercari.com/jp/safe/description/"}
+          %i.fa.fa-lock
+          %span
+            あんしん・あんぜんへの取り組み
+
+  .item__message
+    .item__message__container
+      .item__message__container__content
+        %ul.item__message__container__content__message
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?376951604"}/
+                %figcaption
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                出品者がコメントを削除しました
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    193 日前
+                .item__message__container__content__message__list-body-icon-right
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+                %figcaption.item__message__container__content__message__list-user-name
+                  sora
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    175 日前
+                .item__message__container__content__message__list-body-icon-right
+                  %i.fa.fa-flag-o
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+                %figcaption.item__message__container__content__message__list-user-name
+                  BOON90sリバイバル@フォロー割
+              -# .item__message__list-user-seller
+                出品者
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                おまたせしました。
+                %br
+                先ほど確認しましたところ、画像にある底部に若干の汚れが見られる程度で、後はそれといって汚れはございませんでした。
+                %br
+                よろしくおねがいします。
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    174 日前
+                .item__message__container__content__message__list-body-icon-right
+                  %i.fa.fa-flag-o
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+  %ul.nav__items__link
+    %li.nav__items__link-prev
+      %a.nav__items__link-prev-text{href: root_path}
+        %i.fa.fa-chevron-left
+        ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018
+    %li.nav__items__link-next
+      %a.nav__items__link-next-text{href: root_path}
+        楽天パンダ ノート&マスキングテープセット
+        %i.fa.fa-chevron-right
+        
+  .socialMedia__box
+    %ul.socialMedia__box-link
+      %a.socialMedia__box-link-list
+        %li.socialMedia__box-link-list-facebook
+          %i.fa.fa-facebook-official.socialMedia__box-link-list-facebook-icon
+      %a.socialMedia__box-link-list
+        %li.socialMedia__box-link-list-twitter
+          %i.fa.fa-twitter-square.socialMedia__box-link-list-twitter-icon
+      %a.socialMedia__box-link-list
+        %li.socialMedia__box-link-list-pinterest
+          %i.fa.fa-pinterest-square.socialMedia__box-link-list-pinterest-icon
+  .items__user__profile
+    %section.items__user__profile__box
+      %h2.items__user__profile__box-head
+        %a.items__user__profile__box-head-title
+          BOON90sリバイバル@フォロー割さんのその他の出品
+      .items__box
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+                                  
+    %section.items__user__profile__box
+      %h2.items__user__profile__box-head
+        %a.items__user__profile__box-head-title
+          コーチのショルダーバッグ その他の商品
+      .items__box
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+                                                    
   =render "layouts/footer"
