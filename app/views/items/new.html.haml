@@ -153,15 +153,17 @@
                           //= text_field :price, placeholder: "例)300"
                           .price-input-area--form
                             //JS計算、DB作成後 = text_field
-                            %input{type: 'text', placeholder: '例)  300', class: "price-input-area__text"}
+                            %input{type: 'text', placeholder: '例)  300', class: "price-input-area__text", id: "price-input-field",}
                     %li.sale-fee
                       .sale-fee--left
                         販売手数料(10%)
-                      .sale-fee--right -
+                      .sale-fee--right
+                        #sale-fee-result
                     %li.sale-profit
                       .sale-profit--left
                         販売利益
-                      .sale-profit--right -
+                      .sale-profit--right 
+                        #sale-profit-result
               /出品、もどるボタン
               .exhibition-btn
                 .exhibition-btn-box
