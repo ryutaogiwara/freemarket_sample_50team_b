@@ -16,15 +16,21 @@
     .pickup__container
       %h2.pickup__container-head
         ピックアップカテゴリー
-      = render @items
+      %section.items
+        %h3.items__text
+          %a.items__text-link
+            新着アイテム
+        .items__box
+          = render @items
+          .items__all
+            = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
       
     .pickup__container
       %h2.pickup__container-head
         ピックアップブランド
       %section.items
         %h3.items__text
-          %a.items__text-link
-            新着アイテム
+          = link_to "シャネル新着アイテム", root_path, class:"items__text-link"
         .items__box
           .items__box__content
             %a.item__page
@@ -85,14 +91,12 @@
                     %span 96
                 %p.item__page__body-tax
                   (税込)
-        .items__all
-          %a
-            全ての商品を見る
+          .items__all
+            = link_to "全ての商品を見る", root_path, class:"items__all-link"
 
       %section.items
         %h3.items__text
-          %a.items__text-link
-            新着アイテム
+          = link_to "ルイヴィトン新着アイテム", root_path, class:"items__text-link"           
         .items__box
           .items__box__content
             %a.item__page
@@ -153,9 +157,8 @@
                     %span 96
                 %p.item__page__body-tax
                   (税込)
-        .items__all
-          %a
-            全ての商品を見る
+          .items__all
+            = link_to "全ての商品を見る", root_path, class:"items__all-link"
 
   =render "layouts/footer"
 
