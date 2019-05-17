@@ -1,5 +1,5 @@
 .items__box__content
-  %a.item__page
+  = link_to item_path(item.id), class: "item__page" do
     .item__page-photo
       = image_tag item.images[0].image,size:"230x220"
     .item__page__body
