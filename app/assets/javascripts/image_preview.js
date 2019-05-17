@@ -15,6 +15,7 @@ $(document).on('turbolinks:load', function(){
                 </div>`;
     return html
   };
+
   $(function(){
     function divideFiles(files){
       for(var i = 0; i < files.length; i++){

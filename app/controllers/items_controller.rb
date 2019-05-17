@@ -6,20 +6,29 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @image = @item.images.build  # buildを使うと親モデルに対する外部参照キーを自動でセットできる
+    @item.images.build  # buildを使うと親モデルに対する外部参照キーを自動でセットできる
   end
 
   def create
-    item = Item.new(item_params)
-    # item.user = current_user
-    item.save
-    # binding.pry
-    redirect_to new_item_path
+    @item = Item.new(item_params)
+    if params[:images].present?
+      if @item.save
+        if image_params.each{ |image| @image = @item.images.create(image: image)}
+           redirect_to root_path
+        else
+          render :new
+        end
+      end
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes:[:id, :image, :item_id]).merge(user_id: 1 )
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :id]).merge(user_id: 1 )
+  end
+
+  def image_params
+    params.require(:images).permit(image: [])[:image]
   end
 end

@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_one :address, dependent: :destroy
   has_one :card_info, dependent: :destroy
   has_one :user_info, dependent: :destroy
-  has_many :items, dependent: :destroy
+  has_many :items
   has_many :transactions, dependent: :destroy
 end

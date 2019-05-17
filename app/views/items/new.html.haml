@@ -6,7 +6,7 @@
         .sell-container
           .sell-container-inner
             %h2.single-head 商品の情報を入力
-            = form_for @item, html: {class: 'sell-form'} do |f|
+            = form_for (@item), html: {class: 'sell-form'} do |f|
               .upload-box
                 %h3.upload-box--guide
                   %label.item-info-guide
@@ -15,13 +15,13 @@
                       必須
                 %p.upload-box--text 最大10枚までアップロードできます
                 .upload-box-container
-                  = f.fields_for :images do |image|
+                  = f.fields_for :images do |i|
                     //画像追加用div
                     .upload-box-container--items#preview
                     .upload-box-container--items#preview2
                     //image投稿用フォーム
-                    = image.label :image, class: 'upload-box-container--area', id: 'drop_zone' do
-                      = image.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0
+                    = i.label :image, class: 'upload-box-container--area', id: 'drop_zone' do
+                      = i.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0
                       %pre.upload-box-container--area-info
                         ドラッグアンドドロップ
                         %br
@@ -59,12 +59,12 @@
                         = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
                         //JSでdisplay: none;を切り替え?
-                      .select-wrap
-                        = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', style: ''}
-                        = fa_icon 'angle-down', class: 'arrow-down'
-                      .select-wrap
-                        = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
-                        = fa_icon 'angle-down', class: 'arrow-down'
+                      -# .select-wrap
+                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', style: ''}
+                        -# = fa_icon 'angle-down', class: 'arrow-down'
+                      -# .select-wrap
+                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
+                        -# = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
                     %label.item-info-guide
                       サイズ
@@ -157,7 +157,7 @@
                           //= text_field :price, placeholder: "例)300"
                           .price-input-area--form
                             //JS計算、DB作成後 = text_field
-                            = f.text_field :price, placeholder: '例)  300', class: 'price-input-area__text'
+                            = f.text_field :price, autocomplete: "off", placeholder: '例)  300', class: 'price-input-area__text'
                     %li.sale-fee
                       .sale-fee--left
                         販売手数料(10%)
