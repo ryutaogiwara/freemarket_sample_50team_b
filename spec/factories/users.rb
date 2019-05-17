@@ -14,5 +14,4 @@ FactoryBot.define do
     card_info_id          {"1"}
     user_info_id          {"1"}
   end
-
 end
