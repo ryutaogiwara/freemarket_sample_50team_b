@@ -7,19 +7,25 @@
       %ol
         %li.progress-active
           会員情報
-          .progress-dot.progress__status-first.progress-dot-active
+          .progress-dot
+            .progress__status-first
+              .progress-dot-active
         %li
           電話番号認証
-          .progress-dot.progress__status
+          .progress-dot
+            .progress__status
         %li
           住所入力
-          .progress-dot.progress__status
+          .progress-dot
+            .progress__status
         %li
           支払い方法
-          .progress-dot.progress__status
+          .progress-dot
+            .progress__status
         %li
           完了
-          .progress-dot.progress__status-last
+          .progress-dot
+            .progress__status-last
 
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     .section

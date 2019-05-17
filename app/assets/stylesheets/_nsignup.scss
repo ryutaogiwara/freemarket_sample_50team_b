@@ -6,29 +6,28 @@
         display: inline-block;
         margin: 40px 0 0;
       }
-}
-
-.progress__bar {
-  @include clearfix;
-  padding: 44px 0 0 40px;
-  border: 0;
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-    & li {
-      color: #888;
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      font-size: 12px;
-      margin: 0 40px 0 0;
-    }
-}
-
-.progress-active {
+  .progress__bar {
+    @include clearfix;
+    padding: 44px 0 0 40px;
+    border: 0;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+      & li {
+        color: #888;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        font-size: 12px;
+        margin: 0 40px 0 0;
+      }
+  }
+  .progress-active {
   color: $red-btn!important;
   font-size: 600;
+  }
 }
+
 
 .progress-dot-active {
   background-color: $red-btn!important;
@@ -42,27 +41,24 @@
 
 .progress-dot {
   @include moving-dot;
-}
-
-.progress__status-first::after {
-  left: 50%;
-  @include moving-bar;
-}
-
-.progress__status {
-  &::after {
-    right: 50%;
-    @include moving-bar;
-  }
-  &::before {
+  .progress__status-first::after {
     left: 50%;
     @include moving-bar;
   }
-}
-
-.progress__status-last::before {
-  right: 70%;
-  @include moving-bar;
+  .progress__status {
+    &::after {
+      right: 50%;
+      @include moving-bar;
+    }
+    &::before {
+      left: 50%;
+      @include moving-bar;
+    }
+  }
+  .progress__status-last::before {
+    right: 70%;
+    @include moving-bar;
+  }
 }
 
 .signup__container {
@@ -104,7 +100,7 @@
     & span {
       font-weight: bold;
     }
-  .signup__inner__group__head{
+  &__head{
     font-size: 16px;
     font-weight: bold;
   }
@@ -125,7 +121,7 @@
     color: #888;
   }
   .birthday_select{
-    .birthday_select__wrap{
+    &__wrap{
       width: 76px;
       display: inline-block;
       margin: 8px 0 0;
