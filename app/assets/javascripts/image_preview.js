@@ -9,13 +9,12 @@ $(document).on('turbolinks:load', function(){
                     <image src="${imageUri}" class="item-image">
                   </div>
                   <div class="image-preview--edit-delete">
-                    <a class="image-edit"> 編集 </a>
+                    <div class="image-edit"> 編集 </div>
                     <a class="image-delete"> 削除 </a>
                   </div>
                 </div>`;
     return html
   };
-
   $(function(){
     function divideFiles(files){
       for(var i = 0; i < files.length; i++){
@@ -36,16 +35,13 @@ $(document).on('turbolinks:load', function(){
         })();
       }
     };
-
     dropZone.addEventListener("dragover", function(e){
       e.stopPropagation();
       e.preventDefault();
     }, false);
-
     dropZone.addEventListener("drop", function(e){
       e.stopPropagation();
       e.preventDefault();
-
       var files = e.dataTransfer.files;
       divideFiles(files)
     }, false);
@@ -54,6 +50,7 @@ $(document).on('turbolinks:load', function(){
       $('#preview').text('');
       var files = $(this).prop('files')
       divideFiles(files)
+      $('input[type=file]').val(null);
     });
   });
 
@@ -96,20 +93,23 @@ $(document).on('turbolinks:load', function(){
         'display': 'block'
       })
     }
-  }
+  };
   $('#new_item').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData($(this).get(0));
-    input.forEach(function(file){
-      formData.append("image[images][]", file)
+    inputs.forEach(function(file){
+      formData.append("images[image][]", file)
     });
+    for(value of formData.entries()){
+        console.log(value);
+    }
     $.ajax({
-      url:         '/images'
+      url:         '/items',
       type:        "POST",
       data:        formData,
       contentType: false,
       processData: false,
-      dataType:    'json',
+      dataType:    'html'
     })
     .done(function(data){
       console.log('done')
@@ -119,6 +119,7 @@ $(document).on('turbolinks:load', function(){
     });
   });
 });
+//問題点・・・画像削除時のファイルの中身が違う
       // for(value of form.entries()){
       //   console.log(value);
       // }  formData確認用

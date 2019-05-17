@@ -43,7 +43,6 @@
                       width: 116px;
                       height: 165px;
                       margin: 0 0 10px 10px;
-                      background: gray;
                       display: inline-block;
                       border: 1px solid #eee;
                       &--container{
@@ -181,6 +180,16 @@
                 .select-wrap{
                   margin: 8px 0 0;
                   position: relative;
+                  .brand-box{
+                    width: 100%;
+                    margin: 8px 0 0;
+                    height: 48px;
+                    padding: 10px 16px 8px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    line-height: 1.5;
+                    font-size: 16px;
+                  }
                 }
               }
                 .sell-price-form{
@@ -342,6 +351,15 @@
   display: inline-block;
   .item-info-required{
     background: #ea352d;
+    margin: 0 0 0 8px;
+    padding: 3px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+  }
+  .item-info-any{
+    background: #ccc;
     margin: 0 0 0 8px;
     padding: 3px 4px;
     border-radius: 2px;
