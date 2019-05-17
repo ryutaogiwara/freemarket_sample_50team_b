@@ -44,15 +44,9 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
   gem 'pry-rails'
-<<<<<<< HEAD
-  gem 'pry-doc'
-  # gem 'pry-byebug'
-  gem 'pry-stack_explorer'
-=======
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
->>>>>>> master
 end
 
 group :development do
