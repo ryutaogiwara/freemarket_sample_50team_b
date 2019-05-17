@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_12_082930) do
+ActiveRecord::Schema.define(version: 2019_05_16_072221) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(version: 2019_05_12_082930) do
     t.string "address", null: false
     t.string "building_name"
     t.integer "phone_number"
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "card_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -29,9 +30,10 @@ ActiveRecord::Schema.define(version: 2019_05_12_082930) do
     t.integer "month", null: false
     t.integer "year", null: false
     t.integer "security_code", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_card_infos_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -94,7 +96,6 @@ ActiveRecord::Schema.define(version: 2019_05_12_082930) do
     t.string "last_name_kana", null: false
     t.integer "birth_date", null: false
     t.integer "profile_id", null: false
-    t.integer "address_id", null: false
     t.integer "card_info_id", null: false
     t.integer "user_info_id", null: false
     t.string "reset_password_token"
@@ -102,7 +103,6 @@ ActiveRecord::Schema.define(version: 2019_05_12_082930) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["card_info_id"], name: "index_users_on_card_info_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profile_id"], name: "index_users_on_profile_id"
@@ -110,4 +110,6 @@ ActiveRecord::Schema.define(version: 2019_05_12_082930) do
     t.index ["user_info_id"], name: "index_users_on_user_info_id"
   end
 
+  add_foreign_key "addresses", "users"
+  add_foreign_key "card_infos", "users"
 end
