@@ -92,7 +92,7 @@
 |category|string  |null: false|
 |size    |string  |null: false|
 |brand   |string  ||
-|saler_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 |transaction_id|ireferences|null: false, foreign_key: true|
 
 ### Association
