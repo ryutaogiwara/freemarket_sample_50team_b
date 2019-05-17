@@ -1,0 +1,85 @@
+.mypage-headder
+  =render"layouts/header"
+.bread-crumbs
+  %ul
+    %li
+      ="メルカリ "
+    %li
+      ="> マイページ"
+    %li
+      ="> プロフィール"
+.mypage-main
+  
+  .content
+    .user__identification__container
+      .user__identification__headder
+        %h2
+          ="本人情報の登録"
+      .user__identification__form
+        %p
+          お客さまの本人情報をご登録ください。
+          %br
+          登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+        %p.text-right
+          = link_to "本人確認書類のアップロードについて", class: "text-right-link" 
+          = fa_icon "angle-right", class: "icon-arrow-right"
+        .form-group
+          %label
+            お名前
+          %p
+            hoge
+        .form-group
+          %label
+            お名前カナ
+          %p
+            hoge
+        .form-group
+          %label{for: "birthday"}
+            生年月日
+          %p
+            hoge/ho/ge
+        .form-group
+          %label{for: "zip_code"}
+            郵便番号
+            %span{class: "form-ability"}
+              任意
+          %input{type: "text", value_name: "zip-code", placeholder: "例）1234567", class:"input-default"}
+        .form-group
+          %label
+            都道府県
+            %span{class: "form-ability"}
+              任意
+          %div
+            .select-wrap
+              %select.select-default
+                %option{value: ""} ---
+                %option{value: ""} 北海道
+                %option{value: ""} 沖縄
+              = fa_icon "angle-down", class: "icon-arrow-down"
+        .form-group
+          %label{for: "city"}
+            市区町村
+            %span{class: "form-ability"}
+              任意
+          %input{type: "text", value_name: "city", placeholder: "例）渋谷区", class:"input-default"}
+        .form-group
+          %label{for: "address1_label"}
+            番地
+            %span{class: "form-ability"}
+              任意
+          %input{type: "text", value_name: "address1", placeholder: "例）神南1丁目12−16", class:"input-default"}
+        .form-group
+          %label{for: "address2_label"}
+            建物名
+            %span{class: "form-ability"}
+              任意
+          %input{type: "text", value_name: "address2", placeholder: "例）アジアビル8F", class:"input-default"}
+        %button(type="submit" class="btn-default btn-red")
+          ="更新する"
+        .form-group.text-right
+          %p
+            本人確認の本人確認の登録について
+            = fa_icon "angle-right", class: "icon-arrow-down"
+  =render "layouts/sidemenu"
+  =render "layouts/btn"
+=render "layouts/footer"

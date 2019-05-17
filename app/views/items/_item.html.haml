@@ -1,0 +1,15 @@
+.items__box__content
+  %a.item__page
+    .item__page-photo
+      = image_tag item.images[0].image,size:"230x220"
+    .item__page__body
+      %h3.item__page__body-name
+        = item.name
+      .item__page__body-price
+        = "¥" + number_with_delimiter(item.price)
+        .favourite
+          %i.fa.fa-heart-o.like
+          %span 
+            46
+      %p.item__page__body-tax
+        (税込)
