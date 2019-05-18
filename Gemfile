@@ -83,3 +83,5 @@ gem 'fog-aws'
 gem 'devise'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'active_hash'
+
