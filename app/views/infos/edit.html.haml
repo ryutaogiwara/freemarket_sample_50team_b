@@ -51,10 +51,13 @@
               任意
           %div
             .select-wrap
-              %select.select-default
-                %option{value: ""} ---
-                %option{value: ""} 北海道
-                %option{value: ""} 沖縄
+            = form_for [@prefecture] do |f|
+              = f.select :prefecture_id, Prefecture.all
+
+              -# %select.select-default
+              -#   %option{value: ""} ---
+              -#   %option{value: ""} 北海道
+              -#   %option{value: ""} 沖縄
               = fa_icon "angle-down", class: "icon-arrow-down"
         .form-group
           %label{for: "city"}
