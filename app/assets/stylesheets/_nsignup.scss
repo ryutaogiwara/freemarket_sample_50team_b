@@ -28,17 +28,6 @@
   }
 }
 
-
-.progress-dot-active {
-  background-color: $red-btn!important;
-  font-size: 600;
-}
-
-.progress-bar-active {
-  color: $red-btn!important;
-  font-size: 600;
-}
-
 .progress-dot {
   @include moving-dot;
   .progress__status-first::after {
@@ -72,88 +61,85 @@
       line-height: 1.5;
       text-align: center;
     }
-}
-
-.section {
-  min-height: 470px;
-}
-
-.signup__inner {
-  padding: 64px;
-  border-top: 1px solid $off-white;
+  .signup__inner {
+    padding: 64px;
+    border-top: 1px solid $off-white;
+    &__group-box {
+      margin: 8px 0 0;
+    }
     &__container {
       max-width: 320px;
       margin: 0 auto;
     }
+    &__group {
+      margin: 40px 0 0;
+        & label {
+          font-size: 14px;
+          font-weight: 600;
+          display: inline-block;
+        }
+        &:first-child {
+          margin: 0;
+        }
+        & span {
+          font-weight: bold;
+        }
+      &__head{
+        font-size: 16px;
+        font-weight: bold;
+      }
+      p{
+        margin: 8px 0 0;
+        padding: 0;
+        line-height: 1.5;
+        font-size: 14px;
+      }
+      .signup__notification{
+        font-size: 14px;
+        text-align: center;
+      }
+      .signup__forminfo{
+        margin: 0px 0 0;
+        line-height: 1.5;
+        font-size: 14px;
+        color: #888;
+      }
+      .birthday_select{
+        &__wrap{
+          width: 76px;
+          display: inline-block;
+          margin: 8px 0 0;
+          position: relative;
+          z-index: 2;
+          height: 48px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: 0;
+          font-size: 16px;
+          line-height: 1.5;
+          cursor: pointer;
+        }
+        .span{
+          text-decoration: none;
+          margin: 0 2px;
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+      .error-notice-signin{
+        color: #ea352d;
+        line-height: 1.5;
+        font-size: 14px;
+        list-style: none;
+        margin: 8px 0 0;
+      }
+    }
+  }
 }
 
-.signup__inner__group {
-  margin: 40px 0 0;
-    & label {
-      font-size: 14px;
-      font-weight: 600;
-      display: inline-block;
-    }
-    &:first-child {
-      margin: 0;
-    }
-    & span {
-      font-weight: bold;
-    }
-  &__head{
-    font-size: 16px;
-    font-weight: bold;
-  }
-  p{
-    margin: 8px 0 0;
-    padding: 0;
-    line-height: 1.5;
-    font-size: 14px;
-  }
-  .signup__notification{
-    font-size: 14px;
-    text-align: center;
-  }
-  .signup__forminfo{
-    margin: 0px 0 0;
-    line-height: 1.5;
-    font-size: 14px;
-    color: #888;
-  }
-  .birthday_select{
-    &__wrap{
-      width: 76px;
-      display: inline-block;
-      margin: 8px 0 0;
-      position: relative;
-      z-index: 2;
-      height: 48px;
-      padding: 0 16px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      background: 0;
-      font-size: 16px;
-      line-height: 1.5;
-      cursor: pointer;
-    }
-    .span{
-      text-decoration: none;
-      margin: 0 2px;
-      font-size: 14px;
-      font-weight: 400;
-    }
-  }
-  .error-notice-signin{
-    color: #ea352d;
-    line-height: 1.5;
-    font-size: 14px;
-    list-style: none;
-    margin: 8px 0 0;
-  }
-}
-
-.signup__inner__group-box {
-  margin: 8px 0 0;
+.section {
+  min-height: 470px;
 }
 
 .form-require {
