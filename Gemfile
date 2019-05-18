@@ -43,9 +43,9 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
-  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'pry-rails'
   gem 'rails-controller-testing'
 end
 

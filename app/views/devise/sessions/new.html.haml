@@ -1,0 +1,31 @@
+.solo-countainer
+  =render "layouts/session-header"
+  .solo-main
+    .panel
+      .login-newuser
+        %p
+          ="アカウントをお持ちでない方はこちら"
+          = link_to "新規会員登録", new_user_registration_path, class: 'register-button'
+      .login-sns
+        .btn-default
+          .btn-sns
+            %button.btn-default.btn-sns.btn-sns-facebook
+              %i.fa.fa-facebook-f
+              ="Facebookでログイン"
+        .btn-default
+          .btn-sns
+            %button.btn-default.btn-sns.btn-sns-google
+              ="Googleでログイン"
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .login-form-inner
+          .form-group
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "login-input", placeholder: "メールアドレス"
+            = f.password_field :password, autocomplete: "current-password",class: "login-input", placeholder: "パスワード"
+          .form-group
+            / %iframe(src="https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=v1555968629716&size=normal&cb=nw8xf9xhent" width="304" height="78" frameborder="0" style="border:0" allowfullscreen)
+          .form-group
+            .btn-default
+              %button.btn-default.btn-red
+                = f.submit "ログイン", type: "button", class: "btn-default btn-red"
+          = link_to "パスワードをお忘れの方", :back, class: 'forget-password'
+  =render "layouts/session-footer"
