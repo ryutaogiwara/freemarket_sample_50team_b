@@ -2,7 +2,7 @@ class CardInfosController < ApplicationController
   require "payjp"
 
   def new
-    card = Card_info.where(user_id: current_user.id)
+    card = CardInfo.where(user_id: current_user.id)
     redirect_to action: "show" if card.exists?
   end
 
@@ -22,7 +22,7 @@ class CardInfosController < ApplicationController
   end
 
   def delete #PayjpとCardデータベースを削除します
-    card = Card_info.where(user_id: current_user.id).first
+    card = CardInfo.where(user_id: current_user.id).first
     if card.blank?
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
@@ -34,7 +34,7 @@ class CardInfosController < ApplicationController
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
-    card = Card.where(user_id: 1).first
+    card = CardInfo.where(user_id: 1).first
     if card.blank?
       redirect_to action: "new" 
     else
