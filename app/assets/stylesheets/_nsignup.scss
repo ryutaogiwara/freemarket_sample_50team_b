@@ -1,0 +1,247 @@
+.signup__container__header {
+    height: 128px;
+    text-align: center;
+    display: block;
+      & h1 {
+        display: inline-block;
+        margin: 40px 0 0;
+      }
+  .progress__bar {
+    @include clearfix;
+    padding: 44px 0 0 40px;
+    border: 0;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+      & li {
+        color: #888;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        font-size: 12px;
+        margin: 0 40px 0 0;
+      }
+  }
+  .progress-active {
+  color: $red-btn!important;
+  font-size: 600;
+  }
+}
+
+.progress-dot {
+  @include moving-dot;
+  .progress__status-first::after {
+    left: 50%;
+    @include moving-bar;
+  }
+  .progress__status {
+    &::after {
+      right: 50%;
+      @include moving-bar;
+    }
+    &::before {
+      left: 50%;
+      @include moving-bar;
+    }
+  }
+  .progress__status-last::before {
+    right: 70%;
+    @include moving-bar;
+  }
+}
+
+.signup__container {
+  background-color: $white;
+  width: 700px;
+  margin: 0 auto;
+    &--upper {
+      padding: 32px 16px;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1.5;
+      text-align: center;
+    }
+  .signup__inner {
+    padding: 64px;
+    border-top: 1px solid $off-white;
+    &__group-box {
+      margin: 8px 0 0;
+    }
+    &__container {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    &__group {
+      margin: 40px 0 0;
+        & label {
+          font-size: 14px;
+          font-weight: 600;
+          display: inline-block;
+        }
+        &:first-child {
+          margin: 0;
+        }
+        & span {
+          font-weight: bold;
+        }
+      &__head{
+        font-size: 16px;
+        font-weight: bold;
+      }
+      p{
+        margin: 8px 0 0;
+        padding: 0;
+        line-height: 1.5;
+        font-size: 14px;
+      }
+      .signup__notification{
+        font-size: 14px;
+        text-align: center;
+      }
+      .signup__forminfo{
+        margin: 0px 0 0;
+        line-height: 1.5;
+        font-size: 14px;
+        color: #888;
+      }
+      .birthday_select{
+        &__wrap{
+          width: 76px;
+          display: inline-block;
+          margin: 8px 0 0;
+          position: relative;
+          z-index: 2;
+          height: 48px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: 0;
+          font-size: 16px;
+          line-height: 1.5;
+          cursor: pointer;
+        }
+        .span{
+          text-decoration: none;
+          margin: 0 2px;
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+      .error-notice-signin{
+        color: #ea352d;
+        line-height: 1.5;
+        font-size: 14px;
+        list-style: none;
+        margin: 8px 0 0;
+      }
+    }
+  }
+}
+
+.section {
+  min-height: 470px;
+}
+
+.form-require {
+  @include require-label;
+}
+
+.form-any {
+  @include require-label;
+  background-color: $mail-icon;
+}
+
+.signup-submit {
+  margin: 40px 0 0 0;
+    &-btn {
+      @include btn-default;
+      background-color: $red-btn;
+      color: $white;
+    }
+}
+
+// 電話番号認証ページ
+.chapter__header {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 24px;
+  text-align: center;
+  border-bottom: $off-white;
+  line-height: 1.4;
+}
+
+.tel__info {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-right {
+  margin: 40px 0 0;
+  text-align: right;
+}
+
+.tel_reason {
+  text-decoration: none;
+  color: $sky-blue;
+  font-size: 14px;
+}
+
+.address__group {
+    margin: 40px 0 0;
+    & label {
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+    }
+}
+
+.card__lineup {
+  margin: 8px 0 0;
+   & li {
+    display: inline-block;
+   }
+}
+
+.card--image {
+  height: 20px;
+  vertical-align: middle;
+}
+
+.card__block {
+  margin: 40px 0 0 ;
+    &__select {
+      @include select-default;
+      width: 112px;
+      margin: 8px 0 0;
+    }
+}
+
+.signup__sqcode-text {
+  text-align: right;
+  font-size: 15px;
+  color: $sky-blue;
+  margin: 8px 0 0;
+    & span {
+      background-color: $sky-blue;
+      color: $white;
+      font-size: 12px;
+      line-height: 14px;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      height: 14px;
+      width: 14px;
+    }
+}
+
+.fin__message  {
+  text-align: center;
+  font-weight: lighter;
+}
+
+.input-default {
+  @include input-default;
+  box-sizing: border-box;
+  margin: 8px 0 0;
+}
