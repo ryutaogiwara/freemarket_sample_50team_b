@@ -18,4 +18,22 @@ RSpec.describe ItemsController, type: :controller do
       expect(response).to render_template :index
     end
   end
+
+  describe 'POST #create' do
+    context 'can save' do
+      it 'count up product' do
+        expect do
+          post :create, params: {item: FactoryBot.attributes_for(:item)}
+        end.to change(Item,:count).by(1)
+      end
+    end
+
+    context 'can not save' do
+      it 'does not count up' do
+        expect do
+          post :create,params: {item: FactoryBot.attributes_for(:item,name: nil, price: nil)}
+        end.not_to change(Item,:count)
+      end
+    end
+  end
 end
