@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_05_18_052103) do
+ActiveRecord::Schema.define(version: 2019_05_18_073744) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
@@ -51,13 +50,12 @@ ActiveRecord::Schema.define(version: 2019_05_18_052103) do
     t.string "postage", null: false
     t.string "region", null: false
     t.string "shipping", null: false
-    t.string "shipping_data", null: false
+    t.string "shipping_date", null: false
     t.integer "price", null: false
     t.string "category", null: false
     t.string "size", null: false
     t.string "brand"
-    t.integer "saler_id", null: false
-    t.integer "transaction_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -110,7 +108,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_052103) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_info_id"], name: "index_users_on_user_info_id"
   end
+
   add_foreign_key "addresses", "users"
   add_foreign_key "card_infos", "users"
-  add_foreign_key "images", "items"
 end
