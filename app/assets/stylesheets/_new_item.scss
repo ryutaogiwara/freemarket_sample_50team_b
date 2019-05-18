@@ -37,6 +37,71 @@
                   width: 620px;
                   margin: 16px auto 0;
                   &--items{
+                    display: inline-block;
+                    // justify-content: flex-start;
+                    .image-preview{
+                      width: 116px;
+                      height: 165px;
+                      margin: 0 0 10px 10px;
+                      display: inline-block;
+                      border: 1px solid #eee;
+                      &--container{
+                        height: 120px;
+                        width: auto;
+                        font-size: 14px;
+                        background: #f5f5f5;
+                        .item-image{
+                          max-width: 100%;
+                          max-height: 100%;
+                          position: relative;
+                          margin: auto;
+                          display: block;
+                          transform: none;
+                          top: 50%;
+                          -webkit-transform: translate(0, -50%);
+                        }
+                      }
+                      &--edit-delete{
+                        display: block;
+                        .image-edit{
+                          line-height: 45px;
+                          width: 50%;
+                          display: inline-block;
+                          text-align: center;
+                          text-decoration: none;
+                          color: #0099e8;
+                          float: left;
+                          background: #f5f5f5;
+                          cursor: pointer;
+                        }
+                        .image-delete{
+                          line-height: 45px;
+                          width: 50%;
+                          display: inline-block;
+                          text-align: center;
+                          text-decoration: none;
+                          color: #0099e8;
+                          float: right;
+                          border-left: 1px solid #eee;
+                          background: #f5f5f5;
+                          cursor: pointer;
+                        }
+                      }
+                    }
+                    .image-preview:first-child{
+                      width: 116px;
+                      height: 165px;
+                      margin: 0 0 10px 0px;
+                      background: gray;
+                      display: inline-block;
+                    }
+                    .image-preview:nth-child(6){
+                      width: 116px;
+                      height: 165px;
+                      margin: 0 0 10px 0px;
+                      background: gray;
+                      display: inline-block;
+                    }
                   }
                   &--area{
                     width: 100%;
@@ -55,8 +120,25 @@
                       margin-top: 20px;
                     }
                   }
+                  &--area2{
+                    width: 100%;
+                    float: right;
+                    padding: 40px;
+                    position: relative;
+                    min-height: 162px;
+                    background: #f5f5f5;
+                    border: 1px dashed #ccc;
+                    font-size: 0;
+                    text-align: center;
+                    cursor: pointer;
+                    &-info{
+                      font-size: 14px;
+                      line-height: 8px;
+                      margin-top: 20px;
+                    }
+                  }
                 }
-                .clearfix:after {
+                &-container:after {
                   content: '';
                   display: block;
                   clear: both;
@@ -98,6 +180,16 @@
                 .select-wrap{
                   margin: 8px 0 0;
                   position: relative;
+                  .brand-box{
+                    width: 100%;
+                    margin: 8px 0 0;
+                    height: 48px;
+                    padding: 10px 16px 8px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    line-height: 1.5;
+                    font-size: 16px;
+                  }
                 }
               }
                 .sell-price-form{
@@ -259,6 +351,15 @@
   display: inline-block;
   .item-info-required{
     background: #ea352d;
+    margin: 0 0 0 8px;
+    padding: 3px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+  }
+  .item-info-any{
+    background: #ccc;
     margin: 0 0 0 8px;
     padding: 3px 4px;
     border-radius: 2px;
