@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  # before_action :authenticate_user!, only: :new
+  # before_action :authenticate_user!, only: :new 後で使用する予定です
 
   def index
     @items = Item.includes(:user).page(params[:page]).per(4).order("id DESC")

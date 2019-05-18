@@ -102,9 +102,9 @@ $(document).on('turbolinks:load', function(){
       inputs.forEach(function(file){
         formData.append("images[image][]", file)
       });
-      for(value of formData.entries()){
-          console.log(value);
-      }
+      // for(value of formData.entries()){
+      //     console.log(value);
+      // }
       $.ajax({
         url:         '/items',
         type:        "POST",
@@ -114,10 +114,10 @@ $(document).on('turbolinks:load', function(){
         dataType:    'html'
       })
       .done(function(data){
-        console.log('done')
+        // console.log('done') ここのconsole.logはまだjavascriptを編集していかないといけないので最終的には消しますが現段階ではコメントアウトで残しておきたいです。
       })
       .fail(function(XMLHttpRequest, textStatus, errorThrown){
-        console.log('fail')
+        // console.log('fail')
       });
     });
   }

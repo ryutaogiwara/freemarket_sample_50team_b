@@ -23,8 +23,8 @@ RSpec.describe ItemsController, type: :controller do
     context 'can save' do
       it 'count up product' do
         expect do
-          post :create, params: {item: FactoryBot.attributes_for(:item)}
-        end.to change(Item,:count).by(1)
+          post :create, params: {item: FactoryBot.attributes_for(:item)}.to change(Item,:count).by(1)
+        end
       end
     end
 
