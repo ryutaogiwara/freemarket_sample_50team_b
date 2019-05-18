@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2019_05_18_073744) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
-    t.string "prefecture", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building_name"
@@ -22,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_073744) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(version: 2019_05_18_073744) do
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "item_id", null: false
     t.string "image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -111,4 +112,5 @@ ActiveRecord::Schema.define(version: 2019_05_18_073744) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "card_infos", "users"
+  add_foreign_key "images", "items"
 end
