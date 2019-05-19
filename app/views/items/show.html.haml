@@ -28,7 +28,7 @@
                 = image_tag (@item.images[image].image.url), size: "75x75"                              
                                       
           .swiper-my-pagination
-
+        -# 以下、インスタンス変数仮置き
         - if @item.brand == 0
           .item__box__container-main-photo-sold
             .item__box__container-main-photo-sold-out
@@ -99,7 +99,8 @@
         (税込)
       %span.item__box__container-priceBox-shippingFee
         送料込み
-    
+
+    -# 以下、インスタンス変数仮置き
     .item__box__container-buyBtn
       -if @item.brand == 0
         .item__box__container-buyBtn-soldout
@@ -196,6 +197,18 @@
               .item__message__container__content__message__list-body-blowOut
                 %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
 
+      .item__message__container__content
+        %form.item__message__container__content__form
+          %p.item__message__container__content__form-warning
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %textarea.item__message__container__content__form-text
+          .item__message__container__content__form__btn
+            -if @item.brand == 0
+              %span.item__message__container__content__form__btn-soldout
+                売り切れのためコメントできません
+            -else 
+              = link_to 'コメントする', item_path(@item.id), class: 'item__message__container__content__form__btn-comment'
+                
   %ul.nav__items__link
     %li.nav__items__link-prev
       %a.nav__items__link-prev-text{href: root_path}
