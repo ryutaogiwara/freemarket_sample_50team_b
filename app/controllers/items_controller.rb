@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   # before_action :authenticate_user!, only: :new 後で使用する予定です
+    before_action :set_item, only: [:show]
 
   def index
     @items = Item.includes(:user).page(params[:page]).per(4).order("id DESC")
@@ -23,6 +24,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+  end
   private
 
   def item_params
@@ -33,9 +39,8 @@ class ItemsController < ApplicationController
     params.require(:images).permit(image: [])[:image]
   end
 
-  def show
+  def set_item
+    @item = Item.find(params[:id])
   end
 
-  def edit
-  end
 end
