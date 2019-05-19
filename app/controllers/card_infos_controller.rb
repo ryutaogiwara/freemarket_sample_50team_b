@@ -12,7 +12,7 @@ class CardInfosController < ApplicationController
       redirect_to action: "new"
     else
       customer = Payjp::Customer.create(card: params[:payjp_token])
-      @card = CardInfo.new(user_id: 1, customer_id: customer.id, card_id: customer.default_card)
+      @card = CardInfo.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
@@ -34,7 +34,7 @@ class CardInfosController < ApplicationController
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
-    card = CardInfo.where(user_id: 1).first
+    card = CardInfo.where(user_id: current_user.id).first
     if card.blank?
       redirect_to action: "new" 
     else

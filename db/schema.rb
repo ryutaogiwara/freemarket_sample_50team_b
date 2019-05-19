@@ -30,18 +30,20 @@ ActiveRecord::Schema.define(version: 2019_05_18_080844) do
     t.integer "month"
     t.integer "year"
     t.integer "security_code"
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "customer_id"
     t.string "card_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_card_infos_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "item_id", null: false
     t.string "image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -112,4 +114,5 @@ ActiveRecord::Schema.define(version: 2019_05_18_080844) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "card_infos", "users"
+  add_foreign_key "images", "items"
 end
