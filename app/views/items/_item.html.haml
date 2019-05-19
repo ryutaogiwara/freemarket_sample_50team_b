@@ -1,7 +1,7 @@
 .items__box__content
   %a.item__page
     .item__page-photo
-      = image_tag item.images[0].image,size:"230x220"
+      = image_tag item.images[0].image.url,size:"230x220"
     .item__page__body
       %h3.item__page__body-name
         = item.name
