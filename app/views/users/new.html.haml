@@ -9,14 +9,12 @@
           .btn-default
             %button.btn-default.btn-mail
               %i.fa.fa-envelope-o
-              ="メールアドレスで登録"
+              = link_to "メールアドレスで登録", new_user_registration_path, class: "link_none"
           .btn-default
             .btn-sns
-              %button.btn-default.btn-sns.btn-sns-facebook
-                %i.fa.fa-facebook-f
-                ="Facebookで登録"
+              %i.fa.fa-facebook-f
+              = link_to "Facebookで登録", user_facebook_omniauth_authorize_path, class: "button btn-default btn-sns btn-sns-facebook"
           .btn-default
             .btn-sns
-              %button.btn-default.btn-sns.btn-sns-google
-                ="Googleで登録"
+              = link_to "Googleで登録", user_google_omniauth_authorize_path, class: "button btn-default btn-sns btn-sns-google"
   =render "layouts/session-footer"

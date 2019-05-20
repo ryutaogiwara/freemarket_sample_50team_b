@@ -268,4 +268,6 @@
                 / = f.submit "メルカリをはじめる", class: "signup-submit-btn"
           = link_to '/', class: "fin__banner" do
             = image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg", width: "700px")
+  =render "devise/shared/links"
+  = link_to 'Googleログイン',  user_google_omniauth_authorize_path
   =render "layouts/session-footer"
