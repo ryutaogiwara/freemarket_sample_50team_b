@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
-  describe 'Get #index' do
 
+  describe 'Get #index' do
     it "responds successfully" do
       get :index
       expect(response).to be_success
@@ -36,4 +36,16 @@ RSpec.describe ItemsController, type: :controller do
       end
     end
   end
+
+  describe 'Get #show' do
+
+    it "responds successfully" do
+      expect(response).to be_success
+    end
+
+    it "returns a 200 response" do
+      expect(response).to have_http_status "200"
+    end
+  end
+
 end

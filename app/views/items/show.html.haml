@@ -5,59 +5,33 @@
 
   .item__box__container
     %h1.item__box__container-name
-      正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ
-    %p.item__box__container-itemDescription
-      『正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ』は、911回の取引実績を持つ
-      = link_to "BOON90sリバイバル@フォロー割", root_path, class:"item__box__container-itemDescription-link"
-      さんから出品されました。
-      = link_to "コーチ", root_path, class:"item__box__container-itemDescription-link"
-      （
-      = link_to "ショルダーバッグ/レディース", root_path, class:"item__box__container-itemDescription-link"
-      ）の商品で、兵庫県から1~2日で発送されます。
+      = @item.name
     .item__box__container-main
       .item__box__container-main-photo
         .swiper-container.swiper2
           .swiper-wrapper
             .swiper-slide
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
-            .swiper-slide
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/
-            .swiper-slide
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/
-            .swiper-slide
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
-            .swiper-slide
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/ 
-            .swiper-slide
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/                           
-
+              = image_tag @item.images[0].image.url, size:"300x300"
+                            
         .swiper-container.swiper3
           .swiper-wrapper.wrapper3
-            .swiper-slide.owl-dot
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/
-            .swiper-slide.owl-dot
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/
-            .swiper-slide.owl-dot
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/
-            .swiper-slide.owl-dot
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper01.png"}/ 
-            .swiper-slide.owl-dot
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper02.png"}/  
-            .swiper-slide.owl-dot
-              %img.picture{src: "https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"}/                                    
+            - (0...@item.images.count).each do |image|
+              .swiper-slide.owl-dot
+                = image_tag (@item.images[image].image.url), size: "75x75"                              
                                       
           .swiper-my-pagination
-
-        .item__box__container-main-photo-sold
-          .item__box__container-main-photo-sold-out
-            SOLD
+        -# 以下、インスタンス変数仮置き
+        - if @item.brand == 0
+          .item__box__container-main-photo-sold
+            .item__box__container-main-photo-sold-out
+              SOLD
 
       %table.item__box__container-main-table
         %tr
           %th.item__box__container-main-table-title
             出品者
           %td.item__box__container-main-table-display
-            = link_to "BOON90sリバイバル@フォロー割", root_path, class:"item__box__container-main-table-link"
+            = link_to "#{@item.user.nickname}", root_path, class:"item__box__container-main-table-link"
             .user-evaluation
               .user-evaluation-icon
                 %i.fa.fa-smile-o.user-evaluation-icon-smile
@@ -89,72 +63,46 @@
           %th.item__box__container-main-table-title
             商品の状態
           %td
-            やや傷や汚れあり
+            = @item.state
         %tr
           %th.item__box__container-main-table-title
             配送料の負担
           %td
-            送料込み(出品者負担)
+            = @item.postage
         %tr
           %th.item__box__container-main-table-title
             配送の方法
           %td
-            らくらくメルカリ便
+            = @item.shipping
         %tr
           %th.item__box__container-main-table-title
             発送元地域
           %td
-            = link_to "沖縄県", root_path, class:"item__box__container-main-table-link"
+            = link_to "#{@item.region}", root_path, class:"item__box__container-main-table-link"
         %tr
           %th.item__box__container-main-table-title
             発送日の目安
           %td
-            1~2日で発送
+            = @item.shipping_date
     .item__box__container-priceBox
       %span.item__box__container-priceBox-price
-        ¥ 3,380
+        = "¥" + number_with_delimiter(@item.price)
       %span.item__box__container-priceBox-tax
         (税込)
       %span.item__box__container-priceBox-shippingFee
         送料込み
+
+    -# 以下、インスタンス変数仮置き
     .item__box__container-buyBtn
-      売り切れました
+      -if @item.brand == 0
+        .item__box__container-buyBtn-soldout
+          売り切れました
+      -else 
+        = link_to '購入画面に進む', root_path, class:"item__box__container-buyBtn-buy"
+        
     .item__box__container-detail
       %p.item__box__container-detail-inner
-        ■商品ご覧頂き、誠にありがとうございます。
-        ※今だけ、フォロワーになって下さった方に、300円のお値引きサービス中！！
-        質問がありましたらコメントでよろしくお願いします！
-        ■ 商品説明 ■
-        まずはプロフを確認してください☆
-
-        ■ 商品詳細 ■
-        シンプルな落ち着いたお色味でどんな場面にも合い、
-        どんな服にも合わせやすいお鞄です。使用感有！角擦れはございませんが
-        多少の汚れはあります。内側はとても綺麗です☆
-        使わなくなったのでどなたか使っていただける方お願いします。
-        製造番号　H2K-9294
-
-        【ブランド】
-        COACH　コーチ
-
-        【商品名】
-        コーチ大き目シンプル
-
-        【仕様】
-        外ポケット１　内ポケット４
-
-        【サイズ】
-        縦：32
-        横：31
-        幅：7
-        紐：130 多少調節可能
-
-        ＊他にも数多くの商品を出品しているので、ぜひご覧ください。
-        ＊複数購入、お取り置き(５日まで)もできるので、お気軽にお声がけくださいませ。
-        ＊中古品になりますので、予めご理解いただきますよう、お願い致します^_^
-        ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
-        、お願い致します^_^
-        ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
+        = @item.description
     .item__box__container-bottom
       .item__box__container-bottom-left
         %a.item__box__container-bottom-left-link{href: root_path}
@@ -221,9 +169,7 @@
                 .item__message__container__content__message__list-user-picture
                   %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
                 %figcaption.item__message__container__content__message__list-user-name
-                  BOON90sリバイバル@フォロー割
-              -# .item__message__list-user-seller
-                出品者
+                  = @item.user.nickname
             .item__message__container__content__message__list-body
               .item__message__container__content__message__list-body-text
                 おまたせしました。
@@ -241,13 +187,25 @@
               .item__message__container__content__message__list-body-blowOut
                 %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
 
+      .item__message__container__content
+        %form.item__message__container__content__form
+          %p.item__message__container__content__form-warning
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %textarea.item__message__container__content__form-text
+          .item__message__container__content__form__btn
+            -if @item.brand == 0
+              %span.item__message__container__content__form__btn-soldout
+                売り切れのためコメントできません
+            -else 
+              = link_to 'コメントする', item_path(@item.id), class: 'item__message__container__content__form__btn-comment'
+                
   %ul.nav__items__link
     %li.nav__items__link-prev
-      %a.nav__items__link-prev-text{href: root_path}
+      %a.nav__items__link-prev-text{href: '#'}
         %i.fa.fa-chevron-left
         ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018
     %li.nav__items__link-next
-      %a.nav__items__link-next-text{href: root_path}
+      %a.nav__items__link-next-text{href: '#'}
         楽天パンダ ノート&マスキングテープセット
         %i.fa.fa-chevron-right
         
@@ -266,7 +224,7 @@
     %section.items__user__profile__box
       %h2.items__user__profile__box-head
         %a.items__user__profile__box-head-title
-          BOON90sリバイバル@フォロー割さんのその他の出品
+          #{@item.user.nickname}さんのその他の出品
       .items__box
         .items__box__content
           %a.item__page
@@ -454,4 +412,3 @@
                 (税込)
                                                     
   =render "layouts/footer"
-  

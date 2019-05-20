@@ -12,7 +12,7 @@
         %figure
           = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", size: "60x60", alt: "顔写真", class: ".image"
         %h2
-          ="ユーザー名"
+          = current_user.nickname
         .mypage-score
           .right
             ="評価"

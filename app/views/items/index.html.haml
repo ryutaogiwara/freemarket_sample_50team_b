@@ -9,7 +9,25 @@
         .swiper-slide
           %img.swiper-slide-img{src: "https://www.mercari.com/jp/assets/img/common/jp/top/banner-camp.jpg"}/
         .swiper-slide
-          %img.swiper-slide-img{src: "https://www.mercari.com/jp/assets/img/common/jp/top/banner-natsukashi.jpg"}/
+          .topBanner
+            .topBanner__box
+              .topBanner__box-smartphone
+                %img.topBanner__box-smartphone-img{src: "https://www-mercari-jp.akamaized.net/assets/img/common/jp/top/main_content_pc.png?2342399531"}/
+              .topBanner__box-inner
+                %h2.topBanner__box-inner-msgApp
+                  スマホでかんたん
+                  %br
+                  フリマアプリ
+                %p.topBanner__box-inner-description
+                  メルカリはスマホカメラからすぐに出品できる
+                  %br
+                  購入時も安心な独自システムのアプリです
+                .topApp__banner__icon
+                  %ul.topApp__banner__icon__store
+                    %li.topApp__banner__icon__store-app
+                      = link_to image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4194600336"), 'https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8', class:"topApp__banner__icon__store-app-link"
+                    %li.topApp__banner__icon__store-app
+                      = link_to image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4194600336"), 'https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja', class:"topApp__banner__icon__store-app-link"
       .swiper-pagination
       .swiper-button-prev
       .swiper-button-next
@@ -23,7 +41,8 @@
         .items__box
           = render @items
           .items__all
-            = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
+            - if @item.blank?
+              = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
       
     .pickup__container
       %h2.pickup__container-head
