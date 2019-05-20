@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   root 'items#index'
   resources :items
-  get 'logout' => 'users#logout_form'
+  resources :logout
 end
