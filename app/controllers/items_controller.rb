@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   # before_action :authenticate_user!, only: :new 後で使用する予定です
     before_action :set_item, only: [:show]
+    before_action :move_to_index, except: [:index,:show]
 
   def index
     @items = Item.includes(:user).page(params[:page]).per(4).order("id DESC")
@@ -16,7 +17,7 @@ class ItemsController < ApplicationController
     if params[:images].present?
       if @item.save
         if image_params.each{ |image| @image = @item.images.create(image: image)}
-           redirect_to root_path
+          redirect_to root_path
         else
           render :new
         end
@@ -29,6 +30,7 @@ class ItemsController < ApplicationController
 
   def edit
   end
+  
   private
 
   def item_params
@@ -43,4 +45,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 end

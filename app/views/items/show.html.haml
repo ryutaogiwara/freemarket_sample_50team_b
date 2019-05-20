@@ -6,14 +6,6 @@
   .item__box__container
     %h1.item__box__container-name
       = @item.name
-    %p.item__box__container-itemDescription
-      #{@item.name}は、
-      = link_to "#{@item.user.nickname}", root_path, class:"item__box__container-itemDescription-link"
-      さんから出品されました。
-      = link_to "コーチ", root_path, class:"item__box__container-itemDescription-link"
-      （
-      = link_to "ショルダーバッグ/レディース", root_path, class:"item__box__container-itemDescription-link"
-      ）の商品で、#{@item.region}から#{@item.shipping_date}されます。
     .item__box__container-main
       .item__box__container-main-photo
         .swiper-container.swiper2
@@ -178,8 +170,6 @@
                   %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
                 %figcaption.item__message__container__content__message__list-user-name
                   = @item.user.nickname
-              -# .item__message__list-user-seller
-                出品者
             .item__message__container__content__message__list-body
               .item__message__container__content__message__list-body-text
                 おまたせしました。
@@ -211,11 +201,11 @@
                 
   %ul.nav__items__link
     %li.nav__items__link-prev
-      %a.nav__items__link-prev-text{href: root_path}
+      %a.nav__items__link-prev-text{href: '#'}
         %i.fa.fa-chevron-left
         ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018
     %li.nav__items__link-next
-      %a.nav__items__link-next-text{href: root_path}
+      %a.nav__items__link-next-text{href: '#'}
         楽天パンダ ノート&マスキングテープセット
         %i.fa.fa-chevron-right
         

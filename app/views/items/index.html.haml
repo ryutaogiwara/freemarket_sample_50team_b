@@ -23,7 +23,8 @@
         .items__box
           = render @items
           .items__all
-            = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
+            - if @item.blank?
+              = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
       
     .pickup__container
       %h2.pickup__container-head
