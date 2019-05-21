@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
     #CardInfoテーブルからpayjpの顧客IDを検索
     if card.blank?
       #登録された情報がない場合にカード登録画面に移動
-      redirect_to controller: "card_info", action: "new"
+      redirect_to new_user_card_info_path(user_id: current_user.id)
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       #保管した顧客IDでpayjpから情報取得
@@ -22,11 +22,13 @@ class TransactionsController < ApplicationController
     card = CardInfo.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-    amount: @item.price, #支払金額を入力
-    customer: card.customer_id, #顧客ID
-    currency: 'jpy', #日本円
+      amount: @item.price, #支払金額を入力
+      customer: card.customer_id, #顧客ID
+      currency: 'jpy', #日本円
     )
     redirect_to root_path, notice: "購入が完了しました" #完了画面に移動
+    rescue => e
+      redirect_to root_path, notice: "失敗しました"
   end
 
 end

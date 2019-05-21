@@ -21,7 +21,7 @@ class CardInfosController < ApplicationController
     end
   end
 
-  def delete #PayjpとCardデータベースを削除します
+  def destroy #PayjpとCardデータベースを削除します
     card = CardInfo.where(user_id: current_user.id).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(card.customer_id)

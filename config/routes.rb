@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:show, :edit, :update, :index, :new] do
     resources :infos
-    resources :card_infos, only: [:new, :show] do
+    resources :card_infos, only: [:new, :show, :destroy] do
       collection do
         post 'show', to: 'card_infos#show'
         post 'pay', to: 'card_infos#pay'
-        post 'delete', to: 'card_infos#delete'
       end
     end
   end
