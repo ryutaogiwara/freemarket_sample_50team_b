@@ -1,14 +1,414 @@
 #wrapper
-  =render 'layouts/header'
-  =render 'layouts/breadCrumbs'
-  .mypage-main
-    .content
-      .content__logout
-        %form.content__logout__page
-          .content__logout__page__box
-            %buttom.content__logout__page__box-btn 
-              ログアウト
-            %input{type: "hidden", name: "", value: ""}
-    =render "layouts/sidemenu"
+  =render "layouts/header"
 
+  =render "layouts/breadCrumbs"
+
+  .item__box__container
+    %h1.item__box__container-name
+      = @item.name
+    .item__box__container-main
+      .item__box__container-main-photo
+        .swiper-container.swiper2
+          .swiper-wrapper
+            .swiper-slide
+              = image_tag @item.images[0].image.url, size:"300x300"
+                            
+        .swiper-container.swiper3
+          .swiper-wrapper.wrapper3
+            - (0...@item.images.count).each do |image|
+              .swiper-slide.owl-dot
+                = image_tag (@item.images[image].image.url), size: "75x75"                              
+                                      
+          .swiper-my-pagination
+        -# 以下、インスタンス変数仮置き
+        - if @item.brand == 0
+          .item__box__container-main-photo-sold
+            .item__box__container-main-photo-sold-out
+              SOLD
+
+      %table.item__box__container-main-table
+        %tr
+          %th.item__box__container-main-table-title
+            出品者
+          %td.item__box__container-main-table-display
+            = link_to "#{@item.user.nickname}", root_path, class:"item__box__container-main-table-link"
+            .user-evaluation
+              .user-evaluation-icon
+                %i.fa.fa-smile-o.user-evaluation-icon-smile
+                %span.user-evaluation-icon-like
+                  916
+              .user-evaluation-icon
+                %i.fa.fa-meh-o.user-evaluation-icon-normal
+                %span.user-evaluation-icon-like
+                  27
+              .user-evaluation-icon
+                %i.fa.fa-frown-o.user-evaluation-icon-sad
+                %span.user-evaluation-icon-like
+                  4
+        %tr
+          %th.item__box__container-main-table-title
+            カテゴリー
+            %td
+              = link_to "レディース", root_path, class:"item__box__container-main-table-link"
+              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
+              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"                        
+        %tr
+          %th.item__box__container-main-table-title
+            ブランド
+            %td
+              = link_to "コーチ", root_path, class:"item__box__container-main-table-link"
+        %tr
+          %th.item__box__container-main-table-title
+            商品の状態
+          %td
+            = @item.state
+        %tr
+          %th.item__box__container-main-table-title
+            配送料の負担
+          %td
+            = @item.postage
+        %tr
+          %th.item__box__container-main-table-title
+            配送の方法
+          %td
+            = @item.shipping
+        %tr
+          %th.item__box__container-main-table-title
+            発送元地域
+          %td
+            = link_to "#{@item.region}", root_path, class:"item__box__container-main-table-link"
+        %tr
+          %th.item__box__container-main-table-title
+            発送日の目安
+          %td
+            = @item.shipping_date
+    .item__box__container-priceBox
+      %span.item__box__container-priceBox-price
+        = "¥" + number_with_delimiter(@item.price)
+      %span.item__box__container-priceBox-tax
+        (税込)
+      %span.item__box__container-priceBox-shippingFee
+        送料込み
+
+    -# 以下、インスタンス変数仮置き
+    .item__box__container-buyBtn
+      -if @item.brand == 0
+        .item__box__container-buyBtn-soldout
+          売り切れました
+      -else 
+        = link_to '購入画面に進む', root_path, class:"item__box__container-buyBtn-buy"
+        
+    .item__box__container-detail
+      %p.item__box__container-detail-inner
+        = @item.description
+    .item__box__container-bottom
+      .item__box__container-bottom-left
+        %a.item__box__container-bottom-left-link{href: root_path}
+          %i.fa.fa-heart-o.like
+          %span
+            いいね!
+          %span
+            7
+        %a.item__box__container-bottom-left-link{href: root_path}
+          %i.fa.fa-flag-o
+          %span
+            不適切な商品の報告
+      .item__box__container-bottom-right
+        %a.item__box__container-bottom-right-link{href: "https://www.mercari.com/jp/safe/description/"}
+          %i.fa.fa-lock
+          %span
+            あんしん・あんぜんへの取り組み
+
+  .item__message
+    .item__message__container
+      .item__message__container__content
+        %ul.item__message__container__content__message
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?376951604"}/
+                %figcaption
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                出品者がコメントを削除しました
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    193 日前
+                .item__message__container__content__message__list-body-icon-right
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+                %figcaption.item__message__container__content__message__list-user-name
+                  sora
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    175 日前
+                .item__message__container__content__message__list-body-icon-right
+                  %i.fa.fa-flag-o
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+          %li.item__message__container__content__message__list
+            %a.item__message__container__content__message__list-user
+              %figure
+                .item__message__container__content__message__list-user-picture
+                  %img.item__message__container__content__message__list-user-picture-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+                %figcaption.item__message__container__content__message__list-user-name
+                  = @item.user.nickname
+            .item__message__container__content__message__list-body
+              .item__message__container__content__message__list-body-text
+                おまたせしました。
+                %br
+                先ほど確認しましたところ、画像にある底部に若干の汚れが見られる程度で、後はそれといって汚れはございませんでした。
+                %br
+                よろしくおねがいします。
+              .item__message__container__content__message__list-body-icon
+                %time.item__message__container__content__message__list-body-icon-left
+                  %i.fa.fa-clock-o
+                  %span
+                    174 日前
+                .item__message__container__content__message__list-body-icon-right
+                  %i.fa.fa-flag-o
+              .item__message__container__content__message__list-body-blowOut
+                %ia.fa.fa-caret-left.item__message__container__content__message__list-body-blowOut-mark
+
+      .item__message__container__content
+        %form.item__message__container__content__form
+          %p.item__message__container__content__form-warning
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %textarea.item__message__container__content__form-text
+          .item__message__container__content__form__btn
+            -if @item.brand == 0
+              %span.item__message__container__content__form__btn-soldout
+                売り切れのためコメントできません
+            -else 
+              = link_to 'コメントする', item_path(@item.id), class: 'item__message__container__content__form__btn-comment'
+                
+  %ul.nav__items__link
+    %li.nav__items__link-prev
+      %a.nav__items__link-prev-text{href: '#'}
+        %i.fa.fa-chevron-left
+        ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018
+    %li.nav__items__link-next
+      %a.nav__items__link-next-text{href: '#'}
+        楽天パンダ ノート&マスキングテープセット
+        %i.fa.fa-chevron-right
+        
+  .socialMedia__box
+    %ul.socialMedia__box-link
+      %a.socialMedia__box-link-list
+        %li.socialMedia__box-link-list-facebook
+          %i.fa.fa-facebook-official.socialMedia__box-link-list-facebook-icon
+      %a.socialMedia__box-link-list
+        %li.socialMedia__box-link-list-twitter
+          %i.fa.fa-twitter-square.socialMedia__box-link-list-twitter-icon
+      %a.socialMedia__box-link-list
+        %li.socialMedia__box-link-list-pinterest
+          %i.fa.fa-pinterest-square.socialMedia__box-link-list-pinterest-icon
+  .items__user__profile
+    %section.items__user__profile__box
+      %h2.items__user__profile__box-head
+        %a.items__user__profile__box-head-title
+          #{@item.user.nickname}さんのその他の出品
+      .items__box
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+                                  
+    %section.items__user__profile__box
+      %h2.items__user__profile__box-head
+        %a.items__user__profile__box-head-title
+          コーチのショルダーバッグ その他の商品
+      .items__box
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA
+              .item__page__body-price
+                ¥ 140,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 46
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
+            .item__page__body
+              %h3.item__page__body-name
+                BALENCIAGA 財布
+              .item__page__body-price
+                ¥ 120,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 32
+              %p.item__page__body-tax
+                (税込)
+
+        .items__box__content
+          %a.item__page
+            .item__page-photo
+              %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
+            .item__page__body
+              %h3.item__page__body-name
+                supream
+              .item__page__body-price
+                ¥ 125,000
+                .favourite
+                  %i.fa.fa-heart-o.like
+                  %span 96                    
+              %p.item__page__body-tax
+                (税込)
+                                                    
   =render "layouts/footer"

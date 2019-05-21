@@ -17,6 +17,64 @@
         width: 100%;
         background: no-repeat center center;
         }
+        .topBanner {
+          background: url(https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg) no-repeat center center;
+          width: 100%;
+          position: relative;
+          height: 100%;
+          margin: 0 auto;
+          &__box {
+            display: block;
+            overflow: hidden;
+            position: relative;
+            width: 750px;
+            height: 350px;
+            margin: 0 auto;
+            &-smartphone {
+              position: absolute;
+              top: 0;
+              right: 0;
+              height: 100%;
+              width: auto;
+              &-img {
+                height: 100%;
+              }
+            }
+            &-inner {
+              display: inline;
+              color: #333;
+              left: 100px;
+              &-msgApp {
+                margin-top: 40px;
+                font-size: 50px;
+                line-height: 1.2;
+                font-weight: bold;
+                z-index: 2;
+              }
+              &-description {
+                font-size: 18px;
+                line-height: 1.77778;
+              }
+              .topApp__banner__icon {
+                margin: 20px 0 0;
+                display: inline-block;
+                &__store {
+                  float: left;
+                  margin-left: 24px;
+                  line-height: 68px;
+                  &-app {
+                    float: left;
+                    margin: 0 5px;
+                    &-link {
+                      display: inline-block;
+                      line-height: 68px;
+                    }
+                  }
+                }
+              }
+            }
+          } 
+        }
       }
     }
     .swiper-pagination {
@@ -72,6 +130,7 @@
             display: block;
             color: #333;
             background-color: #fff;
+            text-decoration: none;
             &-photo {
               width: 100%;
               height: 220px;

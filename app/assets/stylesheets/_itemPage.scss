@@ -1,6 +1,7 @@
 .bread-crumbs-font {
     font-weight: bold;
   }
+
 .item__message__list-user-seller {
   margin-top: 8px;
   padding: 4px;
@@ -11,6 +12,7 @@
   // top: 60px;
   // left: 40px;
 }
+
 .user-evaluation {
   margin: 5px 0 0 5px;
   &-icon {
@@ -147,15 +149,23 @@
     }
   }
   &-buyBtn {
-    background-color: #888;
-    cursor: not-allowed;
     height: 60px;
     line-height: 60px;
     margin-top: 16px;
     color: #fff;
     text-align: center;
     font-size: 24px;
-    font-weight: bold
+    font-weight: bold;
+    &-soldout {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+    &-buy {
+      display: block;
+      color: #fff;
+      background-color: #ea352d;
+      text-decoration: none;
+    }
   }
   &-detail {
     margin-top: 32px;
@@ -276,6 +286,45 @@
           }
         }
       }
+      &__form {
+        &-warning {
+          padding: 8px;
+          font-size: 14px;
+          background-color: #fff6de;
+        }
+        &-text {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          min-height: 104px;
+          margin-top: 8px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          background-color: #fff;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        &__btn {
+          display: block;
+          width: 100%;
+          text-align: center;
+          margin-top: 8px;
+          background-color: #aaa;
+          border: 1px solid #aaa;
+          color: #fff;
+          line-height: 48px;
+          &-soldout {
+            font-size: 14px;
+            cursor: not-allowed;
+          }
+          &-comment {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+          }
+        }
+      }
     }
   }
 }
@@ -365,9 +414,13 @@
       font-size: 22px;
       line-height: 1.4;
       &-title {
+        font-weight: bold;
         color: #0099e8;
         text-decoration: none;
-        @include  lightBlue-underline;
+        &:hover {
+          opacity: 0.7;
+          border-bottom: 2px solid #0099e8;
+        }
       }
     }
     .items {

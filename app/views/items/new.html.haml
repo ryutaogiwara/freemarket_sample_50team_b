@@ -126,7 +126,7 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :region,["都道府県"], {prompt: "---"}, {class: 'select-box'}
+                        = f.collection_select :region, Prefecture.all, :id, :name,{prompt: "---"}, {class: "select-box"}
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
                     %label.item-info-guide
@@ -184,6 +184,6 @@
                     に同意したことになります。
                     //= f.submitに書き換え
                 = f.submit '出品する', class: 'exhibition__submit', id: 'new_item'
-                = link_to 'もどる', '#', class: 'back-btn'
+                = link_to 'もどる', root_path, class: 'back-btn'
 
     = render "layouts/session-footer"

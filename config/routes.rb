@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root 'items#index'
   resources :items
   resources :transactions, only: [:new] do
@@ -21,4 +21,6 @@ Rails.application.routes.draw do
       get 'done', to: 'transactions#done'
     end
   end
+  # 仮置き
+  get 'logout' => 'users#logout_form'
 end
