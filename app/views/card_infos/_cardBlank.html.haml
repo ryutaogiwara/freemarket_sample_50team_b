@@ -1,0 +1,18 @@
+/クレジットカード情報がない場合の画面
+.content
+  .content__credit
+    %h2.credit-head
+      ="支払い方法"
+    .credit-inner
+      %section
+        .credit-content
+          .sub-credit-head
+            ="クレジットカード一覧"
+        .payment-content
+          .add-payment
+            .add-payment-content
+              .form-group
+                .btn-default
+                  = link_to new_user_card_info_path, class: "btn-default btn-red" do
+                    %i.fa.fa-credit-card
+                    クレジットカードを追加する

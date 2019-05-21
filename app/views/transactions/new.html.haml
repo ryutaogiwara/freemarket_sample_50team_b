@@ -8,14 +8,14 @@
       %section.main-container__content
         .content-inner
           %h3.content-inner__image
-            %img(src="https://static.mercdn.net/thumb/photos/m52245248091_1.jpg?1557480967" alt="")/
+            = image_tag @item.images[0].image.url,size:"230x220"
           %p.content-inner__name
-            Polo Ralph Lauren ポロシャツ 刺繍 ネイビー
+            = @item.name
           %form(action="" class="buy-form")
             %p.price-ja
-              ¥ 3,480
+              = "¥" + number_with_delimiter(@item.price)
               %span.shopping-fee
-                送料込み
+                = @item.postage
             %ul.point
               %li.point-parent
                 .point-parent-toggle
@@ -26,18 +26,18 @@
                   支払い金額
                 .buy-price__cell
                   %span
-                    ¥ 3,480
-            %button(type="submit" class="btn-default")
-              購入する
+                    = "¥" + number_with_delimiter(@item.price)
+            = link_to "購入する", pay_transactions_path, class: "btn-default"
+                
       %section.main-container__user-info
         .user-info-inner
           %h3 配送先
           %address.user-info-inner__address
-            〒123-4567
+            = "〒" + "#{current_user.address.zipcord}"
             %br
-            東京都 渋谷区 アジアビル9F
+            = "#{current_user.address.prefecture}" + "#{current_user.address.city}" + "#{current_user.address.address}" + "#{current_user.address.building_name}"
             %br
-            チームB
+            = "#{current_user.last_name}" + "#{current_user.first_name}"
           %p.user-info-inner__text
           = link_to root_path, class: "user-info-inner__edit" do
             %span 変更する
@@ -47,9 +47,11 @@
           %h3
             支払い方法
           %p.card-data-inner__text
-            123456789
+            = "**** **** **** " + @default_card_information.last4
             %br
-            01 / 23
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
           %img(src="//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?376951604" width="26" height="20" alt="jcb")
           %p
           = link_to root_path, class: "card-data-inner__edit" do

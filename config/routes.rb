@@ -15,5 +15,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'items#index'
   resources :items
-  resources :transactions
+  resources :transactions, only: [:new] do
+    collection do
+      get 'new', to: 'transactions#new'
+      get 'pay', to: 'transactions#pay'
+      get 'done', to: 'transactions#done'
+    end
+  end
 end

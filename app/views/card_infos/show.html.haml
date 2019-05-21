@@ -1,0 +1,12 @@
+/クレジットカード情報をある場合とない場合で表示
+#wrapper
+  = render 'layouts/header'
+  = render 'layouts/breadCrumbs'
+  .mypage-main
+    - if @card.blank?
+      = render 'cardBlank'
+    - else
+      = render 'cardExist'
+      
+    = render "layouts/sidemenu"
+  = render "layouts/footer"

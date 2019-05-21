@@ -1,6 +1,7 @@
 #wrapper
   =render "layouts/header"
-
+  - if flash[:notice]
+    = flash[:notice]
   .main
     %section.swiper-container.swiper1
       .swiper-wrapper
