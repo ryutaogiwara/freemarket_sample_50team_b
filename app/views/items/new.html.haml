@@ -126,7 +126,7 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-box'}
+                        = f.collection_select :presence, Prefecture.all, :id, :name,{prompt: "---"}, {class: "select-box"}
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
                     %label.item-info-guide
