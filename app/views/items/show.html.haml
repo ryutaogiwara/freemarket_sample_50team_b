@@ -98,7 +98,7 @@
         .item__box__container-buyBtn-soldout
           売り切れました
       -else 
-        = link_to '購入画面に進む', root_path, class:"item__box__container-buyBtn-buy"
+        = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
         
     .item__box__container-detail
       %p.item__box__container-detail-inner

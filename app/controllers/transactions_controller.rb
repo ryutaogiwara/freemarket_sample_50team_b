@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   require "payjp"
 
   def new
-    @item = Item.find(1)
+    @item = Item.find(params[:item_id])
     card = CardInfo.where(user_id: current_user.id).first
     #CardInfoテーブルからpayjpの顧客IDを検索
     if card.blank?
@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
   end
 
   def pay
-    @item = Item.find(1)
+    @item = Item.find(params[:item_id])
     card = CardInfo.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(

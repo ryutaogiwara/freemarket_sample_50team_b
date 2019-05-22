@@ -13,12 +13,13 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  resources :items
-  resources :transactions, only: [:new] do
-    collection do
-      get 'new', to: 'transactions#new'
-      get 'pay', to: 'transactions#pay'
-      get 'done', to: 'transactions#done'
+  resources :items do
+    resources :transactions, only: [:new] do
+      collection do
+        get 'new', to: 'transactions#new'
+        get 'pay', to: 'transactions#pay'
+        get 'done', to: 'transactions#done'
+      end
     end
   end
   # 仮置き

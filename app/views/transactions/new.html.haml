@@ -27,7 +27,7 @@
                 .buy-price__cell
                   %span
                     = "¥" + number_with_delimiter(@item.price)
-            = link_to "購入する", pay_transactions_path, class: "btn-default"
+            = link_to "購入する", pay_item_transactions_path(@item.id), class: "btn-default"
                 
       %section.main-container__user-info
         .user-info-inner
