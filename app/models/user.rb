@@ -18,23 +18,31 @@ class User < ApplicationRecord
   validates :first_name, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, message: "" }, presence: true
   validates :last_name_kana, format: { with: /\A[ァ-ンー－]+\Z/ }, presence: true
   validates :first_name_kana, format: { with: /\A[ァ-ンー－]+\Z/ }, presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
-  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  VALID_EMAIL_REGEX = /^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/i.freeze
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, multiline: true }
 
   protected
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.nickname = auth.info.name
-      user.first_name = "太郎"
-      user.last_name = "メルカリ"
-      user.first_name_kana = "タロウ"
-      user.last_name_kana = "メルカリ"
-      user.birth_date = "1900-01-01"
-      user.profile_id = "1"
-      user.card_info_id = "1"
-      user.user_info_id = "1"
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+  def self.find_omniauth(auth)
+    User.where(provider: auth.provider, uid: auth.uid).first
+  end
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+      if data = session["devise.google_data"]
+        user.provider = data["provider"] if user.provider.blank?
+        user.uid = data["uid"] if user.uid.blank?
+        user.password = Devise.friendly_token[0,20] if user.password.blank?
+      end
+     if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+      if data = session["devise.facebook_data"]
+        user.provider = data["provider"] if user.provider.blank?
+        user.uid = data["uid"] if user.uid.blank?
+        user.password = Devise.friendly_token[0,20] if user.password.blank?
+      end
     end
   end
 end

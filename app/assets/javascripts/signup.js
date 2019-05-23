@@ -19,6 +19,8 @@ pages.eq(0).fadeIn();
     {
       $('#error-nicnname').text("ニックネーム を入力してください");
     };
+    if(document.getElementById('error-email'))
+    {
     if(email == "")
     {
       $('#error-email').text("メールアドレス を入力してください");
@@ -31,7 +33,7 @@ pages.eq(0).fadeIn();
       $('#error-password').text("パスワード を入力してください");
     };
     if(password.match(/^[a-z\d]{6,128}$/i))
-    {    }
+    {}
     else{$('#error-password1').text("パスワードは6文字以上128文字以下で入力してください");};
     if(password_confirmation == "")
     {
@@ -40,6 +42,7 @@ pages.eq(0).fadeIn();
     if(password_confirmation == password)
     {}
     else{$('#error-password_confirmation1').text("パスワードが一致しません");}
+    };
     if(last_name == "")
     {
       $('#error-last_name').text("姓 を入力してください");
