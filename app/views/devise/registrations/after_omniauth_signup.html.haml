@@ -1,8 +1,8 @@
 .user__container.login__container
   %header.signup__container__header
     %h1
-      = link_to "/" do
-        = image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg", alt: "mercari", width: "185", height: "49")
+      = link_to root_path do
+        = image_tag("logosignin.svg", alt: "mercari", width: "185", height: "49")
     %nav.progress__bar
       %ol
         %li.progress-active
@@ -44,31 +44,6 @@
                 = f.hidden_field :user_info_id, value: "1"
                 %ul
                   %li#error-nicnname.error-notice-signin
-
-              .signup__inner__group
-                = f.label :メールアドレス
-                %span.form-require 必須
-                %br/
-                = f.text_field :email, autofocus: true, autocomplete: "email", id: "email", class: "input-default", placeholder: "PC・携帯どちらでも可"
-                %ul
-                  %li#error-email.error-notice-signin
-                  %li#error-email1.error-notice-signin
-              .signup__inner__group
-                = f.label :パスワード
-                %span.form-require 必須
-                %br/
-                = f.password_field :password, autocomplete: "new-password", id: "password", class: "input-default", placeholder: "6文字以上"
-                %ul
-                  %li#error-password.error-notice-signin
-                  %li#error-password1.error-notice-signin
-              .signup__inner__group
-                = f.label :'パスワード(確認)'
-                %span.form-require 必須
-                %br/
-                = f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation", class: "input-default", placeholder: "6文字以上"
-                %ul
-                  %li#error-password_confirmation.error-notice-signin
-                  %li#error-password_confirmation1.error-notice-signin
 
               .signup__inner__group
                 .signup__inner__group__head
@@ -267,6 +242,6 @@
 
               .signup-submit.last-submit
                 / = f.submit "メルカリをはじめる", class: "signup-submit-btn"
-          = link_to '/', class: "fin__banner" do
+          = link_to root_path, class: "fin__banner" do
             = image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg", width: "700px")
   =render "layouts/session-footer"

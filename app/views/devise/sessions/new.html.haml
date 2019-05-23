@@ -9,13 +9,11 @@
       .login-sns
         .btn-default
           .btn-sns
-            %button.btn-default.btn-sns.btn-sns-facebook
-              %i.fa.fa-facebook-f
-              ="Facebookでログイン"
+            %i.fa.fa-facebook-f
+            = link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "button btn-default btn-sns btn-sns-facebook"
         .btn-default
           .btn-sns
-            %button.btn-default.btn-sns.btn-sns-google
-              ="Googleでログイン"
+            = link_to "Googleでログイン", user_google_omniauth_authorize_path, class: "button btn-default btn-sns btn-sns-google"
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .login-form-inner
           .form-group

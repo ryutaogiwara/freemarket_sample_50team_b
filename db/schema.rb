@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_075528) do
+ActiveRecord::Schema.define(version: 2019_05_22_072514) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building_name"
-    t.bigint "phone_number"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["card_info_id"], name: "index_users_on_card_info_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profile_id"], name: "index_users_on_profile_id"
