@@ -1,6 +1,16 @@
-.bread-crumbs
-  %ul
-    %li
-      ="メルカリ"
-    %li.bread-crumbs-font
-      ="＞ マイページ"
+.bread-crumbs-body
+  - case params.values_at :controller, :action
+
+  - when ['users', 'show']
+    - breadcrumb :user_show
+
+  - when ['card_infos', 'show']
+    - breadcrumb :card_info_show
+
+  - when ['card_infos', 'new']
+    - breadcrumb :card_info_new
+
+  - when ['items', 'show']
+    - breadcrumb :item_show, @item
+
+  = breadcrumbs separator: " &nbsp;&nbsp;&#12297;&nbsp; ", class: "bread-crumbs", style: :ul
