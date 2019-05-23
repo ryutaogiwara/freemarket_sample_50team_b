@@ -4,7 +4,10 @@ class ItemsController < ApplicationController
     before_action :move_to_index, except: [:index,:show]
 
   def index
-    @items = Item.includes(:user).page(params[:page]).per(4).order("id DESC")
+    @ladies_items = Item.search(category_id_eq: '1').result.limit(4).includes(:images)
+    @mens_items = Item.search(category_id_eq: '2').result.limit(4).includes(:images)
+    @kids_items = Item.search(category_id_eq: '3').result.limit(4).includes(:images)
+    @cosme_items = Item.search(category_id_eq: '4').result.limit(4).includes(:images)
   end
 
   def new
