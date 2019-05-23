@@ -1,8 +1,8 @@
 .user__container.login__container
   %header.signup__container__header
     %h1
-      = link_to "/" do
-        = image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg", alt: "mercari", width: "185", height: "49")
+      = link_to root_path do
+        = image_tag("logosignin.svg", alt: "mercari", width: "185", height: "49")
     %nav.progress__bar
       %ol
         %li.progress-active
@@ -242,6 +242,6 @@
 
               .signup-submit.last-submit
                 / = f.submit "メルカリをはじめる", class: "signup-submit-btn"
-          = link_to '/', class: "fin__banner" do
+          = link_to root_path, class: "fin__banner" do
             = image_tag("https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg", width: "700px")
   =render "layouts/session-footer"

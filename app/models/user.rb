@@ -22,9 +22,11 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, multiline: true }
 
   protected
+
   def self.find_omniauth(auth)
     User.where(provider: auth.provider, uid: auth.uid).first
   end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
