@@ -26,12 +26,14 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
   end
 
   create_table "card_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "number", null: false
-    t.integer "month", null: false
-    t.integer "year", null: false
-    t.integer "security_code", null: false
+    t.integer "number"
+    t.integer "month"
+    t.integer "year"
+    t.integer "security_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "customer_id"
+    t.string "card_id"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_card_infos_on_user_id"
   end
@@ -49,17 +51,17 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
     t.text "description", null: false
     t.string "state", null: false
     t.string "postage", null: false
-    t.string "region", null: false
+    t.integer "region", null: false
     t.string "shipping", null: false
-    t.string "shipping_data", null: false
+    t.string "shipping_date", null: false
     t.integer "price", null: false
     t.string "category", null: false
     t.string "size", null: false
     t.string "brand"
-    t.integer "saler_id", null: false
-    t.integer "transaction_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -116,4 +118,5 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
   add_foreign_key "addresses", "users"
   add_foreign_key "card_infos", "users"
   add_foreign_key "images", "items"
+  add_foreign_key "items", "users"
 end

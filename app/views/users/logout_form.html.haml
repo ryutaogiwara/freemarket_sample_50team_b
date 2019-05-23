@@ -1,0 +1,11 @@
+#wrapper
+  =render 'layouts/header'
+  =render 'layouts/breadCrumbs'
+  .mypage-main
+    .content
+      .content__logout
+        %form.content__logout__page
+          .content__logout__page__box
+            = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'content__logout__page__box-btn'
+            %input{type: "hidden", name: "", value: ""}
+    =render "layouts/sidemenu"

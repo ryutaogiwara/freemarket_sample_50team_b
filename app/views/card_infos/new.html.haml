@@ -7,14 +7,14 @@
       .content__credit
         %h2.credit-head
           ="クレジットカード情報入力"
-        .credit-inner
+        = form_with url: {controller: "card_infos", action: "pay"}, id: "charge-form", name: "inputForm", class: "credit-inner" do |f|
           .credit-content
             .credit-form-group
-              %label
+              = f.label :カード番号 do
                 = "カード番号"
                 .credit-form-must
                   ="必須"
-              = text_field_tag :keyword, '', class: 'credit-input', placeholder: '半角数字のみ'
+              = f.text_field :number, id: "payment_card_no", class: 'number credit-input', placeholder: '半角数字のみ'
               %ul.card-list
                 %li.card-list-item
                   = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/visa.svg", size: "49x20", class: ".image"
@@ -31,61 +31,37 @@
                 %li.card-list-item
                   = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/discover.svg", size: "32x20", class: ".image"
             .credit-form-group
-              %label
+              = f.label :有効期限 do
                 = "有効期限"
                 .credit-form-must
                   ="必須"
               .credit-select
                 %ul
                   %li
-                    %select.credit-month-input
-                      %option{value: ""} 01
-                      %option{value: ""} 02
-                      %option{value: ""} 03
-                      %option{value: ""} 04
-                      %option{value: ""} 05
-                      %option{value: ""} 06
-                      %option{value: ""} 07
-                      %option{value: ""} 08
-                      %option{value: ""} 09
-                      %option{value: ""} 10
-                      %option{value: ""} 11
-                      %option{value: ""} 12
+                    = f.select :exp_month, [["--",],["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{}, {id: "payment_card_expire_mm", class: "exp_month credit-month-input"}
                     = fa_icon 'angle-down', class: 'credit-arrow-down'
                   %li
                     ="月"
                 %ul
                   %li
-                    %select.credit-month-input
-                      %option{value: ""} 19
-                      %option{value: ""} 20
-                      %option{value: ""} 21
-                      %option{value: ""} 22
-                      %option{value: ""} 23
-                      %option{value: ""} 24
-                      %option{value: ""} 25
-                      %option{value: ""} 26
-                      %option{value: ""} 27
-                      %option{value: ""} 28
-                      %option{value: ""} 29
+                    = f.select :exp_year, [["--",],["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]], {}, {id: "payment_card_expire_yy", class: "exp_year credit-month-input"}
                     = fa_icon 'angle-down', class: 'credit-arrow-down'
                   %li
                     ="年"
             .credit-form-group
-              %label
+              = f.label :セキュリティコード do
                 = "セキュリティコード"
                 .credit-form-must
                   ="必須"
-              %input{type: 'text', placeholder: 'カード背面4桁もしくは3桁の番号', class: 'credit-input'}
-                .signup-code
-                  .credit-question
-                    ="?"
-                  .credit-note
-                    ="カード裏面の番号とは？"
+              = f.text_field :cvc, id: "payment_card_cvc", class: 'credit-input cvc', placeholder: 'カード背面4桁もしくは3桁の番号'
+              .signup-code
+                %span.credit-question ?
+                .credit-note
+                  ="カード裏面の番号とは？"
             .form-group
               .btn-default
-                %button.btn-default.btn-red
-                  ="追加する"
+                = f.submit :追加する, id: "submit-button", class: "btn-default btn-red"
+
     =render "layouts/sidemenu"
 
   =render "layouts/footer"

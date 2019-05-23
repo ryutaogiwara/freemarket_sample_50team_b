@@ -34,8 +34,8 @@
         }
       }
       &__nav {
-        margin: 8px 0 0;
         font-size: 14px;
+        margin-top: 8px;
         position: relative;
         &:after {
             content: "";
@@ -87,6 +87,53 @@
             &:hover {
               color: #fff;
               background: #0099e8;
+            }
+          }
+          &-notifications {
+            padding-right: 25px;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+            .icon {
+              color: #ccc;
+            }
+            &:hover {
+              color: #0099e8;
+              .icon {
+                color: #0099e8;
+              }
+            }            
+          }
+          &-todo {
+            padding-right: 40px;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+            .icon {
+              color: #ccc;
+            }            
+            &:hover {
+              color: #0099e8;
+              .icon {
+                color: #0099e8;
+              }
+            }            
+          }
+          &-mypage {
+            position: relative;
+            padding: 0 14px;
+            color: #333;
+            text-decoration: none;
+            &:hover {
+              color: #0099e8;
+            }            
+            &-img {
+              position: absolute;
+              top: -10px;
+              left: -20px;
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
             }
           }
         }

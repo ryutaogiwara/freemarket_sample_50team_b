@@ -17,6 +17,16 @@
           .header__contents__nav__left-link-text
             ブランドから探す
       .header__contents__nav__right
-        = link_to "ログイン", new_user_session_path, class: "btn btn-red header__contents__nav__right-login"
-        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-red header__contents__nav__right-login"
-        = link_to "新規会員登録",  new_user_path, class: "btn btn-signup header__contents__nav__right-register"
+        -if user_signed_in?
+          %a.header__contents__nav__right-notifications
+            %i.fa.fa-bell-o.icon
+            お知らせ
+          %a.header__contents__nav__right-todo
+            %i.fa.fa-check.icon
+            やることリスト
+          %a.header__contents__nav__right-mypage{href: user_path(current_user.id)}
+            %img.header__contents__nav__right-mypage-img{src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}/            
+            マイページ
+        -else
+          = link_to "ログイン", new_user_session_path, class: "btn btn-red header__contents__nav__right-login"
+          = link_to "新規会員登録",  new_user_path, class: "btn btn-signup header__contents__nav__right-register"
