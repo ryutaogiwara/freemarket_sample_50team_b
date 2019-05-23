@@ -1,42 +1,69 @@
 $(document).on('turbolinks:load', function(){
-  if(document.location.href.match("/items/new")){
+  var itemId = location.pathname.split('/')[2]
+  var editImg = document.getElementsByClassName("item-image")
+  var edit = document.getElementById('edit_item')
+  console.log(edit)
+  console.log(itemId)
+  // var hidden = $(':hidden[name="item[images_attributes][1][id]"]')
+  // console.log(hidden)
+  if((document.location.href.match("/items/new")) || (document.location.href.match(`/items/${itemId}/edit`))) {
     var dropzone = $('.upload-box-container--area')
     var inputs = []; //file情報取得
-    var dropZone = document.getElementById("drop_zone");
+    var dropZone = document.getElementById("drop_zone");//取得確認
+    // $(".upload-box-container--items label").slice(1).remove(); fields_for対策？
 
-    function buildImage(imageUri){
-      var html = `<div class="image-preview">
-                    <div class="image-preview--container">
-                      <image src="${imageUri}" class="item-image">
-                    </div>
-                    <div class="image-preview--edit-delete">
-                      <div class="image-edit"> 編集 </div>
-                      <a class="image-delete"> 削除 </a>
-                    </div>
-                  </div>`;
-      return html
-    };
-
+//    ファイルをばらしてinputsに格納、プレビュー作成
     $(function(){
-      function divideFiles(files){
-        for(var i = 0; i < files.length; i++){
-          (function(){
-            inputs.push(files[i]);
-            var reader = new FileReader(); //filesのファイルデータ取得
-            reader.onload = function(){ //読み込まれたら発火
-              var imageUri = reader.result
-              console.log(inputs)
-              if(inputs.length <=5 ){
-                $(buildImage(imageUri)).appendTo("#preview")
-              }else if(inputs.length >= 6 || inputs.length <= 10){
-                $(buildImage(imageUri)).appendTo("#preview2")
-              }
-            };
-            reader.readAsDataURL(files[i]); //ファイルの読み込みを実行する
-            inputCss();
-          })();
+      //以下、ファイル受け取りとプレビュー作成処理
+      function divideFiles(files){//e.target.filesと同じ状態
+        var previewArea = document.getElementsByClassName("image-preview")//preview取得
+        var previewCount = previewArea.length; //preview数取得
+        //画像がない場合のバリデーションを後で追加
+        // console.log(files)
+        if (files !== null && files !== undefined &&previewCount+files.length <= 10){
+          for (var i = 0; i < files.length; i++){
+            // console.log(files[i])
+            if (!files[i].type.match('image.*')){
+              continue;
+            }
+              var delPreview = document.getElementsByClassName("image-delete")
+              var readPreview = document.getElementsByClassName("image-preview")//preview取得
+              var previewNum = readPreview.length;
+              var delNum = delPreview.length;
+              // var imgFile = files[i]
+              var reader = new FileReader();
+              reader.onload = (function(theFile) {
+                var fileName = theFile.name;
+                // console.log(theFile)
+                return function(evt){
+                  // console.log(fileName)
+                  // console.log(evt.target.result);
+                  var html = `<div class="image-preview" data-num="`+ Number(previewNum++) +`">
+                                 <div class="image-preview--container">
+                                   <image  class="item-image" src="`+ evt.target.result +`" data-file="`+ fileName +`">
+                                 </div>
+                                 <div class="image-preview--edit-delete">
+                                   <div class="image-edit"> 編集 </div>
+                                   <a class="image-delete" num="`+ Number(delNum++) +`"> 削除 </a>
+                                 </div>
+                               </div>`
+                  $("#preview").append(html);
+                };
+              })(files[i]);
+            reader.readAsDataURL(files[i]);
+            }//for文
+          var inputCount = document.getElementsByName('images[image][]').length+1;
+          // var labelFor = dropZone.htmlFor; 属性for書き換え
+          var inputClick = `$("#image_input${inputCount}").click();`
+          dropZone.setAttribute('onclick', inputClick);
+
+          var nextInput = `<input accept="image/*,.png,.jpg,.jpeg" id="image_input`+ inputCount +`" class="upload-image" name="images[image][]" multiple= "true" type="file" style="display: none;">`
+          $("#preview").append(nextInput);
+          }//if文
         }
-      };
+        //プレビュー作成ここまで
+      //以下、ファイル投稿時処理
+      //ドロップゾーン
       dropZone.addEventListener("dragover", function(e){
         e.stopPropagation();
         e.preventDefault();
@@ -45,22 +72,38 @@ $(document).on('turbolinks:load', function(){
         e.stopPropagation();
         e.preventDefault();
         var files = e.dataTransfer.files;
+        for ( var i = 0; i < files.length; i++){
+          inputs.push(files[i])
+        }
         divideFiles(files)
-      }, false);
-
-      $('input[type=file]').change(function(){
-        $('#preview').text('');
-        var files = $(this).prop('files')
-        divideFiles(files)
-        $('input[type=file]').val(null);
-      });
+      }, false)
+      //file_field
+      $(function(){
+        // var inputField = $('.upload-image')
+        // console.log(inputField)
+        $(document).on('change', 'input[type=file]', function(e){
+          // var files = $fileField.prop('files') これだとターゲット指定できない
+          var files = e.target.files;
+          for ( var i = 0; i < files.length; i++){
+            inputs.push(files[i])
+          }
+          // console.log(inputs)
+          divideFiles(files)
+            // $('input[type=file]').val(null); ファイルリセット(いらない)
+        })
+      })
     });
+    //ファイル投稿処理ここまで
 
-    $(document).on('click', '.image-delete', function(){
-      var index = $('.image-delete a').index(this);
-      inputs.splice(index, 1);
-      console.log(inputs)
+// preview削除（不完全、ファイルが一致しない場合がある
+    $(document).on('click', '.image-delete', function(e){
+      e.preventDefault();
+      //previewのhtml削除処理
+      var num = $(this).attr('num');
       $(this).parent().parent().remove();
+      //edit時の削除
+      var editDelTarget = $("#item_images_attributes_"+ num +"__destroy")
+      editDelTarget.prop("checked", true);
       inputCss();
     });
 
@@ -96,15 +139,26 @@ $(document).on('turbolinks:load', function(){
         })
       }
     };
+    //出品情報送信
     $('#new_item').on('submit', function(e){
       e.preventDefault();
+      //バリデーションを後で追加
       var formData = new FormData($(this).get(0));
-      inputs.forEach(function(file){
-        formData.append("images[image][]", file)
-      });
-      // for(value of formData.entries()){
-      //     console.log(value);
-      // }
+      formData.delete('images[image][]');//画像リセット
+      var previewImg = document.getElementsByClassName("item-image")
+      var nodeList = document.getElementsByName("images[image][]")
+      //データ比較用、一致物のみformDataへ送る
+      for (var i = 0; i < previewImg.length; i++){
+        var previewName = previewImg[i].getAttribute('data-file')
+        inputs.forEach(function(file){
+          if (previewName == file.name){
+            formData.append("images[image][]", file);
+          }
+        })
+      }
+      for(value of formData.entries()){
+        console.log(value);
+      }
       $.ajax({
         url:         '/items',
         type:        "POST",
@@ -120,9 +174,47 @@ $(document).on('turbolinks:load', function(){
         // console.log('fail')
       });
     });
+
+    $(document).on('submit', edit, function(e){
+      e.preventDefault();
+      //バリデーションを後で追加
+      var formData = new FormData($(this).get(0));
+      formData.delete('images[image][]');//画像リセット
+      var previewImg = document.getElementsByClassName("item-image")
+      var nodeList = document.getElementsByName("images[image][]")
+      //データ比較用、一致物のみformDataへ送る
+      for (var i = 0; i < previewImg.length; i++){
+        var previewName = previewImg[i].getAttribute('data-file')
+        inputs.forEach(function(file){
+          if (previewName == file.name){
+            formData.append("images[image][]", file);
+          }
+        })
+      }
+      for(value of formData.entries()){
+        console.log(value);
+      }
+      console.log(`/items/${itemId}`)
+      $.ajax({
+        url:         `/items/${itemId}`,
+        type:        "PATCH",
+        data:        formData,
+        contentType: false,
+        processData: false,
+        dataType:    'html'
+      })
+      .done(function(data){
+        // console.log('done') ここのconsole.logはまだjavascriptを編集していかないといけないので最終的には消しますが現段階ではコメントアウトで残しておきたいです。
+      })
+      .fail(function(XMLHttpRequest, textStatus, errorThrown){
+        // console.log('fail')
+      });
+    });
   }
 });
-//問題点・・・画像削除時のファイルの中身が違う
-      // for(value of form.entries()){
-      //   console.log(value);
-      // }  formData確認用
+
+
+// 問題点・・・画像削除時のファイルの中身が違う
+//       for(value of form.entries()){
+//         console.log(value);
+//       }  formData確認用

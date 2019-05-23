@@ -25,16 +25,32 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
+  def edit
+    @item = Item.find(params[:id])
   end
 
-  def edit
+  def update
+    # binding.pry
+    @item = Item.find(params[:id])
+    if @item.update(edit_params)
+      if params[:images].present?
+        edit_params.each{ |image| @image = @item.images.create(image: image)}
+        redirect_to root_path
+      end
+    else
+      render :edit
+    end
   end
-  
+
+
   private
 
   def item_params
     params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :id]).merge(user_id: current_user.id )
+  end
+
+  def edit_params
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :id, :_destroy]).merge(user_id: current_user.id )
   end
 
   def image_params

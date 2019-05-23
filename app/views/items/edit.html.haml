@@ -1,0 +1,199 @@
+%body.new-item
+  .single-container
+    = render "layouts/session-header"
+    %main
+      %section.new-item-sell
+        .sell-container
+          .sell-container-inner
+            %h2.single-head 商品の情報を入力
+            = form_for @item, html: {class: 'sell-form'} do |f|
+              .upload-box
+                %h3.upload-box--guide
+                  %label.item-info-guide
+                    出品画像
+                    %span.item-info-required
+                      必須
+                %p.upload-box--text 最大10枚までアップロードできます
+                .upload-box-container
+                  //画像追加用div
+                  .upload-box-container--items#preview
+                    .upload-box-container--area#drop_zone{onclick: "$('#image_input1').click();"}
+                      %pre.upload-box-container--area-info
+                        ドラッグアンドドロップ
+                        %br
+                        またはクリックしてファイルをアップロード
+                    %input.upload-image{type: "file", multiple: true, name: 'images[image][]', style: 'display: none;', accept: "image/*,.png,.jpg,.jpeg", id: "image_input1"}
+                    - @item.images.each_with_index do |img, i|
+                      -# %span{style: 'display: none'}
+                      .image-preview(data-num="#{i}")
+                        .image-preview--container
+                          = image_tag img.image.url, class: "item-image", id: "edit_img"
+                        .image-preview--edit-delete
+                          .image-edit 編集
+                          %a.image-delete(num="#{i}") 削除
+                    = f.fields_for :images do |i|
+                      = i.file_field :image, style: 'display: none;'
+                      = i.check_box:_destroy, style: 'display: none'
+                      = i.hidden_field :id, class: 'item-edit-id', value: i.object.id
+              //image投稿用フォーム
+              / 商品名、説明入力
+              .item-info
+                .item-info-form
+                  //共通部分
+                  %label.item-info-guide
+                    商品名
+                    %span.item-info-required
+                      必須
+                  .item-info-form--nametext
+                    / =f.form_text
+                    = f.text_field :name, class: 'item-info-form--nametext-textfield', placeholder: '商品名（必須40文字まで）'
+                .item-description
+                  %label.item-info-guide
+                    商品の説明
+                    %span.item-info-required
+                      必須
+                  = f.text_area :description, class: 'item-description-textarea', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"
+              / 商品の詳細
+              .item-info
+                %h3.sell-sub-head
+                  商品の詳細
+                .sell-form-box
+                  .form-group
+                    %label.item-info-guide
+                      カテゴリー
+                      %span.item-info-required
+                        必須
+                    //ここにJSカテゴリhtml追加?
+                    %div
+                      .select-wrap
+                        = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                        //JSでdisplay: none;を切り替え?
+                      -# .select-wrap
+                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', style: ''}
+                        -# = fa_icon 'angle-down', class: 'arrow-down'
+                      -# .select-wrap
+                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
+                        -# = fa_icon 'angle-down', class: 'arrow-down'
+                  .form-group
+                    %label.item-info-guide
+                      サイズ
+                      %span.item-info-required
+                        必須
+                    %div
+                      .select-wrap
+                        = f.select :size,["XXS以下", "XS(SS)", "S", "M", "L", "XL(LL)", "2XL(3L)", "3XL(4L)", "4XL(5L)以上", "FREE SIZE"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                  .form-group
+                    %label.item-info-guide
+                      ブランド
+                      %span.item-info-any
+                        任意
+                    %div
+                      //JSでdisplay: none;を切り替え
+                      .select-wrap
+                        = f.text_field :brand, placeholder: '例) シャネル', class: 'brand-box'
+                  .form-group
+                    %label.item-info-guide
+                      商品の状態
+                      %span.item-info-required
+                        必須
+                    %div
+                      .select-wrap
+                        = f.select :state,["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+              / 配送について
+              .item-info
+                %h3.sell-sub-head
+                  配送について
+                  //余裕があったらlink_toで
+                .sell-sub-head--question
+                  ?
+                .sell-form-box
+                  .form-group
+                    %label.item-info-guide
+                      配送料の負担
+                      %span.item-info-required
+                        必須
+                    %div
+                      .select-wrap
+                        = f.select :postage,["送料込み(出品者負担)", "着払い(購入者負担)"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                  .form-group
+                    %label.item-info-guide
+                      配送の方法
+                      %span.item-info-required
+                        必須
+                    %div
+                      //JSでdisplay: none;を切り替え
+                      .select-wrap
+                        = f.select :shipping,["未定", "らくらくメルカリ便", "ゆうメール", "レターパック", "普通郵便(定型、定型外)", "クロネコヤマト", "ゆうパック", "クリックポスト", "ゆうパケット"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                  .form-group
+                    %label.item-info-guide
+                      発送元の地域
+                      %span.item-info-required
+                        必須
+                    %div
+                      .select-wrap
+                        = f.select :region,["都道府県"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                  .form-group
+                    %label.item-info-guide
+                      発送までの日数
+                      %span.item-info-required
+                        必須
+                    %div
+                      .select-wrap
+                        = f.select :shipping_date,["1~2日で発送", "2~3日で発送", "4~7日で発送"], {prompt: "---"}, {class: 'select-box'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+              / 販売価格
+              .item-info
+                %h3.sell-sub-head
+                  販売価格(300〜9,999,999)
+                  //余裕があったらlink_toで
+                .sell-sub-head--question
+                  ?
+                .sell-form-box
+                  %ul.sell-price-form
+                    %li.form-group
+                      .price-input-form
+                        %label.item-info-price
+                          価格
+                          %span.item-info-required-price
+                            必須
+                        .price-input-area
+                          ¥
+                          //= text_field :price, placeholder: "例)300"
+                          .price-input-area--form
+                            //JS計算、DB作成後 = text_field
+                            = f.text_field :price, type: "tel", autocomplete: "off", placeholder: '例)  300', class: 'price-input-area__text', id: "price-input-field", autocomplete: "off", value: "#{@item.price}"
+                    %li.sale-fee
+                      .sale-fee--left
+                        販売手数料(10%)
+                      #sale-fee-result.sale-fee--right -
+                    %li.sale-profit
+                      .sale-profit--left
+                        販売利益
+                      #sale-profit-result.sale-profit--right -
+              /出品、もどるボタン
+              .exhibition-btn
+                .exhibition-btn-box
+                  %p.exhibition-btn-box--notes-text
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}禁止されている出品
+                    、
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}行為
+                    を必ずご確認ください。
+                  %p.exhibition-btn-box--notes-text
+                    またブランド品でシリアルナンバー等がある場合はご記載ください。
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}偽ブランドの販売
+                    は犯罪であり処罰される可能性があります。
+                  %p.exhibition-btn-box--notes-text
+                    また、出品をもちまして
+                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}加盟店規約
+                    に同意したことになります。
+                    //= f.submitに書き換え
+                = f.submit '変更する', class: 'exhibition__submit', id: 'edit_item'
+                = link_to 'もどる', '/', class: 'back-btn'
+
+    = render "layouts/session-footer"

@@ -18,14 +18,13 @@
                   = f.fields_for :images do |i|
                     //画像追加用div
                     .upload-box-container--items#preview
-                    .upload-box-container--items#preview2
-                    //image投稿用フォーム
-                    = i.label :image, class: 'upload-box-container--area', id: 'drop_zone' do
-                      = i.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0
-                      %pre.upload-box-container--area-info
-                        ドラッグアンドドロップ
-                        %br
-                        またはクリックしてファイルをアップロード
+                      //image投稿用フォーム
+                      .upload-box-container--area#drop_zone{onclick: "$('#image_input1').click();"}
+                        %pre.upload-box-container--area-info
+                          ドラッグアンドドロップ
+                          %br
+                          またはクリックしてファイルをアップロード
+                      = i.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0, id: "image_input1"
               / 商品名、説明入力
               .item-info
                 .item-info-form
@@ -126,7 +125,7 @@
                         必須
                     %div
                       .select-wrap
-                        = f.collection_select :region, Prefecture.all, :id, :name,{prompt: "---"}, {class: "select-box"}
+                        = f.select :region,["都道府県"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
                     %label.item-info-guide
