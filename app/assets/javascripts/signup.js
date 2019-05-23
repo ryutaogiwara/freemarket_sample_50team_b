@@ -21,28 +21,31 @@ pages.eq(0).fadeIn();
     };
     if(document.getElementById('error-email'))
     {
-    if(email == "")
-    {
-      $('#error-email').text("メールアドレス を入力してください");
-    };
-    if(email.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/))
-    {}
-    else{$('#error-email1').text("フォーマットが不適切です");};
-    if(password == "")
-    {
-      $('#error-password').text("パスワード を入力してください");
-    };
-    if(password.match(/^[a-z\d]{6,128}$/i))
-    {}
-    else{$('#error-password1').text("パスワードは6文字以上128文字以下で入力してください");};
-    if(password_confirmation == "")
-    {
-      $('#error-password_confirmation').text("パスワード (確認) を入力してください");
-    };
-    if(password_confirmation == password)
-    {}
-    else{$('#error-password_confirmation1').text("パスワードが一致しません");}
-    };
+        if(email == "")
+        {
+          $('#error-email').text("メールアドレス を入力してください");
+        };
+        if(!email.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/))
+        {
+          $('#error-email1').text("フォーマットが不適切です");
+        };
+        if(password == "")
+        {
+          $('#error-password').text("パスワード を入力してください");
+        };
+        if(!password.match(/^[a-z\d]{6,128}$/i))
+        {
+          $('#error-password1').text("パスワードは6文字以上128文字以下で入力してください");
+        };
+        if(password_confirmation == "")
+        {
+          $('#error-password_confirmation').text("パスワード (確認) を入力してください");
+        };
+        if(!password_confirmation == password)
+        {
+          $('#error-password_confirmation1').text("パスワードが一致しません")
+        };
+    }
     if(last_name == "")
     {
       $('#error-last_name').text("姓 を入力してください");
@@ -55,16 +58,18 @@ pages.eq(0).fadeIn();
     {
       $('#error-last_name_kana').text("姓カナ を入力してください");
     };
-    if(last_name_kana.match(/^[ァ-ロワヲンー 　\r\n\t]*$/))
-    {}
-    else{$('#error-last_name_kana1').text("姓カナ はカナ文字を入力してください");};
+    if(!last_name_kana.match(/^[ァ-ロワヲンー 　\r\n\t]*$/))
+    {
+      $('#error-last_name_kana1').text("姓カナ はカナ文字を入力してください");
+    };
     if(first_name_kana == "")
     {
       $('#error-first_name_kana').text("名カナ を入力してください");
     };
-    if(first_name_kana.match(/^[ァ-ロワヲンー 　\r\n\t]*$/))
-    {}
-    else{$('#error-first_name_kana1').text("名カナ はカナ文字を入力してください");};
+    if(!first_name_kana.match(/^[ァ-ロワヲンー 　\r\n\t]*$/))
+    {
+      $('#error-first_name_kana1').text("名カナ はカナ文字を入力してください");
+    };
     if(birth_date == "")
     {
       $('#error-birth_date').text("生年月日を入力してください");
@@ -139,9 +144,8 @@ pages.eq(0).fadeIn();
     {
       $('#error-number').text("カード番号 を入力してください");
     };
-    if(number.match(/^\d+$/))
-    {}
-    else{
+    if(!number.match(/^\d+$/))
+    {
       $('#error-number1').text("カード番号は半角数字 で入力してください");
     };
     if(month == "")
@@ -156,12 +160,10 @@ pages.eq(0).fadeIn();
     {
       $('#error-security_code').text("セキュリティコード を入力してください");
     };
-    if(security_code.match(/^\d+$/))
-    {}
-    else{
+    if(!security_code.match(/^\d+$/))
+    {
       $('#error-security_code1').text("セキュリティコードは半角数字 で入力してください");
     };
-    console.log($('.error-notice-signin').text().length);
     if($('.error-notice-signin').text().length == 0)
     {
     pages.hide();

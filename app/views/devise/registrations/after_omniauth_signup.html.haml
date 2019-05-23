@@ -45,30 +45,6 @@
                 %ul
                   %li#error-nicnname.error-notice-signin
 
-              / .signup__inner__group
-              /   = f.label :メールアドレス
-              /   %span.form-require 必須
-              /   %br/
-              /   = f.text_field :email, autofocus: true, autocomplete: "email", id: "email", class: "input-default", placeholder: "PC・携帯どちらでも可"
-              /   %ul
-              /     %li#error-email.error-notice-signin
-              /     %li#error-email1.error-notice-signin
-              / .signup__inner__group
-              /   = f.label :パスワード
-              /   %span.form-require 必須
-              /   %br/
-              /   = f.password_field :password, autocomplete: "new-password", id: "password", class: "input-default", placeholder: "6文字以上"
-              /   %ul
-              /     %li#error-password.error-notice-signin
-              /     %li#error-password1.error-notice-signin
-              / .signup__inner__group
-              /   = f.label :'パスワード(確認)'
-              /   %span.form-require 必須
-              /   %br/
-              /   = f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation", class: "input-default", placeholder: "6文字以上"
-              /   %ul
-              /     %li#error-password_confirmation.error-notice-signin
-              /     %li#error-password_confirmation1.error-notice-signin
               .signup__inner__group
                 .signup__inner__group__head
                   ="本人確認"
