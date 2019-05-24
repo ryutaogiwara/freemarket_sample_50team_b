@@ -136,7 +136,7 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :region,["都道府県"], {prompt: "---"}, {class: 'select-box'}
+                        = f.select :region,[0], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
                   .form-group
                     %label.item-info-guide
@@ -193,7 +193,7 @@
                     %a{href: "#", class: "exhibition-btn-box--notes-text-link"}加盟店規約
                     に同意したことになります。
                     //= f.submitに書き換え
-                = f.submit '変更する', class: 'exhibition__submit', id: 'edit_item'
+                = f.submit '変更する', class: 'exhibition__submit', id: 'edit--item'
                 = link_to 'もどる', '/', class: 'back-btn'
 
     = render "layouts/session-footer"

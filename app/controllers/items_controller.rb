@@ -17,9 +17,12 @@ class ItemsController < ApplicationController
     if params[:images].present?
       if @item.save
         if image_params.each{ |image| @image = @item.images.create(image: image)}
-          render :index
+          respond_to do |format|
+            format.html { redirect_to items_path }
+            format.json
+          end
         else
-          redirect_to new_item_path
+          render :new
         end
       end
     end
@@ -30,27 +33,29 @@ class ItemsController < ApplicationController
   end
 
   def update
-    # binding.pry
     @item = Item.find(params[:id])
-    if @item.update(edit_params)
+    if @item.update!(edit_params)
       if params[:images].present?
-        edit_params.each{ |image| @image = @item.images.create(image: image)}
-        redirect_to root_path
+         image_params.each{ |image| @image = @item.images.create(image: image)}
+         respond_to do |format|
+            format.html { redirect_to item_path }
+            format.json
+         end
       end
-    else
-      render :edit
     end
   end
 
+  def show
+  end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :id]).merge(user_id: current_user.id )
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image]).merge(user_id: current_user.id )
   end
 
   def edit_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :id, :_destroy]).merge(user_id: current_user.id )
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id )
   end
 
   def image_params
