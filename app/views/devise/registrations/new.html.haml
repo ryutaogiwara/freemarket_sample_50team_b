@@ -69,6 +69,7 @@
                 %ul
                   %li#error-password_confirmation.error-notice-signin
                   %li#error-password_confirmation1.error-notice-signin
+
               .signup__inner__group
                 .signup__inner__group__head
                   ="本人確認"
@@ -230,10 +231,10 @@
                   %label 有効期限
                   %br/
                   = f.fields_for :card_info, CardInfo.new do |cardinfo|
-                    = cardinfo.select :month, ["",2019,2018,2017,2016,2015,2014,2013,2012], {}, { class: "card__block__select", id: "month" }
+                    = cardinfo.select :month, ["",1,2,3,4,5,6,7,8,9,10,11,12], {}, { class: "card__block__select", id: "month" }
                   %span 月
                   = f.fields_for :card_info, CardInfo.new do |cardinfo|
-                    = cardinfo.select :year, ["",2019,2018,2017,2016,2015,2014,2013,2012], {}, { class: "card__block__select", id: "year" }
+                    = cardinfo.select :year, ["",2019,2020,2021,2022,2023,2024,2025,2026], {}, { class: "card__block__select", id: "year" }
                   %span 年
                   %ul
                     %li#error-month.error-notice-signin

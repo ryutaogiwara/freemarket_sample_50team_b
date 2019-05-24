@@ -1,13 +1,29 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
+
   resources :users, only: [:show, :edit, :update, :index, :new] do
     resources :infos
+    resources :card_infos, only: [:new, :show, :destroy] do
+      collection do
+        post 'show', to: 'card_infos#show'
+        post 'pay', to: 'card_infos#pay'
+      end
+    end
   end
 
   root 'items#index'
-  resources :items
+  resources :items do
+    resources :transactions, only: [:new] do
+      collection do
+        get 'new', to: 'transactions#new'
+        get 'pay', to: 'transactions#pay'
+        get 'done', to: 'transactions#done'
+      end
+    end
+  end
   # 仮置き
   resources :listings, only: [:index]
   get 'logout' => 'users#logout_form'

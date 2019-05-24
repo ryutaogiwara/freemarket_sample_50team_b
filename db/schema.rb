@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_075528) do
+ActiveRecord::Schema.define(version: 2019_05_23_140622) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building_name"
-    t.bigint "phone_number"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -26,14 +26,26 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
   end
 
   create_table "card_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "number", null: false
-    t.integer "month", null: false
-    t.integer "year", null: false
-    t.integer "security_code", null: false
+    t.integer "number"
+    t.integer "month"
+    t.integer "year"
+    t.integer "security_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "customer_id"
+    t.string "card_id"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_card_infos_on_user_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "parent_id"
+    t.bigint "grandparent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grandparent_id"], name: "index_categories_on_grandparent_id"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,12 +65,13 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
     t.string "shipping", null: false
     t.string "shipping_date", null: false
     t.integer "price", null: false
-    t.string "category", null: false
     t.string "size", null: false
     t.string "brand"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -104,6 +117,8 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["card_info_id"], name: "index_users_on_card_info_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profile_id"], name: "index_users_on_profile_id"
@@ -114,5 +129,6 @@ ActiveRecord::Schema.define(version: 2019_05_21_075528) do
   add_foreign_key "addresses", "users"
   add_foreign_key "card_infos", "users"
   add_foreign_key "images", "items"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
 end
