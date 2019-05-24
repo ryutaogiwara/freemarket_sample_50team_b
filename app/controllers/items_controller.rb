@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     @ladies_items = Item.search(category_id_eq: '1').result.limit(4).includes(:images)
     @mens_items = Item.search(category_id_eq: '2').result.limit(4).includes(:images)
     @kids_items = Item.search(category_id_eq: '3').result.limit(4).includes(:images)
-    @cosme_items = Item.search(category_id_eq: '4').result.limit(4).includes(:images)
+    @cosme_items = Item.search(category_id_eq: '7').result.limit(4).includes(:images)
   end
 
   def new
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :id]).merge(user_id: current_user.id )
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :size, :brand, :category_id, images_attributes: [:image, :id]).merge(user_id: current_user.id )
   end
 
   def image_params

@@ -56,7 +56,7 @@
                     //ここにJSカテゴリhtml追加?
                     %div
                       .select-wrap
-                        = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
+                        = f.collection_select :category_id, Category.all, :id, :name,{prompt: "---"}, {class: "select-box"}
                         = fa_icon 'angle-down', class: 'arrow-down'
                         //JSでdisplay: none;を切り替え?
                       -# .select-wrap
