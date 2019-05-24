@@ -1,14 +1,9 @@
-class Category < ActiveHash::Base
-  include ActiveHash::Associations
+class Category < ApplicationRecord
   has_many :items
+  
+  has_many :children, class_name: "Category", foreign_key: "parent_id", dependent: :destroy
+  belongs_to :parent, class_name: "Category", foreign_key: "parent_id", optional: true
 
-  self.data = [
-      {id: 1, name: 'レディース'}, {id: 2, name: 'メンズ'}, {id: 3, name: 'ベビー・キッズ'},
-      {id: 4, name: 'インテリア・住まい・小物'}, {id: 5, name: '本・ゲーム・音楽'}, 
-      {id: 6, name: 'おもちゃ・ホビー・グッズ'},{id: 7, name: 'コスメ・香水・美容'},
-      {id: 8, name: '家電・スマホ・カメラ'}, {id: 9, name: 'スポーツ・レジャー'},
-      {id: 10, name: 'ハンドメイド'}, {id: 11, name: 'チケット'}, {id: 12, name: '自動車・オートバイ'},
-      {id: 13, name: 'その他'}
-  ]
-
+  has_many :grandchildren, class_name: "Category", foreign_key: "grandparent_id"
+  belongs_to :grandparent, class_name: "Category", foreign_key: "grandparent_id", optional: true
 end
