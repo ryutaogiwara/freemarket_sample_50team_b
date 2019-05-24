@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
   require "payjp"
 
+  before_action :move_to_sign_in
+
   def new
     @item = Item.find(params[:item_id])
     card = CardInfo.where(user_id: current_user.id).first
@@ -31,4 +33,7 @@ class TransactionsController < ApplicationController
       redirect_to root_path, notice: "失敗しました"
   end
 
+  def move_to_sign_in
+    redirect_to new_user_session_path unless user_signed_in?
+  end
 end
