@@ -1,4 +1,4 @@
-class ChangeColumnToNotNull < ActiveRecord::Migration[5.2]
+class ChangeColumnToCardInfos < ActiveRecord::Migration[5.2]
   def up
     change_column :card_infos, :number, :integer
     change_column :card_infos, :month, :integer
