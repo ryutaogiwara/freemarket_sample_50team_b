@@ -89,7 +89,7 @@
 |shipping|string  |null: false|
 |shipping_data|string|null: false|
 |price   |integer |null: false|
-|category|string  |null: false|
+|category_id|references  |foreign_key: true|
 |size    |string  |null: false|
 |brand   |string  ||
 |user_id|references|null: false, foreign_key: true|
@@ -117,3 +117,18 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
+
+## categoryテーブル
+|column  |Type    |Option |
+|--------|--------|-------|
+|name|string|null: false|
+|parent_id |references|foreign_key: true|
+|grandparent_id |references|foreign_key: true|
+
+### Association
+- has_many :item
+### 自己結合
+- has_many :children, class_name: "Category", foreign_key: "parent_id"
+- belongs_to :parent, class_name: "Category", foreign_key: "parent_id"
+- has_many :grandchildren, class_name: "Category", foreign_key: "grandparent_id"
+- belonds_to :grandparent, class_name: "Category", foreign_key: "grandparent_id"
