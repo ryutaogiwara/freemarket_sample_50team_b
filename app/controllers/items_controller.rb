@@ -17,9 +17,9 @@ class ItemsController < ApplicationController
     if params[:images].present?
       if @item.save
         if image_params.each{ |image| @image = @item.images.create(image: image)}
-          redirect_to root_path
+          render :index
         else
-          render :new
+          redirect_to new_item_path
         end
       end
     end

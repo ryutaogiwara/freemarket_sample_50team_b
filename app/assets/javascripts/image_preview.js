@@ -174,42 +174,43 @@ $(document).on('turbolinks:load', function(){
         // console.log('fail')
       });
     });
-
-    $(document).on('submit', edit, function(e){
-      e.preventDefault();
-      //バリデーションを後で追加
-      var formData = new FormData($(this).get(0));
-      formData.delete('images[image][]');//画像リセット
-      var previewImg = document.getElementsByClassName("item-image")
-      var nodeList = document.getElementsByName("images[image][]")
-      //データ比較用、一致物のみformDataへ送る
-      for (var i = 0; i < previewImg.length; i++){
-        var previewName = previewImg[i].getAttribute('data-file')
-        inputs.forEach(function(file){
-          if (previewName == file.name){
-            formData.append("images[image][]", file);
-          }
+    if(document.location.href.match(`/items/${itemId}/edit`)){
+      $(document).on('submit', edit, function(e){
+        e.preventDefault();
+        //バリデーションを後で追加
+        var formData = new FormData($(this).get(0));
+        formData.delete('images[image][]');//画像リセット
+        var previewImg = document.getElementsByClassName("item-image")
+        var nodeList = document.getElementsByName("images[image][]")
+        //データ比較用、一致物のみformDataへ送る
+        for (var i = 0; i < previewImg.length; i++){
+          var previewName = previewImg[i].getAttribute('data-file')
+          inputs.forEach(function(file){
+            if (previewName == file.name){
+              formData.append("images[image][]", file);
+            }
+          })
+        }
+        for(value of formData.entries()){
+          console.log(value);
+        }
+        console.log(`/items/${itemId}`)
+        $.ajax({
+          url:         `/items/${itemId}`,
+          type:        "PATCH",
+          data:        formData,
+          contentType: false,
+          processData: false,
+          dataType:    'html'
         })
-      }
-      for(value of formData.entries()){
-        console.log(value);
-      }
-      console.log(`/items/${itemId}`)
-      $.ajax({
-        url:         `/items/${itemId}`,
-        type:        "PATCH",
-        data:        formData,
-        contentType: false,
-        processData: false,
-        dataType:    'html'
-      })
-      .done(function(data){
-        // console.log('done') ここのconsole.logはまだjavascriptを編集していかないといけないので最終的には消しますが現段階ではコメントアウトで残しておきたいです。
-      })
-      .fail(function(XMLHttpRequest, textStatus, errorThrown){
-        // console.log('fail')
+        .done(function(data){
+          // console.log('done') ここのconsole.logはまだjavascriptを編集していかないといけないので最終的には消しますが現段階ではコメントアウトで残しておきたいです。
+        })
+        .fail(function(XMLHttpRequest, textStatus, errorThrown){
+          // console.log('fail')
+        });
       });
-    });
+    }
   }
 });
 
