@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items
   # 仮置き
+  resources :listings, only: [:index]
   get 'logout' => 'users#logout_form'
 end
