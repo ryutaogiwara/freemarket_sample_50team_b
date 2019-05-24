@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_072514) do
+ActiveRecord::Schema.define(version: 2019_05_23_113445) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
   end
 
   create_table "card_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "number"
+    t.bigint "number"
     t.integer "month"
     t.integer "year"
     t.integer "security_code"
