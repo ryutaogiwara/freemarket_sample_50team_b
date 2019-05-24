@@ -36,29 +36,30 @@
               .user-evaluation-icon
                 %i.fa.fa-smile-o.user-evaluation-icon-smile
                 %span.user-evaluation-icon-like
-                  916
+                  46
               .user-evaluation-icon
                 %i.fa.fa-meh-o.user-evaluation-icon-normal
                 %span.user-evaluation-icon-like
-                  27
+                  7
               .user-evaluation-icon
                 %i.fa.fa-frown-o.user-evaluation-icon-sad
                 %span.user-evaluation-icon-like
-                  4
+                  0
         %tr
           %th.item__box__container-main-table-title
             カテゴリー
             %td
-              = link_to "レディース", root_path, class:"item__box__container-main-table-link"
-              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
-              = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
-              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
-              = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"                        
+              = link_to "#{@item.category.name}", root_path, class:"item__box__container-main-table-link"
+              -# カテゴリー別機能追加した場合使用
+              -# %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              -# = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
+              -# %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              -# = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"                        
         %tr
           %th.item__box__container-main-table-title
             ブランド
             %td
-              = link_to "コーチ", root_path, class:"item__box__container-main-table-link"
+              = link_to "#{@item.brand}", root_path, class:"item__box__container-main-table-link"
         %tr
           %th.item__box__container-main-table-title
             商品の状態
@@ -98,7 +99,7 @@
         .item__box__container-buyBtn-soldout
           売り切れました
       -else 
-        = link_to '購入画面に進む', root_path, class:"item__box__container-buyBtn-buy"
+        = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
         
     .item__box__container-detail
       %p.item__box__container-detail-inner
@@ -272,7 +273,7 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
@@ -317,7 +318,7 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
@@ -367,7 +368,7 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
@@ -412,7 +413,7 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
