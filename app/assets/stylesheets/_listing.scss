@@ -1,0 +1,109 @@
+
+.content__listing-box {
+  height: 72px;
+  width: 700px;
+  text-indent: 20px;
+  background-color: white;
+  font-weight: bold;
+  line-height: 72px;
+  &__menu {
+    height: 75px;
+    width: 700px;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    
+    &__now {
+      width: 234px;
+      line-height: 75px;
+      background-color: white;
+      border-top: solid 2px red;
+      &:hover {
+        color: gray;
+      }
+    }
+    &__side {
+      line-height: 74px;
+      width: 233px;
+      background-color: #eee;
+      &:hover {
+        color: gray;
+      }
+    }
+  }
+  &__item-tab {
+    height: 235px;
+    background-color: white;
+    &__image-box {
+      height: 50px;
+    }
+    &__image {
+      margin-left: 308px;
+      height: 80px;
+      width: 100px;
+      background: url(https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?62593201%22);     
+      background-size: 100px 80px;
+    }
+    &__text {
+      text-align: center;
+      font-size: 16px;
+      color: #ccc;
+    }
+    &__box {
+      padding: 15px;
+      height: 80px;
+      background-color: white;
+      border-bottom: solid 1px #eee;
+      &__icon {
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        background-size: cover;
+      }
+      &__info {
+        margin-left: 70px;
+        height: 24px;
+        line-height: 50px;
+        font-weight: lighter;
+      }
+    }
+  }
+  &__pager-box {
+    position: absolute;
+    margin-top: 40px;
+    display: flex;
+    &__prev {
+      height: 42px;
+      width: 42px;
+      border: solid 1px #ccc;
+      border-radius: 5px;
+      background-color: white;
+    }
+    &__next {
+      margin-left: 610px;
+      height: 42px;
+      width: 42px;
+      border: solid 1px #ccc;
+      border-radius: 5px;
+      background-color: white;
+    }
+  }
+}
+.prev {
+  position: absolute;
+  margin-top: 14px;
+  margin-left: -24px;
+}
+.next {
+  position: absolute;
+  margin-top: 14px;
+  margin-left: -24px;
+}
+.arrowi {
+  position: absolute;
+  margin-left: 640px;
+}
+
+

@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   # before_action :authenticate_user!, only: :new 後で使用する予定です
-    before_action :set_item, only: [:show]
+    before_action :set_item, only: [:show,:destroy]
     before_action :move_to_index, except: [:index,:show]
+    before_action :set_prefecture, only: [:show]
 
   def index
     @ladies_items = Item.search(category_id_eq: '1').result.limit(4).includes(:images)
@@ -37,6 +38,12 @@ class ItemsController < ApplicationController
 
   def edit
   end
+
+  def destroy
+    @item.destroy if @item.user_id === current_user.id
+    redirect_to controller: 'listings', action: 'index'
+  end
+
   
   private
 
@@ -50,6 +57,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_prefecture
+    @prefecture = Prefecture.find(@item.region)
   end
 
   def move_to_index

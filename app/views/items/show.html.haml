@@ -79,7 +79,7 @@
           %th.item__box__container-main-table-title
             発送元地域
           %td
-            = link_to "東京都", root_path, class:"item__box__container-main-table-link"
+            = link_to "#{@prefecture.name}", root_path, class:"item__box__container-main-table-link"
         %tr
           %th.item__box__container-main-table-title
             発送日の目安
@@ -121,6 +121,16 @@
           %i.fa.fa-lock
           %span
             あんしん・あんぜんへの取り組み
+
+  - if user_signed_in? && current_user.id == @item.user_id
+    .user-product
+      = link_to edit_item_path(@item) do
+        .user-product__edit.red-btn 商品の編集
+      %p.user-product__text-center or
+      -# = button_to '出品を再開する', item_path(@item), method: :put, class: 'red-btn' 
+      -# = button_to '商品を一旦停止する', item_path(@item), method: :put, class: 'user-product__stop' 
+      .user-product__destroy この商品を削除する
+      = render partial: "layouts/deletebtn"
 
   .item__message
     .item__message__container
