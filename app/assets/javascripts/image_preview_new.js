@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
     var dropWrap = $('.upload-box-container--items')
     var previewArea = document.getElementsByClassName("image-preview")
     var preInfo = $('.upload-box-container--area-info')
-    var dropZone = document.getElementById("drop_zone");//取得確認
+    var dropZone = document.getElementById("drop_zone");
 //    ファイルをばらしてinputsに格納、プレビュー作成
     $(function(){
       //以下、ファイル受け取りとプレビュー作成処理
@@ -27,7 +27,6 @@ $(document).on('turbolinks:load', function(){
               var readPreview = document.getElementsByClassName("image-preview")//preview取得
               var previewNum = readPreview.length;
               var delNum = delPreview.length;
-              // var imgFile = files[i]
               var reader = new FileReader();
               reader.onload = (function(theFile) {
                 var fileName = theFile.name;
@@ -88,7 +87,7 @@ $(document).on('turbolinks:load', function(){
     });
     //ファイル投稿処理ここまで
 
-// preview削除（不完全、ファイルが一致しない場合がある
+// preview削除
     $(document).on('click', '.image-delete', function(e){
       e.preventDefault();
       //previewのhtml削除処理
@@ -170,9 +169,6 @@ $(document).on('turbolinks:load', function(){
     });
   }
 });
-//出品に関しては再現できてると考えられるが、商品編集でviewが崩れる
-//これは、サーバーからpreviewを読み込んだ時にlengthとしてjavascript側に認識されてないため
-
 //       for(value of formDataの変数.entries()){
 //         console.log(value);
 //       }  formData確認用

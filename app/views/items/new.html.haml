@@ -16,9 +16,7 @@
                 %p.upload-box--text 最大10枚までアップロードできます
                 .upload-box-container
                   = f.fields_for :images do |i|
-                    //画像追加用div
                     .upload-box-container--items#preview
-                      //image投稿用フォーム
                       .preview__area#preview--append
                       .upload-box-container--area#drop_zone{onclick: "$('#image_input1').click();"}
                         %pre.upload-box-container--area-info
@@ -34,7 +32,6 @@
                     %span.item-info-required
                       必須
                   .item-info-form--nametext
-                    / =f.form_text
                     = f.text_field :name, class: 'item-info-form--nametext-textfield', placeholder: '商品名（必須40文字まで）'
                 .item-description
                   %label.item-info-guide
@@ -95,7 +92,6 @@
               .item-info
                 %h3.sell-sub-head
                   配送について
-                  //余裕があったらlink_toで
                 .sell-sub-head--question
                   ?
                 .sell-form-box
@@ -140,7 +136,6 @@
               .item-info
                 %h3.sell-sub-head
                   販売価格(300〜9,999,999)
-                  //余裕があったらlink_toで
                 .sell-sub-head--question
                   ?
                 .sell-form-box
@@ -181,7 +176,6 @@
                     また、出品をもちまして
                     = link_to "加盟店規約", "", class: "exhibition-btn-box--notes-text-link"
                     に同意したことになります。
-                    //= f.submitに書き換え
                 = f.submit '出品する', class: 'exhibition__submit', id: 'new_item'
                 = link_to 'もどる', root_path, class: 'back-btn'
 

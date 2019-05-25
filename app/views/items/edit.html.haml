@@ -15,7 +15,6 @@
                       必須
                 %p.upload-box--text 最大10枚までアップロードできます
                 .upload-box-container
-                  //画像追加用div
                   .upload-box-container--items#preview
                     .preview__area#preview--append
                       - @item.images.each_with_index do |img, i|
@@ -34,7 +33,6 @@
                       = i.file_field :image, style: 'display: none;'
                       = i.check_box:_destroy, style: 'display: none'
                       = i.hidden_field :id, class: 'item-edit-id', value: i.object.id
-              //image投稿用フォーム
               / 商品名、説明入力
               .item-info
                 .item-info-form
@@ -44,7 +42,6 @@
                     %span.item-info-required
                       必須
                   .item-info-form--nametext
-                    / =f.form_text
                     = f.text_field :name, class: 'item-info-form--nametext-textfield', placeholder: '商品名（必須40文字まで）'
                 .item-description
                   %label.item-info-guide
@@ -62,7 +59,7 @@
                       カテゴリー
                       %span.item-info-required
                         必須
-                    //ここにJSカテゴリhtml追加?
+                    //ここにJSカテゴリhtml追加
                     %div
                       .select-wrap
                         = f.collection_select :category_id, Parentcategory.all, :id, :name,{prompt: "---"}, {class: "select-box"}
@@ -105,7 +102,6 @@
               .item-info
                 %h3.sell-sub-head
                   配送について
-                  //余裕があったらlink_toで
                 .sell-sub-head--question
                   ?
                 .sell-form-box
@@ -150,7 +146,6 @@
               .item-info
                 %h3.sell-sub-head
                   販売価格(300〜9,999,999)
-                  //余裕があったらlink_toで
                 .sell-sub-head--question
                   ?
                 .sell-form-box
@@ -163,9 +158,7 @@
                             必須
                         .price-input-area
                           ¥
-                          //= text_field :price, placeholder: "例)300"
                           .price-input-area--form
-                            //JS計算、DB作成後 = text_field
                             = f.text_field :price, type: "tel", autocomplete: "off", placeholder: '例)  300', class: 'price-input-area__text', id: "price-input-field", autocomplete: "off", value: "#{@item.price}"
                     %li.sale-fee
                       .sale-fee--left
@@ -191,7 +184,6 @@
                     また、出品をもちまして
                     = link_to "加盟店規約", "", class: "exhibition-btn-box--notes-text-link"
                     に同意したことになります。
-                    //= f.submitに書き換え
                 = f.submit '変更する', class: 'exhibition__submit', id: 'edit--item'
                 = link_to 'もどる', '/', class: 'back-btn'
 

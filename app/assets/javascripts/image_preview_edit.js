@@ -10,12 +10,11 @@ $(document).on('turbolinks:load', function(){
     var dropWrap = $('.upload-box-container--items')
     var previewArea = document.getElementsByClassName("image-preview")
     var preInfo = $('.upload-box-container--area-info')
-    var dropZone = document.getElementById("drop_zone");//取得確認
+    var dropZone = document.getElementById("drop_zone");
 //    ファイルをばらしてinputsに格納、プレビュー作成
     $(function(){
       //以下、ファイル受け取りとプレビュー作成処理
-      function divideFiles(files){//e.target.filesと同じ状態
-        // var previewArea = document.getElementsByClassName("image-preview")//preview取得
+      function divideFiles(files){
         var previewCount = previewArea.length; //preview数取得
         //画像がない場合のバリデーションを後で追加
         if (files !== null && files !== undefined &&previewCount+files.length <= 10){
@@ -27,7 +26,6 @@ $(document).on('turbolinks:load', function(){
               var readPreview = document.getElementsByClassName("image-preview")//preview取得
               var previewNum = readPreview.length;
               var delNum = delPreview.length;
-              // var imgFile = files[i]
               var reader = new FileReader();
               reader.onload = (function(theFile) {
                 var fileName = theFile.name;
@@ -48,7 +46,6 @@ $(document).on('turbolinks:load', function(){
             reader.readAsDataURL(files[i]);
             }//for文
           var inputCount = document.getElementsByName('images[image][]').length+1;
-          // var labelFor = dropZone.htmlFor; 属性for書き換え
           var inputClick = `$("#image_input${inputCount}").click();`
           dropZone.setAttribute('onclick', inputClick);
 
@@ -72,23 +69,19 @@ $(document).on('turbolinks:load', function(){
         }
         divideFiles(files)
       }, false)
-      //file_field
+      //file_fieldの情報取得
       $(function(){
-        // var inputField = $('.upload-image')
         $(document).on('change', 'input[type=file]', function(e){
-          // var files = $fileField.prop('files') これだとターゲット指定できない
           var files = e.target.files;
           for ( var i = 0; i < files.length; i++){
             inputs.push(files[i])
           }
           divideFiles(files)
-            // $('input[type=file]').val(null); ファイルリセット(いらない)
         })
       })
     });
     //ファイル投稿処理ここまで
 
-// preview削除（不完全、ファイルが一致しない場合がある
     $(document).on('click', '.image-delete', function(e){
       e.preventDefault();
       //previewのhtml削除処理
