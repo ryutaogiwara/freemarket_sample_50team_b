@@ -1,10 +1,18 @@
 class ItemsController < ApplicationController
   # before_action :authenticate_user!, only: :new 後で使用する予定です
-    before_action :set_item, only: [:show]
+    before_action :set_item, only: [:show,:destroy]
     before_action :move_to_index, except: [:index,:show]
+    before_action :set_prefecture, only: [:show]
 
   def index
-    @items = Item.includes(:user).page(params[:page]).per(4).order("id DESC")
+    @ladies_items = Item.search(category_id_eq: '1').result.limit(4).includes(:images)
+    @mens_items = Item.search(category_id_eq: '2').result.limit(4).includes(:images)
+    @kids_items = Item.search(category_id_eq: '3').result.limit(4).includes(:images)
+    @cosme_items = Item.search(category_id_eq: '7').result.limit(4).includes(:images)
+    @chanel_items = Item.search(brand_eq: 'シャネル').result.limit(4).includes(:images)
+    @louisvitton_items = Item.search(brand_eq: 'ルイヴィトン').result.limit(4).includes(:images)
+    @supreme_items = Item.search(brand_eq: 'シュプリーム').result.limit(4).includes(:images)
+    @nike_items = Item.search(brand_eq: 'ナイキ').result.limit(4).includes(:images)
   end
 
   def new
@@ -45,6 +53,7 @@ class ItemsController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
   def show
   end
 
@@ -56,6 +65,18 @@ class ItemsController < ApplicationController
 
   def edit_params
     params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id )
+=======
+  def destroy
+    @item.destroy if @item.user_id === current_user.id
+    redirect_to controller: 'listings', action: 'index'
+  end
+
+  
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :size, :brand, :category_id, images_attributes: [:image, :id]).merge(user_id: current_user.id )
+>>>>>>> master
   end
 
   def image_params
@@ -64,6 +85,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_prefecture
+    @prefecture = Prefecture.find(@item.region)
   end
 
   def move_to_index

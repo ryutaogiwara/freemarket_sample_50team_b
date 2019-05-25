@@ -1,0 +1,10 @@
+.modal-wrapper#delete-modal
+  .delete-modal
+    .delete-modal__upper
+      .delete-modal__upper__title 確認
+      .delete-modal__upper__content 削除すると二度と復活できません。<br />削除する代わりに停止することもできます。<br /><br />本当に削除しますか？
+    .delete-modal__under
+      .delete-modal__under__left キャンセル
+      .delete-modal__under__right
+        = link_to item_path(@item.id), method: :delete do
+          削除する
