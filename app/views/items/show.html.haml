@@ -95,10 +95,7 @@
 
     -# 以下、インスタンス変数仮置き
     .item__box__container-buyBtn
-      -if @item.brand == 0
-        .item__box__container-buyBtn-soldout
-          売り切れました
-      -else
+      - if user_signed_in? && current_user.id != @item.user_id
         = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
 
     .item__box__container-detail
