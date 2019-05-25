@@ -173,6 +173,6 @@ $(document).on('turbolinks:load', function(){
 //出品に関しては再現できてると考えられるが、商品編集でviewが崩れる
 //これは、サーバーからpreviewを読み込んだ時にlengthとしてjavascript側に認識されてないため
 
-//       for(value of form.entries()){
+//       for(value of formDataの変数.entries()){
 //         console.log(value);
 //       }  formData確認用

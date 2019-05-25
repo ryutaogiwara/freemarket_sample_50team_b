@@ -169,17 +169,17 @@
               .exhibition-btn
                 .exhibition-btn-box
                   %p.exhibition-btn-box--notes-text
-                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}禁止されている出品
+                    = link_to "禁止されてる出品", "", class: "exhibition-btn-box--notes-text-link"
                     、
-                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}行為
+                    = link_to "行為", "", class: "exhibition-btn-box--notes-text-link"
                     を必ずご確認ください。
                   %p.exhibition-btn-box--notes-text
                     またブランド品でシリアルナンバー等がある場合はご記載ください。
-                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}偽ブランドの販売
+                    = link_to "偽ブランド品の販売", "", class: "exhibition-btn-box--notes-text-link"
                     は犯罪であり処罰される可能性があります。
                   %p.exhibition-btn-box--notes-text
                     また、出品をもちまして
-                    %a{href: "#", class: "exhibition-btn-box--notes-text-link"}加盟店規約
+                    = link_to "加盟店規約", "", class: "exhibition-btn-box--notes-text-link"
                     に同意したことになります。
                     //= f.submitに書き換え
                 = f.submit '出品する', class: 'exhibition__submit', id: 'new_item'

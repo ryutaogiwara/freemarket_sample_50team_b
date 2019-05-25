@@ -153,10 +153,6 @@ $(document).on('turbolinks:load', function(){
           }
         })
       }
-      for(value of formData.entries()){
-        console.log(value);
-      }
-      console.log(`/items/${itemId}`)
       $.ajax({
         url:         `/items/${itemId}`,
         type:        "PATCH",
