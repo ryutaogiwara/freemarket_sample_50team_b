@@ -49,6 +49,8 @@ class ItemsController < ApplicationController
             format.html { redirect_to item_path }
             format.json
          end
+       else
+        render :show
       end
     end
   end
