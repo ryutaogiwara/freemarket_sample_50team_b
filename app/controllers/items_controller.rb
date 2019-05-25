@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   # before_action :authenticate_user!, only: :new 後で使用する予定です
-    before_action :set_item, only: [:show,:destroy]
+    before_action :set_item, only: [:show, :destroy, :edit, :update]
     before_action :move_to_index, except: [:index,:show]
     before_action :set_prefecture, only: [:show]
 
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.images.build  # buildを使うと親モデルに対する外部参照キーを自動でセットできる
+    @item.images.build
   end
 
   def create
@@ -25,7 +25,10 @@ class ItemsController < ApplicationController
     if params[:images].present?
       if @item.save
         if image_params.each{ |image| @image = @item.images.create(image: image)}
-          redirect_to root_path
+          respond_to do |format|
+            format.html { redirect_to items_path }
+            format.json
+          end
         else
           render :new
         end
@@ -33,10 +36,24 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
+  def edits
   end
 
-  def edit
+  def update
+    if @item.update!(edit_params)
+      if params[:images].present?
+         image_params.each{ |image| @image = @item.images.create(image: image)}
+         respond_to do |format|
+            format.html { redirect_to item_path }
+            format.json
+         end
+       else
+        render template: "listings/index"
+      end
+    end
+  end
+
+  def show
   end
 
   def destroy
@@ -44,11 +61,15 @@ class ItemsController < ApplicationController
     redirect_to controller: 'listings', action: 'index'
   end
 
-  
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :size, :brand, :category_id, images_attributes: [:image, :id]).merge(user_id: current_user.id )
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category_id, :size, :brand, images_attributes: [:image]).merge(user_id: current_user.id )
+  end
+
+  def edit_params
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category_id, :size, :brand, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id )
   end
 
   def image_params
