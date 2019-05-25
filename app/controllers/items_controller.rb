@@ -53,30 +53,23 @@ class ItemsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def show
   end
 
-  private
-
-  def item_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image]).merge(user_id: current_user.id )
-  end
-
-  def edit_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category, :size, :brand, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id )
-=======
   def destroy
     @item.destroy if @item.user_id === current_user.id
     redirect_to controller: 'listings', action: 'index'
   end
 
-  
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :size, :brand, :category_id, images_attributes: [:image, :id]).merge(user_id: current_user.id )
->>>>>>> master
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category_id, :size, :brand, images_attributes: [:image]).merge(user_id: current_user.id )
+  end
+
+  def edit_params
+    params.require(:item).permit(:name, :description, :state, :postage, :region, :shipping, :shipping_date, :price, :category_id, :size, :brand, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id )
   end
 
   def image_params

@@ -48,6 +48,25 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+  describe "GET #edit" do
+    it 'インスタンス変数取得確認' do
+      item = create(:item)
+      get :edit, params: { id: item }
+      expect(assigns(:item)).to eq item
+    end
+    it 'editビュー描画' do
+      item = create(:item)
+      get :edit, params: { id: item }
+      expect(response).to render_template :edit
+    end
+  end
 
-
+  describe 'PATCH #update' do
+    it 'インスタンス変数取得後、変更の保存確認' do
+      item = create(:item)
+      patch :update, params: { id: item, item: attributes_for(:item, name: 'hogefuga') }
+      item.reload
+      expect(item.name).to eq 'hogefuga'
+    end
+  end
 end
