@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   # before_action :authenticate_user!, only: :new 後で使用する予定です
-    before_action :set_item, only: [:show, :destroy, :edit]
+    before_action :set_item, only: [:show, :destroy, :edit, :update]
     before_action :move_to_index, except: [:index,:show]
     before_action :set_prefecture, only: [:show]
 
@@ -40,7 +40,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update!(edit_params)
       if params[:images].present?
          image_params.each{ |image| @image = @item.images.create(image: image)}
