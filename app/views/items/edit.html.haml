@@ -17,20 +17,19 @@
                 .upload-box-container
                   //画像追加用div
                   .upload-box-container--items#preview
+                    .preview__area#preview--append
+                      - @item.images.each_with_index do |img, i|
+                        .image-preview{style: "margin: 0 0 10px 3px;"}(data-num="#{i}")
+                          .image-preview--container
+                            = image_tag img.image.url, class: "item-image", id: "edit_img"
+                          .image-preview--edit-delete
+                            .image-edit 編集
+                            %a.image-delete(num="#{i}") 削除
                     .upload-box-container--area#drop_zone{onclick: "$('#image_input1').click();"}
                       %pre.upload-box-container--area-info
                         ドラッグアンドドロップ
-                        %br
                         またはクリックしてファイルをアップロード
                     %input.upload-image{type: "file", multiple: true, name: 'images[image][]', style: 'display: none;', accept: "image/*,.png,.jpg,.jpeg", id: "image_input1"}
-                    - @item.images.each_with_index do |img, i|
-                      -# %span{style: 'display: none'}
-                      .image-preview(data-num="#{i}")
-                        .image-preview--container
-                          = image_tag img.image.url, class: "item-image", id: "edit_img"
-                        .image-preview--edit-delete
-                          .image-edit 編集
-                          %a.image-delete(num="#{i}") 削除
                     = f.fields_for :images do |i|
                       = i.file_field :image, style: 'display: none;'
                       = i.check_box:_destroy, style: 'display: none'

@@ -19,10 +19,10 @@
                     //画像追加用div
                     .upload-box-container--items#preview
                       //image投稿用フォーム
+                      .preview__area#preview--append
                       .upload-box-container--area#drop_zone{onclick: "$('#image_input1').click();"}
                         %pre.upload-box-container--area-info
                           ドラッグアンドドロップ
-                          %br
                           またはクリックしてファイルをアップロード
                       = i.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0, id: "image_input1"
               / 商品名、説明入力

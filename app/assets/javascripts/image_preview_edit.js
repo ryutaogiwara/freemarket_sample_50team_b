@@ -7,13 +7,15 @@ $(document).on('turbolinks:load', function(){
     var newPath = location.pathname
     var dropzone = $('.upload-box-container--area')
     var inputs = []; //file情報取得
+    var dropWrap = $('.upload-box-container--items')
+    var previewArea = document.getElementsByClassName("image-preview")
+    var preInfo = $('.upload-box-container--area-info')
     var dropZone = document.getElementById("drop_zone");//取得確認
-
 //    ファイルをばらしてinputsに格納、プレビュー作成
     $(function(){
       //以下、ファイル受け取りとプレビュー作成処理
       function divideFiles(files){//e.target.filesと同じ状態
-        var previewArea = document.getElementsByClassName("image-preview")//preview取得
+        // var previewArea = document.getElementsByClassName("image-preview")//preview取得
         var previewCount = previewArea.length; //preview数取得
         //画像がない場合のバリデーションを後で追加
         if (files !== null && files !== undefined &&previewCount+files.length <= 10){
@@ -29,7 +31,6 @@ $(document).on('turbolinks:load', function(){
               var reader = new FileReader();
               reader.onload = (function(theFile) {
                 var fileName = theFile.name;
-                // console.log(theFile)
                 return function(evt){
                   var html = `<div class="image-preview" data-num="`+ Number(previewNum++) +`">
                                  <div class="image-preview--container">
@@ -40,7 +41,8 @@ $(document).on('turbolinks:load', function(){
                                    <a class="image-delete" num="`+ Number(delNum++) +`"> 削除 </a>
                                  </div>
                                </div>`
-                  $("#preview").append(html);
+                  $("#preview--append").append(html);
+                  inputCss();
                 };
               })(files[i]);
             reader.readAsDataURL(files[i]);
@@ -99,37 +101,42 @@ $(document).on('turbolinks:load', function(){
     });
 
     function inputCss(){
-      if(inputs.length == 1 || inputs.length == 6){
+      var previewAppend = document.getElementsByClassName('preview--append')
+      if(previewArea.length == 1 || previewArea.length == 6){
         dropzone.css({
           'width': 'calc(100% - 125px)',
           'display': 'block'
         })
-      }else if(inputs.length == 2 || inputs.length == 7){
+      }else if(previewArea.length == 2 || previewArea.length == 7){
         dropzone.css({
           'width': 'calc(100% - 250px)',
           'display': 'block'
         })
-      }else if(inputs.length == 3 || inputs.length == 8){
+      }else if(previewArea.length == 3 || previewArea.length == 8){
         dropzone.css({
           'width': 'calc(100% - 375px)',
-          'display': 'block'
+          'display': 'block',
+          'padding': '35px'
         })
-      }else if(inputs.length == 4 || inputs.length == 9){
+      }else if(previewArea.length == 4 || previewArea.length == 9){
         dropzone.css({
           'width': 'calc(100% - 500px)',
-          'display': 'block'
+          'display': 'block',
+          'padding': '10px'
         })
-      }else if(inputs.length == 10 || inputs.length >= 10){
+      }else if(previewArea.length == 10 || previewArea.length >= 10){
         dropzone.css({
           'display': 'none'
         })
       }else{
         dropzone.css({
           'width': '100%',
-          'display': 'block'
+          'display': 'block',
+          'padding': '40px'
         })
       }
     };
+    //商品更新
     $("form").submit(function(e){
       e.preventDefault();
       //バリデーションを後で追加
