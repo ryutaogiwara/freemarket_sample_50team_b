@@ -1,0 +1,39 @@
+.mypage-headder
+  =render"layouts/header"
+  =render"layouts/breadCrumbs"
+.mypage-main
+  .content
+    .content__listing-box
+      出品した商品
+      .content__listing-box__menu
+        = link_to listings_path do
+          .content__listing-box__menu__side 出品中
+        = link_to in_progress_listings_path do
+          .content__listing-box__menu__now 取引中
+        = link_to completed_listings_path do
+          .content__listing-box__menu__side 売却済み
+      - if @items.present?
+        - @items.each do |item|
+          = link_to item_path(item.id) do
+            .content__listing-box__item-tab__box
+              = image_tag item.images[0].image.url,size:"50x50", class: 'content__listing-box__item-tab__box__icon'
+              .content__listing-box__item-tab__box__info= item.name
+              %i.fa.fa-chevron-right.arrowi
+      - else
+        .content__listing-box__item-tab
+          .content__listing-box__item-tab__image-box
+          .content__listing-box__item-tab__image
+          .content__listing-box__item-tab__text 出品中の商品がありません
+
+      .content__listing-box__pager-box
+        = link_to do
+          .content__listing-box__pager-box__prev
+            %i.fa.fa-chevron-left.prev
+        = link_to do
+          .content__listing-box__pager-box__next
+            %i.fa.fa-chevron-right.next
+            
+  =render "layouts/sidemenu"
+  =render "layouts/btn"
+.mypage-footer
+  =render"layouts/footer"
