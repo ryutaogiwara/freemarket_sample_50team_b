@@ -8,9 +8,9 @@
       .content__listing-box__menu
         = link_to listings_path do
           .content__listing-box__menu__now 出品中
-        = link_to listings_path do
+        = link_to in_progress_listings_path do
           .content__listing-box__menu__side 取引中
-        = link_to listings_path do
+        = link_to completed_listings_path do
           .content__listing-box__menu__side 売却済み
       - if @items.present?
         - @items.each do |item|
