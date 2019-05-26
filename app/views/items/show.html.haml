@@ -93,7 +93,7 @@
       %span.item__box__container-priceBox-shippingFee
         送料込み
 
-    -# 以下、インスタンス変数仮置き
+    -# ログイン時かつ、自分が出品していないものに限り購入ボタン表示。非会員は登録フォームへ飛ばした方が良いのでは？
     .item__box__container-buyBtn
       - if user_signed_in? && current_user.id != @item.user_id
         = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
