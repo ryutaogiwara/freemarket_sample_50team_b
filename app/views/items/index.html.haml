@@ -30,153 +30,23 @@
       .swiper-pagination
       .swiper-button-prev
       .swiper-button-next
-    .pickup__container
-      %h2.pickup__container-head
-        ピックアップカテゴリー
-      %section.items
-        %h3.items__text
-          %a.items__text-link
-            新着アイテム
-        .items__box
-          = render @items
-          .items__all
-            - if @item.blank?
-              = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
 
-    .pickup__container
-      %h2.pickup__container-head
-        ピックアップブランド
-      %section.items
-        %h3.items__text
-          = link_to "シャネル新着アイテム", root_path, class:"items__text-link"
-        .items__box
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  BALENCIAGA
-                .item__page__body-price
-                  ¥ 140,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 46
-                %p.item__page__body-tax
-                  (税込)
+    .pickup
+      .pickup__container
+        %h2.pickup__container-head
+          ピックアップカテゴリー
+        = render partial: 'category', locals: { items: @ladies_items, word: 'レディース' }
+        = render partial: 'category', locals: { items: @mens_items, word: 'メンズ' }
+        = render partial: 'category', locals: { items: @kids_items, word: 'ベビー・キッズ' }
+        = render partial: 'category', locals: { items: @cosme_items, word: 'コスメ・香水・美容' }
 
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  BALENCIAGA 財布
-                .item__page__body-price
-                  ¥ 120,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 32
-                %p.item__page__body-tax
-                  (税込)
-
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://static-buyma-com.akamaized.net/imgdata/item/170802/0030299150/67335073/org.jpg"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  LOUIS VUITTON
-                .item__page__body-price
-                  ¥ 16,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 17
-                %p.item__page__body-tax
-                  (税込)
-
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  supream
-                .item__page__body-price
-                  ¥ 125,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 96
-                %p.item__page__body-tax
-                  (税込)
-          .items__all
-            = link_to "全ての商品を見る", root_path, class:"items__all-link"
-
-      %section.items
-        %h3.items__text
-          = link_to "ルイヴィトン新着アイテム", root_path, class:"items__text-link"
-        .items__box
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  BALENCIAGA
-                .item__page__body-price
-                  ¥ 140,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 46
-                %p.item__page__body-tax
-                  (税込)
-
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://thumbnail.image.rakuten.co.jp/@0_mall/fashionplate/cabinet/item_pic/balenciaga_pic/bal-item-0117-top.jpg?_ex=300x300"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  BALENCIAGA 財布
-                .item__page__body-price
-                  ¥ 120,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 32
-                %p.item__page__body-tax
-                  (税込)
-
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://static-buyma-com.akamaized.net/imgdata/item/170802/0030299150/67335073/org.jpg"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  LOUIS VUITTON
-                .item__page__body-price
-                  ¥ 16,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 17
-                %p.item__page__body-tax
-                  (税込)
-
-          .items__box__content
-            %a.item__page
-              .item__page-photo
-                %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
-              .item__page__body
-                %h3.item__page__body-name
-                  supream
-                .item__page__body-price
-                  ¥ 125,000
-                  .favourite
-                    %i.fa.fa-heart-o.like
-                    %span 96
-                %p.item__page__body-tax
-                  (税込)
-          .items__all
-            = link_to "全ての商品を見る", root_path, class:"items__all-link"
+      .pickup__container
+        %h2.pickup__container-head
+          ピックアップブランド
+        = render partial: 'category', locals: { items: @chanel_items, word: 'シャネル' }
+        = render partial: 'category', locals: { items: @louisvitton_items, word: 'ルイヴィトン' }
+        = render partial: 'category', locals: { items: @supreme_items, word: 'シュプリーム' }
+        = render partial: 'category', locals: { items: @niki_items, word: 'ナイキ' }     
 
   =render "layouts/footer"
 

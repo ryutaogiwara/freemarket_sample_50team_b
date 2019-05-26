@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_072514) do
+ActiveRecord::Schema.define(version: 2019_05_23_140622) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcord", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
   end
 
   create_table "card_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "number"
+    t.bigint "number"
     t.integer "month"
     t.integer "year"
     t.integer "security_code"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
     t.string "card_id"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_card_infos_on_user_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "parent_id"
+    t.bigint "grandparent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grandparent_id"], name: "index_categories_on_grandparent_id"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,12 +65,13 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
     t.string "shipping", null: false
     t.string "shipping_date", null: false
     t.integer "price", null: false
-    t.string "category", null: false
     t.string "size", null: false
     t.string "brand"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -118,5 +129,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_072514) do
   add_foreign_key "addresses", "users"
   add_foreign_key "card_infos", "users"
   add_foreign_key "images", "items"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
 end

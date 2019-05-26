@@ -12,13 +12,13 @@
           .swiper-wrapper
             .swiper-slide
               = image_tag @item.images[0].image.url, size:"300x300"
-                            
+
         .swiper-container.swiper3
           .swiper-wrapper.wrapper3
             - (0...@item.images.count).each do |image|
               .swiper-slide.owl-dot
-                = image_tag (@item.images[image].image.url), size: "75x75"                              
-                                      
+                = image_tag (@item.images[image].image.url), size: "75x75"
+
           .swiper-my-pagination
         -# 以下、インスタンス変数仮置き
         - if @item.brand == 0
@@ -36,29 +36,30 @@
               .user-evaluation-icon
                 %i.fa.fa-smile-o.user-evaluation-icon-smile
                 %span.user-evaluation-icon-like
-                  916
+                  46
               .user-evaluation-icon
                 %i.fa.fa-meh-o.user-evaluation-icon-normal
                 %span.user-evaluation-icon-like
-                  27
+                  7
               .user-evaluation-icon
                 %i.fa.fa-frown-o.user-evaluation-icon-sad
                 %span.user-evaluation-icon-like
-                  4
+                  0
         %tr
           %th.item__box__container-main-table-title
             カテゴリー
             %td
-              = link_to "レディース", root_path, class:"item__box__container-main-table-link"
-              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
-              = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
-              %i.fa.fa-chevron-right.item__box__container-main-table-link-display
-              = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"                        
+              = link_to "#{@item.category.name}", root_path, class:"item__box__container-main-table-link"
+              -# カテゴリー別機能追加した場合使用
+              -# %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              -# = link_to "バッグ", root_path, class:"item__box__container-main-table-link"
+              -# %i.fa.fa-chevron-right.item__box__container-main-table-link-display
+              -# = link_to "ショルダーバッグ", root_path, class:"item__box__container-main-table-link"
         %tr
           %th.item__box__container-main-table-title
             ブランド
             %td
-              = link_to "コーチ", root_path, class:"item__box__container-main-table-link"
+              = link_to "#{@item.brand}", root_path, class:"item__box__container-main-table-link"
         %tr
           %th.item__box__container-main-table-title
             商品の状態
@@ -78,7 +79,7 @@
           %th.item__box__container-main-table-title
             発送元地域
           %td
-            = link_to "#{@item.region}", root_path, class:"item__box__container-main-table-link"
+            = link_to "#{@prefecture.name}", root_path, class:"item__box__container-main-table-link"
         %tr
           %th.item__box__container-main-table-title
             発送日の目安
@@ -97,9 +98,9 @@
       -if @item.brand == 0
         .item__box__container-buyBtn-soldout
           売り切れました
-      -else 
+      -else
         = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
-        
+
     .item__box__container-detail
       %p.item__box__container-detail-inner
         = @item.description
@@ -120,6 +121,16 @@
           %i.fa.fa-lock
           %span
             あんしん・あんぜんへの取り組み
+
+  - if user_signed_in? && current_user.id == @item.user_id
+    .user-product
+      = link_to edit_item_path(@item) do
+        .user-product__edit.red-btn 商品の編集
+      %p.user-product__text-center or
+      -# = button_to '出品を再開する', item_path(@item), method: :put, class: 'red-btn'
+      -# = button_to '商品を一旦停止する', item_path(@item), method: :put, class: 'user-product__stop'
+      .user-product__destroy この商品を削除する
+      = render partial: "layouts/deletebtn"
 
   .item__message
     .item__message__container
@@ -196,9 +207,9 @@
             -if @item.brand == 0
               %span.item__message__container__content__form__btn-soldout
                 売り切れのためコメントできません
-            -else 
+            -else
               = link_to 'コメントする', item_path(@item.id), class: 'item__message__container__content__form__btn-comment'
-                
+
   %ul.nav__items__link
     %li.nav__items__link-prev
       %a.nav__items__link-prev-text{href: '#'}
@@ -208,7 +219,7 @@
       %a.nav__items__link-next-text{href: '#'}
         楽天パンダ ノート&マスキングテープセット
         %i.fa.fa-chevron-right
-        
+
   .socialMedia__box
     %ul.socialMedia__box-link
       %a.socialMedia__box-link-list
@@ -262,12 +273,12 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
                   %i.fa.fa-heart-o.like
-                  %span 96                    
+                  %span 96
               %p.item__page__body-tax
                 (税込)
 
@@ -307,15 +318,15 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
                   %i.fa.fa-heart-o.like
-                  %span 96                    
+                  %span 96
               %p.item__page__body-tax
                 (税込)
-                                  
+
     %section.items__user__profile__box
       %h2.items__user__profile__box-head
         %a.items__user__profile__box-head-title
@@ -357,12 +368,12 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
                   %i.fa.fa-heart-o.like
-                  %span 96                    
+                  %span 96
               %p.item__page__body-tax
                 (税込)
 
@@ -402,13 +413,13 @@
               %img.picture{src: "https://a.1stdibscdn.com/archivesE/upload/1121189/v_30758231501571402669/3075823_master.jpg?width=768"}/
             .item__page__body
               %h3.item__page__body-name
-                supream
+                supreme
               .item__page__body-price
                 ¥ 125,000
                 .favourite
                   %i.fa.fa-heart-o.like
-                  %span 96                    
+                  %span 96
               %p.item__page__body-tax
                 (税込)
-                                                    
+
   =render "layouts/footer"
