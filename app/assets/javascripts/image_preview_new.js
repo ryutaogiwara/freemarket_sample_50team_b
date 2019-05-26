@@ -140,6 +140,7 @@ $(document).on('turbolinks:load', function(){
       e.preventDefault();
       //バリデーションを後で追加
       var formData = new FormData($(this).get(0));
+      formValidation();
       formData.delete('images[image][]');//画像リセット
       var previewImg = document.getElementsByClassName("item-image")
       var nodeList = document.getElementsByName("images[image][]")
@@ -161,13 +162,57 @@ $(document).on('turbolinks:load', function(){
         dataType:    'html'
       })
       .done(function(){
-        window.location.href =`http://${host}`
+        // window.location.href =`http://${host}`
       })
       .fail(function(XMLHttpRequest, textStatus, errorThrown){
         window.location.href = `http://${host}/${newItem}`
       });
     });
-    function formvalidation(){
+    function formValidation(){
+      var formcheck = $('.item-info-form--nametext-textfield').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#name-error-new').show();}
+      else{ $('#name-error-new').hide();}//name
+
+      var formcheck = $('.item-description-textarea').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#description-error-new').show();}
+      else{ $('#description-error-new').hide();}
+
+      var formcheck = $('#item-category-top').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#category-error-new').show();}
+      else{ $('#category-error-new').hide();}
+      //後でcategory2,3の追加予定
+      var formcheck = $('#size-select').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#size-error-new').show();}
+      else{ $('#size-error-new').hide();}
+
+      var formcheck = $('#state-select').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#state-error-new').show();}
+      else{ $('#state-error-new').hide();}
+
+      var formcheck = $('#postage-select').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#postage-error-new').show();}
+      else{ $('#postage-error-new').hide();}
+
+      var formcheck = $('#shipping-select').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#shipping-error-new').show();}
+      else{ $('#shipping-error-new').hide();}
+
+      var formcheck = $('#region-select').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#region-error-new').show();}
+      else{ $('#region-error-new').hide();}
+
+      var formcheck = $('#shipping_date-select').val();
+      console.log(formcheck)
+      if( formcheck == "" ){ $('#shipping_date-error-new').show();}
+      else{ $('#shipping_date-error-new').hide();}
 
     };
   }

@@ -23,7 +23,8 @@
                           ドラッグアンドドロップ
                           またはクリックしてファイルをアップロード
                       = i.file_field :image, multiple: true, name: 'images[image][]', style: 'display: none;', class: 'upload-image', accept: "image/*,.png,.jpg,.jpeg",'data-image': 0, id: "image_input1"
-                .error-newitem#image-error-new 画像がありません
+                .error-new-item#image-error-new{ style: 'display: none;' } 画像がありません
+                .error-new-item#image-num-error-new{ style: 'display: none;' } アップロードできる画像は10枚までです。
               / 商品名、説明入力
               .item-info
                 .item-info-form
@@ -34,14 +35,14 @@
                       必須
                   .item-info-form--nametext
                     = f.text_field :name, class: 'item-info-form--nametext-textfield', placeholder: '商品名（必須40文字まで）'
-                  .error-newitem#name-error-new 入力してください
+                  .error-new-item#name-error-new{ style: 'display: none;' } 入力してください
                 .item-description
                   %label.item-info-guide
                     商品の説明
                     %span.item-info-required
                       必須
                   = f.text_area :description, class: 'item-description-textarea', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"
-                  .error-newitem#description-error-new 入力してください
+                  .error-new-item#description-error-new{ style: 'display: none;' } 入力してください
               / 商品の詳細
               .item-info
                 %h3.sell-sub-head
@@ -55,7 +56,7 @@
                     //ここにJSカテゴリhtml追加?
                     %div
                       .select-wrap
-                        = f.collection_select :category_id, Parentcategory.all, :id, :name,{prompt: "---"}, {class: "select-box"}
+                        = f.collection_select :category_id, Parentcategory.all, :id, :name,{prompt: "---"}, {class: "select-box", id: "item-category-top"}
                         = fa_icon 'angle-down', class: 'arrow-down'
                         //JSでdisplay: none;を切り替え?
                       -# .select-wrap
@@ -64,7 +65,7 @@
                       -# .select-wrap
                         -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
                         -# = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-newitem#category-error-new 選択してください
+                      .error-new-item#category-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       サイズ
@@ -72,9 +73,9 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :size,["XXS以下", "XS(SS)", "S", "M", "L", "XL(LL)", "2XL(3L)", "3XL(4L)", "4XL(5L)以上", "FREE SIZE"], {prompt: "---"}, {class: 'select-box'}
+                        = f.select :size,["XXS以下", "XS(SS)", "S", "M", "L", "XL(LL)", "2XL(3L)", "3XL(4L)", "4XL(5L)以上", "FREE SIZE"], {prompt: "---"}, {class: 'select-box', id: 'size-select'}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-new-item#size-error-new 選択してください
+                      .error-new-item#size-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       ブランド
@@ -91,9 +92,9 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :state,["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"], {prompt: "---"}, {class: 'select-box'}
+                        = f.select :state,["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"], {prompt: "---"}, {class: 'select-box', id: 'state-select'}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-new-item#state-error-new 選択してください
+                      .error-new-item#state-error-new{ style: 'display: none;' } 選択してください
               / 配送について
               .item-info
                 %h3.sell-sub-head
@@ -108,9 +109,9 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :postage,["送料込み(出品者負担)", "着払い(購入者負担)"], {prompt: "---"}, {class: 'select-box'}
+                        = f.select :postage,["送料込み(出品者負担)", "着払い(購入者負担)"], {prompt: "---"}, {class: 'select-box', id: "postage-select"}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-new-item#postage-error-new 選択してください
+                      .error-new-item#postage-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       配送の方法
@@ -119,9 +120,9 @@
                     %div
                       //JSでdisplay: none;を切り替え
                       .select-wrap
-                        = f.select :shipping,["未定", "らくらくメルカリ便", "ゆうメール", "レターパック", "普通郵便(定型、定型外)", "クロネコヤマト", "ゆうパック", "クリックポスト", "ゆうパケット"], {prompt: "---"}, {class: 'select-box'}
+                        = f.select :shipping,["未定", "らくらくメルカリ便", "ゆうメール", "レターパック", "普通郵便(定型、定型外)", "クロネコヤマト", "ゆうパック", "クリックポスト", "ゆうパケット"], {prompt: "---"}, {class: 'select-box', id: 'shipping-select'}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-new-item#shipping-error-new 選択してください
+                      .error-new-item#shipping-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       発送元の地域
@@ -129,9 +130,9 @@
                         必須
                     %div
                       .select-wrap
-                        = f.collection_select :region, Prefecture.all, :id, :name,{prompt: "---"}, {class: "select-box"}
+                        = f.collection_select :region, Prefecture.all, :id, :name,{prompt: "---"}, {class: "select-box", id: 'region-select'}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-new-item#region-error-new 選択してください
+                      .error-new-item#region-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       発送までの日数
@@ -139,9 +140,9 @@
                         必須
                     %div
                       .select-wrap
-                        = f.select :shipping_date,["1~2日で発送", "2~3日で発送", "4~7日で発送"], {prompt: "---"}, {class: 'select-box'}
+                        = f.select :shipping_date,["1~2日で発送", "2~3日で発送", "4~7日で発送"], {prompt: "---"}, {class: 'select-box', id: 'shipping_date-select'}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                      .error-new-item#shipping_date-error-new 選択してください
+                      .error-new-item#shipping_date-error-new{ style: 'display: none;' } 選択してください
               / 販売価格
               .item-info
                 %h3.sell-sub-head
@@ -162,7 +163,7 @@
                           .price-input-area--form
                             //JS計算、DB作成後 = text_field
                             = f.text_field :price, autocomplete: "off",type: 'tel', value: '', placeholder: '例)  300', class: 'price-input-area__text', id: "price-input-field", autocomplete: "off"
-                        .error-new-item#price-error-new 300以上9999999以下で入力してください
+                        .error-new-item#price-error-new{ style: 'display: none;' } 300以上9999999以下で入力してください
                     %li.sale-fee
                       .sale-fee--left
                         販売手数料(10%)
