@@ -167,6 +167,9 @@ $(document).on('turbolinks:load', function(){
         window.location.href = `http://${host}/${newItem}`
       });
     });
+    function formvalidation(){
+
+    };
   }
 });
 //       for(value of formDataの変数.entries()){
