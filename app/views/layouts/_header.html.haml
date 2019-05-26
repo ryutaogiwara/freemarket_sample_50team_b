@@ -8,14 +8,41 @@
         %i.fa.fa-search.font-search
     .header__contents__nav
       .header__contents__nav__left
-        %a.header__contents__nav__left-link{href: root_path}
-          %i.fa.fa-list.header__contents__nav__left-link-icon
-          .header__contents__nav__left-link-text
+        %a.header__contents__nav__left-category{href: root_path}
+          %i.fa.fa-list.header__contents__nav__left-category-icon
+          .header__contents__nav__left-category-text
             カテゴリーから探す
-        %a.header__contents__nav__left-link{href: root_path}
-          %i.fa.fa-tag.header__contents__nav__left-link-icon
-          .header__contents__nav__left-link-text
+        %ul.header__contents__nav__left-categories
+          - @categories.each do |category|
+            %li.header__contents__nav__left-categories-list
+              = category.name
+              -# %ul.level-2
+              -#   - category.children.each do |child|
+              -#     %li.level-2__list
+              -#       = child.name
+              -#       %ul.level-3
+              -#         - child.children.each do |grandchild|
+              -#           %li.level-3__list
+              -#             = grandchild.name
+
+        %a.header__contents__nav__left-brand{href: root_path}
+          %i.fa.fa-tag.header__contents__nav__left-brand-icon
+          .header__contents__nav__left-brand-text
             ブランドから探す
+        %ul.header__contents__nav__left-brands
+          %li.header__contents__nav__left-brands-list
+            シャネル
+          %li.header__contents__nav__left-brands-list
+            ナイキ
+          %li.header__contents__nav__left-brands-list
+            ルイ ヴィトン
+          %li.header__contents__nav__left-brands-list
+            シュプリーム
+          %li.header__contents__nav__left-brands-list
+            アディダス
+          %li.header__contents__nav__left-brands-list
+            ブランド一覧
+
       .header__contents__nav__right
         -if user_signed_in?
           %a.header__contents__nav__right-notifications

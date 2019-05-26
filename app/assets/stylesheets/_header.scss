@@ -46,7 +46,8 @@
           font-weight: bold;
           display: flex;
           display: inline-block;
-          &-link {
+          &-category {
+            position: relative;
             float: left;
             text-decoration: none;
             color: #333;
@@ -66,6 +67,64 @@
             .hidden {
               display: none;
             }
+          }
+          &-categories {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 220px;
+            z-index: 1000;
+            background-color: #fff;
+            &-list {
+              padding: 15px 15px;
+              font-weight: 400;
+              cursor: default;
+              &:hover {
+                background-color: #ea352d;
+                color: #fff;
+              }
+            }
+          }
+          &-brand {
+            position: relative;
+            float: left;
+            text-decoration: none;
+            color: #333;
+            &:hover {
+              color: #0099e8;
+            }
+            &-text {
+              float: right;
+            }
+            .fa-tag {
+              margin-left: 20px; 
+            }
+            &-icon {
+              margin-right: 10px;
+              color: #ea352d;
+            }
+            .hidden {
+              display: none;
+            }
+          }
+          &-brands {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 175px;
+            width: 220px;
+            z-index: 1000;
+            background-color: #fff;
+            &-list {
+              padding: 15px 15px;
+              font-weight: 400;
+              cursor: default;
+              &:hover {
+                background-color: #ea352d;
+                color: #fff;
+              }
+            }            
           }
         }
         &__right {

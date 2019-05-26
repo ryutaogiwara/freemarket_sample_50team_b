@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :category_set
 
 
   private
@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
       username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
     end
   end
+
+  def category_set
+    @categories = Category.eager_load(children: :children).where(parent_id: 0)
+  end
+
 end
