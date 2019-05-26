@@ -1,7 +1,5 @@
 #wrapper
   =render "layouts/header"
-  - if flash[:notice]
-    = flash[:notice]
   .main
     %section.swiper-container.swiper1
       .swiper-wrapper
@@ -44,7 +42,7 @@
           .items__all
             - if @item.blank?
               = link_to "全ての商品を見る", '?page=2', class:"items__all-link"
-      
+
     .pickup__container
       %h2.pickup__container-head
         ピックアップブランド
@@ -116,7 +114,7 @@
 
       %section.items
         %h3.items__text
-          = link_to "ルイヴィトン新着アイテム", root_path, class:"items__text-link"           
+          = link_to "ルイヴィトン新着アイテム", root_path, class:"items__text-link"
         .items__box
           .items__box__content
             %a.item__page
