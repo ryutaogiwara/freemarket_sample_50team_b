@@ -1,7 +1,5 @@
 #wrapper
   =render "layouts/header"
-  - if flash[:notice]
-    = flash[:notice]
   .main
     %section.swiper-container.swiper1
       .swiper-wrapper
@@ -32,6 +30,7 @@
       .swiper-pagination
       .swiper-button-prev
       .swiper-button-next
+
     .pickup
       .pickup__container
         %h2.pickup__container-head
