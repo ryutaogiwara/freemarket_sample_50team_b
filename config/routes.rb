@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     end
   end
   # 仮置き
-  resources :listings, only: [:index]
+  resources :listings, only: [:index] do
+    collection do
+      get 'in_progress', to: 'listings#in_progress'
+      get 'completed', to: 'listings#completed'
+    end
+
+  end
   get 'logout' => 'users#logout_form'
 end
