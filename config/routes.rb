@@ -16,11 +16,14 @@ Rails.application.routes.draw do
 
   root 'items#index'
   resources :items do
-    resources :transactions, only: [:new] do
+    resources :transactions, only: [:new, :order_status] do
       collection do
         get 'new', to: 'transactions#new'
         get 'pay', to: 'transactions#pay'
         get 'done', to: 'transactions#done'
+        get 'order_status', to: 'transactions#order_status'
+        get 'order_status_ship', to: 'transactions#order_status_ship'
+
       end
     end
   end
@@ -30,7 +33,7 @@ Rails.application.routes.draw do
       get 'in_progress', to: 'listings#in_progress'
       get 'completed', to: 'listings#completed'
     end
-
   end
+
   get 'logout' => 'users#logout_form'
 end
