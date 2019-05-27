@@ -8,7 +8,7 @@
       %section.main-container__content
         .content-inner
           %h3.content-inner__image
-            = image_tag @item.images[0].image.url,size:"230x220"
+            = image_tag @item.images[0].image.url
           %p.content-inner__name
             = @item.name
           %form(action="" class="buy-form")
