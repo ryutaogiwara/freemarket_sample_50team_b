@@ -60,10 +60,10 @@
                         = fa_icon 'angle-down', class: 'arrow-down'
                         //JSでdisplay: none;を切り替え?
                       -# .select-wrap
-                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', style: ''}
+                        -# = f.collection_select :category_id, {prompt: "---"}, {class: 'select-box', id: "item-category-middle"}
                         -# = fa_icon 'angle-down', class: 'arrow-down'
                       -# .select-wrap
-                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
+                        -# = f.select :category_id,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', id: "item-category-bottom"}
                         -# = fa_icon 'angle-down', class: 'arrow-down'
                       .error-new-item#category-error-new{ style: 'display: none;' } 選択してください
                   .form-group

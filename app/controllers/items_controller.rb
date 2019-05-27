@@ -25,14 +25,13 @@ class ItemsController < ApplicationController
     if params[:images].present?
       if @item.save
         if image_params.each{ |image| @image = @item.images.create(image: image)}
-          respond_to do |format|
-            format.html { redirect_to items_path }
-            format.json
-          end
         else
           render :new
         end
       end
+      redirect_to action: :index
+    else
+      render :new
     end
   end
 
@@ -43,14 +42,14 @@ class ItemsController < ApplicationController
     if @item.update!(edit_params)
       if params[:images].present?
          image_params.each{ |image| @image = @item.images.create(image: image)}
-         respond_to do |format|
-            format.html { redirect_to item_path }
-            format.json
-         end
-       else
-        render template: "listings/index"
+        redirect_to controller: 'listings', action: 'index' and return
+      else
+        # render :edit
+        # return
       end
+      render template: "listings/index"
     end
+
   end
 
   def show
@@ -60,7 +59,6 @@ class ItemsController < ApplicationController
     @item.destroy if @item.user_id === current_user.id
     redirect_to controller: 'listings', action: 'index'
   end
-
 
   private
 

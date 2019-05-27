@@ -7,6 +7,7 @@ class CardInfosController < ApplicationController
   end
 
   def pay #payjpとCardのデータベース作成を実施します。
+    # binding.pry
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params[:payjp_token].blank?
        redirect_to action: "new"
