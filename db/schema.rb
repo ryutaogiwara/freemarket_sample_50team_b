@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 2019_05_23_140622) do
     t.string "customer_id"
     t.string "card_id"
     t.bigint "user_id"
+    t.bigint "number"
+    t.integer "month"
+    t.integer "year"
+    t.integer "security_code"
     t.index ["user_id"], name: "index_card_infos_on_user_id"
   end
 
