@@ -1,0 +1,28 @@
+.mypage-headder
+  =render"layouts/header"
+  =render"layouts/breadCrumbs"
+.mypage-main
+  .content
+    - if user_signed_in? && @item.trade_status == 2 && current_user.id == @item.user_id 
+      %h2.content-head 取引画面 ー出品者ー
+      .transact-message
+        %h3
+          %i.fa.fa-truck
+          .span 発送をしてください
+        %p 商品が購入され支払いされました。商品の発送を行ってください。
+      .transact-button
+        = link_to order_status_ship_item_transactions_path do
+          .transact-button__shipped.red-btn 発送
+
+    - if user_signed_in? && @item.trade_status == 3 && current_user.id == @item.user_id
+      %h2.content-head 取引画面 ー出品者ー
+      .transact-message
+        %h3
+          %i.fa.fa-truck
+          .span 郵送中
+        %p 商品が発送されました。受け取り評価をお待ちください。
+  =render "layouts/sidemenu"
+  =render "layouts/btn"
+.mypage-footer
+  =render"layouts/footer"
+
