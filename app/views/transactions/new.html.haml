@@ -54,7 +54,7 @@
             = exp_month + " / " + exp_year
           = image_tag "#{@card_src}", width: "26", height: "20", alt: @card_brand
           %p
-          = link_to root_path, class: "card-data-inner__edit" do
+          = link_to user_card_info_path(@card.id, @current_user.id), class: "card-data-inner__edit" do
             %span 変更する
             %i.fa.fa-angle-right
 
