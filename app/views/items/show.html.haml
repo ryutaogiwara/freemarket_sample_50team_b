@@ -119,7 +119,7 @@
           %span
             あんしん・あんぜんへの取り組み
 
-  - if user_signed_in? && current_user.id == @item.user_id
+  - if user_signed_in? && @item.trade_status == 1 && current_user.id == @item.user_id
     .user-product
       = link_to edit_item_path(@item) do
         .user-product__edit.red-btn 商品の編集
