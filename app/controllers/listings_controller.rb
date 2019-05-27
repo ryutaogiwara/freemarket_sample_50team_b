@@ -5,7 +5,8 @@ class ListingsController < ApplicationController
   end
 
   def in_progress
-    @items = Item.where(user_id: current_user.id, trade_status: 2).limit(3).order("created_at DESC")
+    @reserveditem = Item.where(user_id: current_user.id, trade_status: 2).limit(3).order("created_at DESC")
+    @shippeditem = Item.where(user_id: current_user.id, trade_status: 3).limit(3).order("created_at DESC")
   end
 
   def completed
