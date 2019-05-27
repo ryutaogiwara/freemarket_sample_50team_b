@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     end
   end
   # 仮置き
+  resources :listings, only: [:index]
   get 'logout' => 'users#logout_form'
 end
