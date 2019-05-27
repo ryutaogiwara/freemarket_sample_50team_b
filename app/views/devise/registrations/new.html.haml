@@ -26,7 +26,7 @@
           .progress-dot
             .progress__status-last
 
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), id: "charge-form") do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "charge-form2" }) do |f|
     .section
       %main.user__container__main
         .signup__container
@@ -208,7 +208,7 @@
               .signup__inner__group
                 %span カード番号
                 = f.fields_for :card_info, CardInfo.new do |cardinfo|
-                  = cardinfo.text_field :number, autocomplete: "number", id: "number payment_card_no", class: "number input-default", placeholder: "半角数字のみ"
+                  = cardinfo.text_field :number, autocomplete: "number", name: "number" ,id: "number", class: "number2 input-default", placeholder: "半角数字のみ"
                 %ul
                   %li#error-number.error-notice-signin
                   %li#error-number1.error-notice-signin
@@ -231,10 +231,10 @@
                   %label 有効期限
                   %br/
                   = f.fields_for :card_info, CardInfo.new do |cardinfo|
-                    = cardinfo.select :month, [["--",],["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]], {}, { class: "card__block__select exp_month", id: "month payment_card_expire_mm" }
+                    = cardinfo.select :month, [["--",],["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]], {}, { name: "exp_month", class: "card__block__select exp_month2", id: "month" }
                   %span 月
                   = f.fields_for :card_info, CardInfo.new do |cardinfo|
-                    = cardinfo.select :year, [["--",],["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]], {}, { class: "card__block__select exp_year", id: "year payment_card_expire_yy" }
+                    = cardinfo.select :year, [["--",],["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]], {}, { name: "exp_year", class: "card__block__select exp_year2", id: "year" }
                   %span 年
                   %ul
                     %li#error-month.error-notice-signin
@@ -243,7 +243,7 @@
                 %label セキュリティコード
                 %span.form-require 必須
                 = f.fields_for :card_info, CardInfo.new do |cardinfo|
-                  = cardinfo.text_field :security_code, autocomplete: "house_number", id: "security_code payment_card_cvc", class: "input-default cvc", placeholder: "半角数字のみ"
+                  = cardinfo.text_field :security_code, autocomplete: "house_number", id: "security_code", name: "cvc", class: "input-default cvc2", placeholder: "半角数字のみ"
                   %ul
                     %li#error-security_code.error-notice-signin
                     %li#error-security_code1.error-notice-signin
@@ -251,7 +251,7 @@
                   %span ?
                   カード裏面の番号とは？
               .signup-submit.signup-submit-btn.next-step4
-                = f.submit "次へ進む", id: "submit-button", class: "signup-submit-btn"
+                = f.submit "次へ進む", id: "submit-button2", class: "signup-submit-btn"
 
     / 完了
     .section
