@@ -12,7 +12,7 @@
           %ul
             %li
               .payment-inside
-                = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/master-card.svg", size: "34x20", class: ".image"
+                = image_tag "#{@card_src}", size: "34x20", alt: @card_brand, class: ".image"
                 .payment-num
                   = "**** **** **** " + @default_card_information.last4
                 .payment-num
