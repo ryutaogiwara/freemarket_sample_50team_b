@@ -2,6 +2,7 @@ class TransactionsController < ApplicationController
   require "payjp"
 
   before_action :move_to_sign_in
+  before_action :set_item, only: [:order_status, :order_status_ship]
 
   def new
     @item = Item.find(params[:item_id])
@@ -21,6 +22,7 @@ class TransactionsController < ApplicationController
 
   def pay
     @item = Item.find(params[:item_id])
+    @item.update(purchase_params)
     card = CardInfo.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
@@ -33,7 +35,31 @@ class TransactionsController < ApplicationController
       redirect_to root_path, notice: "失敗しました"
   end
 
+  def order_status
+    # @item.update(shipped_params) 
+  end
+
+  def order_status_ship
+    @item.update(shipped_params) 
+    redirect_to in_progress_listings_path
+  end
+  private
+
   def move_to_sign_in
     redirect_to new_user_session_path unless user_signed_in?
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def purchase_params
+    params.permit(:trade_status, :buyer_id).merge(trade_status: '2', buyer_id: current_user.id)
+  end
+
+  def shipped_params
+    params.permit(:trade_status).merge(trade_status: '3' )
+  end
+
+
 end
