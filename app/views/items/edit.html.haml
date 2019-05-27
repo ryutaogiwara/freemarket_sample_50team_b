@@ -33,6 +33,8 @@
                       = i.file_field :image, style: 'display: none;'
                       = i.check_box:_destroy, style: 'display: none'
                       = i.hidden_field :id, class: 'item-edit-id', value: i.object.id
+                .error-new-item#image-error-new{ style: 'display: none;' } 画像がありません
+                .error-new-item#image-num-error-new{ style: 'display: none;' } アップロードできる画像は10枚までです。
               / 商品名、説明入力
               .item-info
                 .item-info-form
@@ -49,6 +51,7 @@
                     %span.item-info-required
                       必須
                   = f.text_area :description, class: 'item-description-textarea', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"
+                  .error-new-item#description-error-new{ style: 'display: none;' } 入力してください
               / 商品の詳細
               .item-info
                 %h3.sell-sub-head
@@ -71,6 +74,7 @@
                       -# .select-wrap
                         -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
                         -# = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#category-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       サイズ
@@ -80,6 +84,7 @@
                       .select-wrap
                         = f.select :size,["XXS以下", "XS(SS)", "S", "M", "L", "XL(LL)", "2XL(3L)", "3XL(4L)", "4XL(5L)以上", "FREE SIZE"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#size-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       ブランド
@@ -98,6 +103,7 @@
                       .select-wrap
                         = f.select :state,["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#state-error-new{ style: 'display: none;' } 選択してください
               / 配送について
               .item-info
                 %h3.sell-sub-head
@@ -114,6 +120,7 @@
                       .select-wrap
                         = f.select :postage,["送料込み(出品者負担)", "着払い(購入者負担)"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#postage-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       配送の方法
@@ -124,6 +131,7 @@
                       .select-wrap
                         = f.select :shipping,["未定", "らくらくメルカリ便", "ゆうメール", "レターパック", "普通郵便(定型、定型外)", "クロネコヤマト", "ゆうパック", "クリックポスト", "ゆうパケット"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#shipping-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       発送元の地域
@@ -133,6 +141,7 @@
                       .select-wrap
                         = f.collection_select :region, Prefecture.all, :id, :name,{prompt: "---"}, {class: "select-box"}
                         = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#region-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide
                       発送までの日数
@@ -142,6 +151,7 @@
                       .select-wrap
                         = f.select :shipping_date,["1~2日で発送", "2~3日で発送", "4~7日で発送"], {prompt: "---"}, {class: 'select-box'}
                         = fa_icon 'angle-down', class: 'arrow-down'
+                      .error-new-item#shipping_date-error-new{ style: 'display: none;' } 選択してください
               / 販売価格
               .item-info
                 %h3.sell-sub-head

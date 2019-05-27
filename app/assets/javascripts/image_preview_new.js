@@ -11,6 +11,7 @@ $(document).on('turbolinks:load', function(){
     var previewArea = document.getElementsByClassName("image-preview")
     var preInfo = $('.upload-box-container--area-info')
     var dropZone = document.getElementById("drop_zone");
+    var readPreview = document.getElementsByClassName("image-preview")
 //    ファイルをばらしてinputsに格納、プレビュー作成
     $(function(){
       //以下、ファイル受け取りとプレビュー作成処理
@@ -19,6 +20,7 @@ $(document).on('turbolinks:load', function(){
         var previewCount = previewArea.length; //preview数取得してるが削除すると削除分カウント戻る
         //画像がない場合のバリデーションを後で追加
         if (files !== null && files !== undefined &&previewCount+files.length <= 10){
+          $('#image-num-error-new').hide();
           for (var i = 0; i < files.length; i++){
             if (!files[i].type.match('image.*')){
               continue;
@@ -54,6 +56,9 @@ $(document).on('turbolinks:load', function(){
           var nextInput = `<input accept="image/*,.png,.jpg,.jpeg" id="image_input`+ inputCount +`" class="upload-image" name="images[image][]" multiple= "true" type="file" style="display: none;">`
           $("#preview").append(nextInput);
           }//if文
+          else{
+            $('#image-num-error-new').show();//10枚以上の時のバリデーション
+          }
         }
         //プレビュー作成ここまで
       //以下、ファイル投稿時処理
@@ -140,6 +145,7 @@ $(document).on('turbolinks:load', function(){
       e.preventDefault();
       //バリデーションを後で追加
       var formData = new FormData($(this).get(0));
+      formValidation();
       formData.delete('images[image][]');//画像リセット
       var previewImg = document.getElementsByClassName("item-image")
       var nodeList = document.getElementsByName("images[image][]")
@@ -153,20 +159,86 @@ $(document).on('turbolinks:load', function(){
         })
       }
       $.ajax({
-        url:         '/items',
         type:        "POST",
-        data:        formData,
+        url:         '/items',
         contentType: false,
         processData: false,
-        dataType:    'html'
+        data:        formData,
       })
       .done(function(){
-        window.location.href =`http://${host}`
+        // window.location.href =`http://${host}`
       })
       .fail(function(XMLHttpRequest, textStatus, errorThrown){
         window.location.href = `http://${host}/${newItem}`
       });
     });
+    function formValidation(){
+      var formcheck = $('.item-info-form--nametext-textfield').val();
+      if( formcheck == "" ){ $('#name-error-new').show();
+      location.reload();
+      alert('商品名を入力してください') }
+      else{ $('#name-error-new').hide();}//name
+
+      var formcheck = $('.item-description-textarea').val();
+      if( formcheck == "" ){ $('#description-error-new').show();
+      location.reload();
+      alert('商品詳細を入力してください') }
+      else{ $('#description-error-new').hide();}
+
+      var formcheck = $('#item-category-top').val();
+      if( formcheck == "" ){ $('#category-error-new').show();
+      location.reload();
+      alert('カテゴリーを選択してください') }
+      else{ $('#category-error-new').hide();}
+      //後でcategory2,3の追加予定
+      var formcheck = $('#size-select').val();
+      if( formcheck == "" ){ $('#size-error-new').show();
+      location.reload();
+      alert('サイズを選択してください')}
+      else{ $('#size-error-new').hide();}
+
+      var formcheck = $('#state-select').val();
+      if( formcheck == "" ){ $('#state-error-new').show();
+      location.reload();
+      alert('商品の状態を選択してください') }
+      else{ $('#state-error-new').hide();}
+
+      var formcheck = $('#postage-select').val();
+      if( formcheck == "" ){ $('#postage-error-new').show();
+      location.reload();
+      alert('配送料の負担を選択してください') }
+      else{ $('#postage-error-new').hide();}
+
+      var formcheck = $('#shipping-select').val();
+      if( formcheck == "" ){ $('#shipping-error-new').show();
+      location.reload();
+      alert('配送の方法を選択してください') }
+      else{ $('#shipping-error-new').hide();}
+
+      var formcheck = $('#region-select').val();
+      if( formcheck == "" ){ $('#region-error-new').show();
+      location.reload();
+      alert('発送元の地域を選択してください') }
+      else{ $('#region-error-new').hide();}
+
+      var formcheck = $('#shipping_date-select').val();
+      if( formcheck == "" ){ $('#shipping_date-error-new').show();
+      location.reload();
+      alert('発送までの日数を選択してください') }
+      else{ $('#shipping_date-error-new').hide();}
+
+      var previewCheck = readPreview.length
+      if( previewCheck == 0 ){ $('#image-error-new').show();
+      location.reload();
+      alert('画像を選択してください') }
+      else{ $('#image-error-new').hide(); }
+
+      var formCheck = $('#price-input-field').val();
+      if( formCheck <= 300 || formCheck >= 9999999 ){ $("#price-error-new").show();
+      location.reload();
+      alert('価格を入力してください') }
+      else{ $('#price-error-new').hide(); }
+    };
   }
 });
 //       for(value of formDataの変数.entries()){
