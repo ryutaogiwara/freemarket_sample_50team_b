@@ -106,7 +106,7 @@
       }
       .birthday_select{
         &__wrap{
-          width: 76px;
+          width: 80px;
           display: inline-block;
           margin: 8px 0 0;
           position: relative;
@@ -233,6 +233,10 @@
       height: 14px;
       width: 14px;
     }
+}
+
+.icon_signup{
+  margin: 50px 0 0;
 }
 
 .fin__message  {

@@ -265,14 +265,16 @@ Devise.setup do |config|
                   ENV['GOOGLE_APP_ID'], # 環境変数に先ほど控えたクライアントIDを入れておく
                   ENV['GOOGLE_APP_SECRET'], # 環境変数に先ほど控えたシークレットを入れておく
                   name: :google,
-                  scope: %w(email)
+                  scope: %w(email),
+                  provider_ignores_state: true
 
   config.omniauth :facebook,
                   ENV['FACEBOOK_KEY'],
                   ENV['FACEBOOK_SECRET'],
                   name: :facebook,
                   scope: 'email',
-                  info_fields: 'email,name'
+                  info_fields: 'email,name',
+                  provider_ignores_state: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

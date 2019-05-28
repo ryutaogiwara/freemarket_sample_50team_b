@@ -26,10 +26,6 @@ ActiveRecord::Schema.define(version: 2019_05_23_140622) do
   end
 
   create_table "card_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "number"
-    t.integer "month"
-    t.integer "year"
-    t.integer "security_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "customer_id"

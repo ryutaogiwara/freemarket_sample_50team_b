@@ -5,17 +5,17 @@ class TransactionsController < ApplicationController
 
   def new
     @item = Item.find(params[:item_id])
-    card = CardInfo.where(user_id: current_user.id).first
+    @card = CardInfo.where(user_id: current_user.id).first
     #CardInfoテーブルからpayjpの顧客IDを検索
-    if card.blank?
+    if @card.blank?
       #登録された情報がない場合にカード登録画面に移動
       redirect_to new_user_card_info_path(user_id: current_user.id)
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       #保管した顧客IDでpayjpから情報取得
-      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
       #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
       @card_brand = @default_card_information.brand #カード会社のブランドアイコンを表示
       case @card_brand
       when "Visa"
