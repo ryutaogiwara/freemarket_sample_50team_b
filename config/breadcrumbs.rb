@@ -2,25 +2,25 @@ crumb :root do
   link "メルカリ", root_path
 end
 
-# users#show
+# マイページ
 crumb :user_show do
   link "マイページ", user_path(current_user.id)
   parent :root
 end
 
-# card_infos#show
+# 支払い方法ページ
 crumb :card_info_show do
   link "支払い方法", user_card_infos_path
   parent :user_show
 end
 
-# card_infos#new
+# クレジットカード情報入力ページ
 crumb :card_info_new do
   link "クレジットカード情報入力"
   parent :card_info_show
 end
 
-# items#show
+# 商品詳細ページ
 crumb :item_show do |item|
   link item.name, item
   parent :root

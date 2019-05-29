@@ -4,13 +4,13 @@
   - when ['users', 'show']
     - breadcrumb :user_show
 
-  - when ['card_infos', 'show']
+  - when ['card_infos', 'show']# 支払い方法ページ
     - breadcrumb :card_info_show
 
-  - when ['card_infos', 'new']
+  - when ['card_infos', 'new']# クレジットカード情報入力ページ
     - breadcrumb :card_info_new
 
-  - when ['items', 'show']
+  - when ['items', 'show']# 商品詳細ページ
     - breadcrumb :item_show, @item
 
   = breadcrumbs separator: " &nbsp;&nbsp;&#12297;&nbsp; ", class: "bread-crumbs", style: :ul
