@@ -1,0 +1,26 @@
+.side__container{
+  .transact-info-card{
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .transact-info-head{
+    margin-top: 50px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .transact-info-table{
+    width: 100%;
+    background-color: white;
+    .white-record{
+      .transact-info-table-title{
+        width: 35%;
+      }
+      .transact-info-table-display{
+        width: 65%;
+      }
+    }
+    .gray-record{
+      background: #fafafa;
+    }
+  }
+}
