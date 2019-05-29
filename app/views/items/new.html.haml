@@ -56,15 +56,14 @@
                     //ここにJSカテゴリhtml追加?
                     %div
                       .select-wrap
-                        = f.collection_select :category_id, Parentcategory.all, :id, :name,{prompt: "---"}, {class: "select-box", id: "item-category-top"}
+                        = f.select :category_id, Category.all.where(parent_id: 0).map{ |i| [i.name, i.id] }, {prompt: "---"}, {class: "select-box", id: "parent-category"}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                        //JSでdisplay: none;を切り替え?
-                      -# .select-wrap
-                        -# = f.collection_select :category_id, {prompt: "---"}, {class: 'select-box', id: "item-category-middle"}
-                        -# = fa_icon 'angle-down', class: 'arrow-down'
-                      -# .select-wrap
-                        -# = f.select :category_id,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', id: "item-category-bottom"}
-                        -# = fa_icon 'angle-down', class: 'arrow-down'
+                      .select-wrap#item-category-middle{ style: "display: none;" }
+                        = f.select :category_id, {}, {include_blank: "---"}, {class: 'select-box', id: 'category-select1'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                      -# .select-wrap#item-category-bottom{ style: "display: none;" }
+                      -#   = f.select :category_id, {}, {include_blank: "---"}, {class: 'select-box', id: "category-select2"}
+                      -#   = fa_icon 'angle-down', class: 'arrow-down'
                       .error-new-item#category-error-new{ style: 'display: none;' } 選択してください
                   .form-group
                     %label.item-info-guide

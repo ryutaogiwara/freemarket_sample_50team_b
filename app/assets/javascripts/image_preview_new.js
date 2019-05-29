@@ -1,16 +1,16 @@
 $(document).on('turbolinks:load', function(){
-  var itemId = location.pathname.split('/')[2]
+  var itemId  = location.pathname.split('/')[2]
   var editImg = document.getElementsByClassName("item-image")
-  var edit = document.getElementById('edit_item')
+  var edit    = document.getElementById('edit_item')
   if((document.location.href.match("/items/new"))) {
-    var host = location.host
-    var newPath = location.pathname
-    var dropzone = $('.upload-box-container--area')
-    var inputs = []; //file情報取得
-    var dropWrap = $('.upload-box-container--items')
+    var inputs      = []; //file情報取得
+    var host        = location.host
+    var newPath     = location.pathname
+    var dropzone    = $('.upload-box-container--area')
+    var dropWrap    = $('.upload-box-container--items')
     var previewArea = document.getElementsByClassName("image-preview")
-    var preInfo = $('.upload-box-container--area-info')
-    var dropZone = document.getElementById("drop_zone");
+    var preInfo     = $('.upload-box-container--area-info')
+    var dropZone    = document.getElementById("drop_zone");
     var readPreview = document.getElementsByClassName("image-preview")
 //    ファイルをばらしてinputsに格納、プレビュー作成
     $(function(){
@@ -25,13 +25,13 @@ $(document).on('turbolinks:load', function(){
             if (!files[i].type.match('image.*')){
               continue;
             }
-              var delPreview = document.getElementsByClassName("image-delete")
+              var delPreview  = document.getElementsByClassName("image-delete")
               var readPreview = document.getElementsByClassName("image-preview")//preview取得
-              var previewNum = readPreview.length;
-              var delNum = delPreview.length;
-              var reader = new FileReader();
-              reader.onload = (function(theFile) {
-                var fileName = theFile.name;
+              var previewNum  = readPreview.length;
+              var delNum      = delPreview.length;
+              var reader      = new FileReader();
+              reader.onload   = (function(theFile) {
+                var fileName  = theFile.name;
                 return function(evt){
                   var html = `<div class="image-preview" data-num="`+ Number(previewNum++) +`">
                                  <div class="image-preview--container">
@@ -144,11 +144,11 @@ $(document).on('turbolinks:load', function(){
     $('#new_item').on('submit', function(e){
       e.preventDefault();
       //バリデーションを後で追加
-      var formData = new FormData($(this).get(0));
       formValidation();
-      formData.delete('images[image][]');//画像リセット
+      var formData   = new FormData($(this).get(0));
       var previewImg = document.getElementsByClassName("item-image")
-      var nodeList = document.getElementsByName("images[image][]")
+      var nodeList   = document.getElementsByName("images[image][]")
+      formData.delete('images[image][]');//画像リセット
       //データ比較用、一致物のみformDataへ送る
       for (var i = 0; i < previewImg.length; i++){
         var previewName = previewImg[i].getAttribute('data-file')

@@ -1,16 +1,16 @@
 $(document).on('turbolinks:load', function(){
-  var itemId = location.pathname.split('/')[2]
+  var itemId  = location.pathname.split('/')[2]
   var editImg = document.getElementsByClassName("item-image")
-  var edit = document.getElementById('edit_item')
+  var edit    = document.getElementById('edit_item')
   if(document.location.href.match(`/items/${itemId}/edit`)) {
-    var host = location.host
-    var newPath = location.pathname
-    var dropzone = $('.upload-box-container--area')
-    var inputs = []; //file情報取得
-    var dropWrap = $('.upload-box-container--items')
+    var inputs      = []; //file情報取得
+    var host        = location.host
+    var newPath     = location.pathname
+    var dropzone    = $('.upload-box-container--area')
+    var dropWrap    = $('.upload-box-container--items')
     var previewArea = document.getElementsByClassName("image-preview")
-    var preInfo = $('.upload-box-container--area-info')
-    var dropZone = document.getElementById("drop_zone");
+    var preInfo     = $('.upload-box-container--area-info')
+    var dropZone    = document.getElementById("drop_zone");
     var readPreview = document.getElementsByClassName("image-preview")
     inputCss();
 //    ファイルをばらしてinputsに格納、プレビュー作成
@@ -25,12 +25,12 @@ $(document).on('turbolinks:load', function(){
             if (!files[i].type.match('image.*')) {
               continue;
             }
-              var delPreview = document.getElementsByClassName("image-delete")
+              var delPreview  = document.getElementsByClassName("image-delete")
               var readPreview = document.getElementsByClassName("image-preview")//preview取得
-              var previewNum = readPreview.length;
-              var delNum = delPreview.length;
-              var reader = new FileReader();
-              reader.onload = (function(theFile) {
+              var previewNum  = readPreview.length;
+              var delNum      = delPreview.length;
+              var reader      = new FileReader();
+              reader.onload   = (function(theFile) {
                 var fileName = theFile.name;
                 return function(evt){
                   var html = `<div class="image-preview" data-num="`+ Number(previewNum++) +`">
@@ -140,34 +140,41 @@ $(document).on('turbolinks:load', function(){
       e.preventDefault();
       //バリデーションを後で追加
       formValidation();
-      var formData = new FormData($(this).get(0));
-      formData.delete('images[image][]');//画像リセット
-      var previewImg = document.getElementsByClassName("item-image")
-      var nodeList = document.getElementsByName("images[image][]")
-      //データ比較用、一致物のみformDataへ送る
-      for (var i = 0; i < previewImg.length; i++){
-        var previewName = previewImg[i].getAttribute('data-file')
-        inputs.forEach(function(file){
-          if (previewName == file.name){
-            formData.append("images[image][]", file);
-          }
+      if(previewArea.length !== 0){
+        var formData   = new FormData($(this).get(0));
+        var previewImg = document.getElementsByClassName("item-image")
+        var nodeList   = document.getElementsByName("images[image][]")
+        formData.delete('images[image][]');//画像リセット
+        //データ比較用、一致物のみformDataへ送る
+        for (var i = 0; i < previewImg.length; i++){
+          var previewName = previewImg[i].getAttribute('data-file')
+          inputs.forEach(function(file){
+            if (previewName == file.name){
+              formData.append("images[image][]", file);
+            }
+          })
+        }
+        $.ajax({
+          url:         `/items/${itemId}`,
+          type:        "PATCH",
+          data:        formData,
+          contentType: false,
+          processData: false
         })
+        .done(function(){
+          window.location.href = `/items/${itemId}`
+        })
+        .fail(function(XMLHttpRequest, textStatus, errorThrown){
+          window.location.href = `/items/${itemId}/edit`
+          alert('商品編集に失敗しました')
+        });
       }
-      $.ajax({
-        url:         `/items/${itemId}`,
-        type:        "PATCH",
-        data:        formData,
-        contentType: false,
-        processData: false
-      })
-      .done(function(){
-        window.location.href = `/items/${itemId}`
-      })
-      .fail(function(XMLHttpRequest, textStatus, errorThrown){
-        window.location.href = `/items/${itemId}/edit`
-        alert('商品編集に失敗しました')
-      });
+      else{
+        location.reload();
+        alert('画像を選択してください')
+      }
     });
+
     function formValidation(){
       var formcheck = $('.item-info-form--nametext-textfield').val();
       if( formcheck == "" ){ $('#name-error-new').show();
@@ -225,8 +232,7 @@ $(document).on('turbolinks:load', function(){
 
       var previewCheck = readPreview.length
       if( previewCheck == 0 ){ $('#image-error-new').show();
-      location.reload();
-      alert('画像を選択してください') }
+      }
       else{ $('#image-error-new').hide(); }
 
       var formCheck = $('#price-input-field').val();
@@ -238,8 +244,5 @@ $(document).on('turbolinks:load', function(){
   }
 });
 
-//出品に関しては再現できてると考えられるが、商品編集でviewが崩れる
-//これは、サーバーからpreviewを読み込んだ時にlengthとしてjavascript側に認識されてないため
 //より完成度を上げる場合はpreviewを数値で捉え、cssを適応させる
-//また、fileを配列内で管理、送信時にpreview番号と比較する事でファイルの重複送信は避けられるようになる
-//と考えられる。現状はnameと比較してるため重複が起きる
+//また、fileを配列内で管理、送信時にpreview番号と比較する事でファイルの重複送信は避けられるようになると考えられる。現状はnameと比較してるため重複が起きる

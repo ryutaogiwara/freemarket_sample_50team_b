@@ -31,7 +31,7 @@
                     %input.upload-image{type: "file", multiple: true, name: 'images[image][]', style: 'display: none;', accept: "image/*,.png,.jpg,.jpeg", id: "image_input1"}
                     = f.fields_for :images do |i|
                       = i.file_field :image, style: 'display: none;'
-                      = i.check_box:_destroy, style: 'display: none'
+                      = i.check_box :_destroy, style: 'display: none'
                       = i.hidden_field :id, class: 'item-edit-id', value: i.object.id
                 .error-new-item#image-error-new{ style: 'display: none;' } 画像がありません
                 .error-new-item#image-num-error-new{ style: 'display: none;' } アップロードできる画像は10枚までです。
@@ -65,14 +65,13 @@
                     //ここにJSカテゴリhtml追加
                     %div
                       .select-wrap
-                        = f.collection_select :category_id, Parentcategory.all, :id, :name,{prompt: "---"}, {class: "select-box"}
+                        = f.select :category_id, Category.all.where(parent_id: 0).map{ |i| [i.name, i.id] }, {prompt: "---"}, {class: "select-box", id: "parent-category"}
                         = fa_icon 'angle-down', class: 'arrow-down'
-                        //JSでdisplay: none;を切り替え?
-                      -# .select-wrap
-                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box', style: ''}
-                        -# = fa_icon 'angle-down', class: 'arrow-down'
-                      -# .select-wrap
-                        -# = f.select :category,["レディース", "メンズ"], {prompt: "---"}, {class: 'select-box'}
+                      .select-wrap#item-category-middle{ style: "display: none;" }
+                        = f.select :category_id, {}, {include_blank: "---"}, {class: 'select-box', id: 'category-select1'}
+                        = fa_icon 'angle-down', class: 'arrow-down'
+                      -# .select-wrap#item-category-bottom{ style: "display: none;" }
+                        -# = f.select :category_id, {}, {include_blank: "---"}, {class: 'select-box', id: "category-select2"}
                         -# = fa_icon 'angle-down', class: 'arrow-down'
                       .error-new-item#category-error-new{ style: 'display: none;' } 選択してください
                   .form-group
