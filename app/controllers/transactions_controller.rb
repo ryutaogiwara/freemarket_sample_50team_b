@@ -2,7 +2,8 @@ class TransactionsController < ApplicationController
   require "payjp"
 
   before_action :move_to_sign_in
-  before_action :set_item, only: [:order_status, :order_status_ship]
+  before_action :set_item, only: [:order_status, :order_status_ship, :order_status_receive]
+  before_action :set_buyerinfo, only: [:order_status]
 
   def new
     @item = Item.find(params[:item_id])
@@ -36,13 +37,20 @@ class TransactionsController < ApplicationController
   end
 
   def order_status
-    # @item.update(shipped_params) 
+    @fee = (@item.price * 0.1).ceil
+    @profit = @item.price - @fee
   end
 
   def order_status_ship
     @item.update(shipped_params) 
     redirect_to in_progress_listings_path
   end
+
+  def order_status_receive
+    @item.update(received_params) 
+    redirect_to purchased_listings_path
+  end
+
   private
 
   def move_to_sign_in
@@ -53,6 +61,14 @@ class TransactionsController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def set_buyerinfo
+    @buyer = User.find(@item.buyer_id)
+
+    # @buyerinfo = User.where(id: @buyer)
+    # @prefecture = Prefecture.find(@item.region)
+    # @nickname = 
+  end
+
   def purchase_params
     params.permit(:trade_status, :buyer_id).merge(trade_status: '2', buyer_id: current_user.id)
   end
@@ -61,5 +77,8 @@ class TransactionsController < ApplicationController
     params.permit(:trade_status).merge(trade_status: '3' )
   end
 
+  def received_params
+    params.permit(:trade_status).merge(trade_status: '4' )
+  end
 
 end
