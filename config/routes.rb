@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         get 'done', to: 'transactions#done'
         get 'order_status', to: 'transactions#order_status'
         get 'order_status_ship', to: 'transactions#order_status_ship'
+        get 'order_status_receive', to: 'transactions#order_status_receive'
 
       end
     end
@@ -32,8 +33,12 @@ Rails.application.routes.draw do
     collection do
       get 'in_progress', to: 'listings#in_progress'
       get 'completed', to: 'listings#completed'
+      get 'purchase', to: 'listings#purchase'
+      get 'purchased', to: 'listings#purchased'
     end
   end
+
+
 
   get 'logout' => 'users#logout_form'
 end
