@@ -40,5 +40,5 @@ Rails.application.routes.draw do
 
 
 
-  get 'logout' => 'users#logout_form'
+  get 'logout', to: 'users#logout_form'
 end
