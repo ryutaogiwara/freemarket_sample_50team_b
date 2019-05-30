@@ -1,0 +1,14 @@
+.items__box__content
+  %a.item__page
+    .item__page-photo
+      %img.picture{src: "https://item-shopping.c.yimg.jp/i/l/linate_balenciaga-515528-txe08-4773"}/
+    .item__page__body
+      %h3.item__page__body-name
+        = myItem.name
+      .item__page__body-price
+        = "¥" + number_with_delimiter(myItem.price)
+        .favourite
+          %i.fa.fa-heart-o.like
+          %span 46
+      %p.item__page__body-tax
+        (税込)

@@ -5,14 +5,15 @@ class ItemsController < ApplicationController
     before_action :set_prefecture, only: [:show]
 
   def index
-    @ladies_items = Item.search(category_id_eq: '1').result.limit(4).includes(:images)
-    @mens_items = Item.search(category_id_eq: '2').result.limit(4).includes(:images)
-    @kids_items = Item.search(category_id_eq: '3').result.limit(4).includes(:images)
-    @cosme_items = Item.search(category_id_eq: '7').result.limit(4).includes(:images)
-    @chanel_items = Item.search(brand_eq: 'シャネル').result.limit(4).includes(:images)
-    @louisvitton_items = Item.search(brand_eq: 'ルイヴィトン').result.limit(4).includes(:images)
-    @supreme_items = Item.search(brand_eq: 'シュプリーム').result.limit(4).includes(:images)
-    @nike_items = Item.search(brand_eq: 'ナイキ').result.limit(4).includes(:images)
+    @ladies_items = Item.search(category_id_eq: '1').result.order("id DESC").limit(4).includes(:images)
+    @mens_items = Item.search(category_id_eq: '2').result.order("id DESC").limit(4).includes(:images)
+    @kids_items = Item.search(category_id_eq: '3').result.order("id DESC").limit(4).includes(:images)
+    @cosme_items = Item.search(category_id_eq: '7').result.order("id DESC").limit(4).includes(:images)
+
+    @chanel_items = Item.where(brand: 'シャネル').order("id DESC").limit(4).includes(:images)
+    @louisvitton_items = Item.where(brand: 'ルイヴィトン').order("id DESC").limit(4).includes(:images)
+    @supreme_items = Item.where(brand: 'シュプリーム').order("id DESC").limit(4).includes(:images)
+    @nike_items = Item.where(brand: 'ナイキ').order("id DESC").limit(4).includes(:images)
   end
 
   def new
@@ -53,6 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @myItems = Item.where(user_id: current_user.id).order("created_at DESC").limit(6)
   end
 
   def destroy
