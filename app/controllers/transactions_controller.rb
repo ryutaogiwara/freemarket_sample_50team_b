@@ -42,13 +42,21 @@ class TransactionsController < ApplicationController
   end
 
   def order_status_ship
-    @item.update(shipped_params) 
-    redirect_to in_progress_listings_path
+    if @item.present?
+      @item.update(shipped_params) 
+      redirect_to in_progress_listings_path
+    else
+      redirect_to root_path
+    end
   end
 
   def order_status_receive
-    @item.update(received_params) 
-    redirect_to purchased_listings_path
+    if @item.present?
+      @item.update(received_params) 
+      redirect_to purchased_listings_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
