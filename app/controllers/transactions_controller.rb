@@ -71,10 +71,6 @@ class TransactionsController < ApplicationController
 
   def set_buyerinfo
     @buyer = User.find(@item.buyer_id)
-
-    # @buyerinfo = User.where(id: @buyer)
-    # @prefecture = Prefecture.find(@item.region)
-    # @nickname = 
   end
 
   def purchase_params
