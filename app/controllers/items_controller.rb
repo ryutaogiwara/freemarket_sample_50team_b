@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edits
+  def edit
   end
 
   def update
