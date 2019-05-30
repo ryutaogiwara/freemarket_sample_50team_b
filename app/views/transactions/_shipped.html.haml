@@ -1,0 +1,10 @@
+.status__box
+  .status__box__head 取引画面 
+  .status__box__message
+    .status__box__message__alart
+      %i.fa.fa-truck
+      .span 発送をしてください
+    %p 商品が購入され支払いされました。商品の発送を行ってください。
+.status__box__button
+  = link_to order_status_ship_item_transactions_path do
+    .status__box__button.red-btn 発送完了

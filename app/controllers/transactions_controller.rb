@@ -2,6 +2,8 @@ class TransactionsController < ApplicationController
   require "payjp"
 
   before_action :move_to_sign_in
+  before_action :set_item, only: [:order_status, :order_status_ship, :order_status_receive]
+  before_action :set_buyerinfo, only: [:order_status]
 
   def new
     @item = Item.find(params[:item_id])
@@ -43,12 +45,59 @@ class TransactionsController < ApplicationController
       customer: card.customer_id, #顧客ID
       currency: 'jpy', #日本円
     )
+    @item.update(purchase_params)
     redirect_to root_path, notice: "購入が完了しました" #完了画面に移動
     rescue => e
       redirect_to root_path, notice: "失敗しました"
   end
 
+  def order_status
+    @fee = (@item.price * 0.1).ceil
+    @profit = @item.price - @fee
+  end
+
+  def order_status_ship
+    if @item.present?
+      @item.update(shipped_params) 
+      redirect_to in_progress_listings_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  def order_status_receive
+    if @item.present?
+      @item.update(received_params) 
+      redirect_to purchased_listings_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  private
+
   def move_to_sign_in
     redirect_to new_user_session_path unless user_signed_in?
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def set_buyerinfo
+    @buyer = User.find(@item.buyer_id)
+  end
+
+  def purchase_params
+    params.permit(:trade_status, :buyer_id).merge(trade_status: '2', buyer_id: current_user.id)
+  end
+
+  def shipped_params
+    params.permit(:trade_status).merge(trade_status: '3' )
+  end
+
+  def received_params
+    params.permit(:trade_status).merge(trade_status: '4' )
+  end
+
 end

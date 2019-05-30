@@ -1,0 +1,26 @@
+.mypage-headder
+  =render"layouts/header"
+  =render"layouts/breadCrumbs"
+.mypage-main
+  .content
+    .status__container
+      - if user_signed_in? && @item.trade_status == 2 && current_user.id == @item.user_id
+        =render "transactions/shipped"
+
+      - if user_signed_in? && @item.trade_status == 2 && current_user.id == @item.buyer_id
+        =render "transactions/shipping"
+
+      - if user_signed_in? && @item.trade_status == 3 && current_user.id == @item.user_id
+        =render "transactions/in-review"
+      
+      - if user_signed_in? && @item.trade_status == 3 && current_user.id == @item.buyer_id 
+        =render "transactions/received"
+      
+  - if user_signed_in? && current_user.id == @item.user_id
+    =render "layouts/buyer-info"
+  - if user_signed_in? && current_user.id == @item.buyer_id
+    =render "layouts/exhibitor-info"
+  =render "layouts/btn"
+.mypage-footer
+  =render"layouts/footer"
+

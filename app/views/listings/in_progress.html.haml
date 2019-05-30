@@ -7,14 +7,21 @@
       出品した商品
       .content__listing-box__menu
         = link_to listings_path do
-          .content__listing-box__menu__now 出品中
+          .content__listing-box__menu__side 出品中
         = link_to in_progress_listings_path do
-          .content__listing-box__menu__side 取引中
+          .content__listing-box__menu__now 取引中
         = link_to completed_listings_path do
           .content__listing-box__menu__side 売却済み
-      - if @items.present?
-        - @items.each do |item|
-          = link_to item_path(item.id) do
+      - if @reserveditems.present?
+        - @reserveditems.each do |item|
+          = link_to order_status_item_transactions_path(item.id) do
+            .content__listing-box__item-tab__box
+              = image_tag item.images[0].image.url,size:"50x50", class: 'content__listing-box__item-tab__box__icon'
+              .content__listing-box__item-tab__box__info= item.name
+              %i.fa.fa-chevron-right.arrowi
+      - if @shippeditems.present?
+        - @shippeditems.each do |item|
+          = link_to order_status_item_transactions_path(item.id) do
             .content__listing-box__item-tab__box
               = image_tag item.images[0].image.url,size:"50x50", class: 'content__listing-box__item-tab__box__icon'
               .content__listing-box__item-tab__box__info= item.name
@@ -22,7 +29,7 @@
       - else
         .content__listing-box__item-tab
           .content__listing-box__item-tab__image-box
-          .content__listing-box__item-tab__image 
+          .content__listing-box__item-tab__image
           .content__listing-box__item-tab__text 出品中の商品がありません
 
       .content__listing-box__pager-box

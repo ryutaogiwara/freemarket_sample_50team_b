@@ -1,0 +1,12 @@
+- if @purchaseditems.present?
+  - @purchaseditems.each do |item|
+    = link_to order_status_item_transactions_path(item.id) do
+      .content__listing-box__item-tab__box
+        = image_tag item.images[0].image.url,size:"50x50", class: 'content__listing-box__item-tab__box__icon'
+        .content__listing-box__item-tab__box__info= item.name
+        %i.fa.fa-chevron-right.arrowi
+- else
+  .content__listing-box__item-tab
+    .content__listing-box__item-tab__image-box
+    .content__listing-box__item-tab__image 
+    .content__listing-box__item-tab__text 出品中の商品がありません

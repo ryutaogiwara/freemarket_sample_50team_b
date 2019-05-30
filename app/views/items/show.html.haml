@@ -93,12 +93,9 @@
       %span.item__box__container-priceBox-shippingFee
         送料込み
 
-    -# 以下、インスタンス変数仮置き
+    -# ログイン時かつ、自分が出品していないものに限り購入ボタン表示。非会員は登録フォームへ飛ばした方が良いのでは？
     .item__box__container-buyBtn
-      -if @item.brand == 0
-        .item__box__container-buyBtn-soldout
-          売り切れました
-      -else
+      - if user_signed_in? && current_user.id != @item.user_id && @item.trade_status == 1
         = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
 
     .item__box__container-detail
@@ -122,7 +119,7 @@
           %span
             あんしん・あんぜんへの取り組み
 
-  - if user_signed_in? && current_user.id == @item.user_id
+  - if user_signed_in? && @item.trade_status == 1 && current_user.id == @item.user_id
     .user-product
       = link_to edit_item_path(@item) do
         .user-product__edit.red-btn 商品の編集

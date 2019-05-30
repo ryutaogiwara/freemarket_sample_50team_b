@@ -1,0 +1,61 @@
+.side
+  .side__container
+    %h3.transact-info-card 取引情報
+    %table.transact-info-table
+      %tr.white-record
+        %th.transact-info-table-title
+          商品
+        %td.transact-info-table-display
+          = link_to item_path(@item.id) do 
+            = image_tag @item.images[0].image.url, size:"140x140"
+            .item-name
+              = @item.name
+            .item-price
+              = "¥" + "#{@item.price}"
+      %tr.gray-record
+        %th.transact-info-table-title
+          送料
+        %td
+          = @item.postage
+      %tr.white-record
+        %th.transact-info-table-title
+          販売手数料
+        %td.transact-info-table-display
+          = "¥" + "#@fee"
+      %tr.gray-record
+        %th.transact-info-table-title
+          販売利益
+        %td
+          = "¥" + "#@profit"
+      %tr.white-record
+        %th.transact-info-table-title
+          購入日
+        %td.transact-info-table-display
+          = @item.updated_at
+      %tr.gray-record
+        %th.transact-info-table-title
+          商品ID
+        %td
+          = @item.id
+      %th.transact-info-table-title
+        お届け先
+        %td.transact-info-table-display
+          .zipcord
+            = "〒" + "#{@buyer.address.zipcord}"
+          .prefecture
+            = "#{@buyer.address.prefecture}" + "#{@buyer.address.city}" + "#{@buyer.address.address}"
+          .building
+            = "#{@buyer.address.building_name}"
+    
+    
+    %h3.transact-info-head 購入者情報
+    %table.transact-info-table
+      %tr.white-record
+        %th.transact-info-table-title
+          購入者
+        %td.transact-info-table-display
+          .buyer-icon
+            = image_tag "member_photo_noimage_thumb.png", size: "60x60", class: ".image"
+          .buyer-name
+            = @buyer.nickname
+
