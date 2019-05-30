@@ -26,7 +26,7 @@
               = image_tag item.images[0].image.url,size:"50x50", class: 'content__listing-box__item-tab__box__icon'
               .content__listing-box__item-tab__box__info= item.name
               %i.fa.fa-chevron-right.arrowi
-      - else
+      - if @reserveditems.empty? && @shippeditems.empty?
         .content__listing-box__item-tab
           .content__listing-box__item-tab__image-box
           .content__listing-box__item-tab__image
