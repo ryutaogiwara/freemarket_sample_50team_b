@@ -23,7 +23,6 @@ class TransactionsController < ApplicationController
 
   def pay
     @item = Item.find(params[:item_id])
-    @item.update(purchase_params)
     card = CardInfo.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
@@ -31,6 +30,7 @@ class TransactionsController < ApplicationController
       customer: card.customer_id, #顧客ID
       currency: 'jpy', #日本円
     )
+    @item.update(purchase_params)
     redirect_to root_path, notice: "購入が完了しました" #完了画面に移動
     rescue => e
       redirect_to root_path, notice: "失敗しました"
