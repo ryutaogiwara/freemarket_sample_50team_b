@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @myItems = Item.where(user_id: current_user.id).order("created_at DESC")
+    @myItems = Item.where(user_id: current_user.id).order("created_at DESC").limit(6)
   end
 
   def destroy
