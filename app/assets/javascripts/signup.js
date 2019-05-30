@@ -164,7 +164,7 @@ pages.eq(0).fadeIn();
     {
       $('#error-security_code1').text("セキュリティコードは半角数字 で入力してください");
     };
-    if(security_code.length < 5)
+    if(!security_code.length == 3 || !security_code.length == 4)
     {
       $('#error-security_code2').text("セキュリティコードは３桁または４桁です");
     };
@@ -176,5 +176,3 @@ pages.eq(0).fadeIn();
     else{return false;};
   })
 });
-
-
