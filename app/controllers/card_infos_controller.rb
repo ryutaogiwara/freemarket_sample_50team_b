@@ -7,7 +7,7 @@ class CardInfosController < ApplicationController
   end
 
   def pay #payjpとCardのデータベース作成を実施します。
-    Payjp.api_key = ENV ['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params[:payjp_token].blank?
       redirect_to action: "new"
     else
@@ -23,7 +23,7 @@ class CardInfosController < ApplicationController
 
   def destroy #PayjpとCardデータベースを削除します
     card = CardInfo.where(user_id: current_user.id).first
-    Payjp.api_key = ENV ['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(card.customer_id)
     customer.delete
     card.delete
@@ -35,7 +35,7 @@ class CardInfosController < ApplicationController
     if @card.blank?
       render "show"
     else
-      Payjp.api_key = ENV ['PAYJP_PRIVATE_KEY']
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
       @card_brand = @default_card_information.brand #カード会社のブランドアイコンを表示
