@@ -232,12 +232,15 @@
         %li.socialMedia__box-link-list-pinterest
           %i.fa.fa-pinterest-square.socialMedia__box-link-list-pinterest-icon
   .items__user__profile
-    %section.items__user__profile__box
-      %h2.items__user__profile__box-head
-        %a.items__user__profile__box-head-title
-          #{@item.user.nickname}さんのその他の出品
-      .items__box
-        = render @myItems
+    -# 以下、未実装　
+    -# 出品者の出品を表示させたいのに、自分の出品が表示される
+    -# items/showのcontrollerをいじる必要あり
+    -# %section.items__user__profile__box
+    -#   %h2.items__user__profile__box-head
+    -#     %a.items__user__profile__box-head-title
+    -#       #{@item.user.nickname}さんのその他の出品
+    -#   .items__box
+    -#     = render @myItems
 
     %section.items__user__profile__box
       %h2.items__user__profile__box-head
