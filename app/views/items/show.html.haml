@@ -21,7 +21,7 @@
 
           .swiper-my-pagination
         -# 以下、インスタンス変数仮置き
-        - if @item.brand == 0
+        - if @item.trade_status === 2
           .item__box__container-main-photo-sold
             .item__box__container-main-photo-sold-out
               SOLD
@@ -97,6 +97,9 @@
     .item__box__container-buyBtn
       - if user_signed_in? && current_user.id != @item.user_id && @item.trade_status == 1
         = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
+      - elsif @item.trade_status === 2
+        .item__box__container-buyBtn-soldout
+          売り切れました
 
     .item__box__container-detail
       %p.item__box__container-detail-inner
@@ -201,7 +204,7 @@
             相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
           %textarea.item__message__container__content__form-text
           .item__message__container__content__form__btn
-            -if @item.brand == 0
+            -if @item.trade_status === 2
               %span.item__message__container__content__form__btn-soldout
                 売り切れのためコメントできません
             -else

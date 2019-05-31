@@ -1,4 +1,8 @@
 .items__box__content
+  - if item.trade_status === 2
+    .items__box__content-sold
+      .items__box__content-sold-out
+        SOLD
   = link_to item_path(item.id), class:"item__page" do
     .item__page-photo
       = image_tag item.images.first.image.url,size:"230x220"

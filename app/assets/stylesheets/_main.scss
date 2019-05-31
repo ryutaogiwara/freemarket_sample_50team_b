@@ -123,21 +123,48 @@
           margin: 0 auto;
           height: 330px;
           &__content {
+            position: relative;
             display: table-cell;
             display: inline-block;
             box-sizing: border-box;
             margin: 0 0 0 20px;
             width: 213px;
+            &-sold {
+              &::after {
+              content: "";
+              border-width: 120px 120px 0 0;
+              border-color: #ea352d transparent;
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: 1;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              }
+              &-out {
+                top: 24px;
+                font-size: 28px;
+                position: absolute;
+                left: 0;
+                z-index: 2;
+                color: #fff;
+                transform: rotate(-45deg);
+                letter-spacing: 2px;
+                font-weight: bold;
+              }
+            }
             .item__page {
               display: block;
               color: #333;
               background-color: #fff;
               text-decoration: none;
               &-photo {
+                position: relative;
                 width: 100%;
                 height: 220px;
                 overflow: hidden;
-                position: relative;
                 padding: 0 0 100%;
                 display: block;
                 .picture {
