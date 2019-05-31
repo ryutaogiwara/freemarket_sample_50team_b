@@ -21,7 +21,7 @@
 
           .swiper-my-pagination
         -# 以下、インスタンス変数仮置き
-        - if @item.trade_status === 2
+        - if @item.trade_status >= 2
           .item__box__container-main-photo-sold
             .item__box__container-main-photo-sold-out
               SOLD
@@ -97,7 +97,7 @@
     .item__box__container-buyBtn
       - if user_signed_in? && current_user.id != @item.user_id && @item.trade_status == 1
         = link_to '購入画面に進む', new_item_transaction_path(@item.id), class:"item__box__container-buyBtn-buy"
-      - elsif @item.trade_status === 2
+      - elsif @item.trade_status >= 2
         .item__box__container-buyBtn-soldout
           売り切れました
 
