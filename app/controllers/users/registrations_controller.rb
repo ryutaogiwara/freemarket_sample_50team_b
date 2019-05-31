@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
      super
-     Payjp.api_key = 'sk_test_9657838e072f57e5edcf5496'
+     Payjp.api_key = ENV ['PAYJP_PRIVATE_KEY']
      customer = Payjp::Customer.create(card: params[:payjp_token])
      CardInfo.create(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
      resource.save
