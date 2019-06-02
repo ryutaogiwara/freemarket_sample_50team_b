@@ -12,7 +12,7 @@ $(document).on('turbolinks:load', function () {
 
       // var a = resultfee + "";
       // var b = resultfee.replace(/(\d)(?=(\d\d\d)+$)/g, "$1,");
-      // 実行条件　￥300〜9999999まで　その他の値はデフォルトのーを返す
+      // 実行条件 ￥300〜9999999まで その他の値はデフォルトのーを返す
       if (300 <= price && price <= 9999999) {
         $("#sale-fee-result").text("¥" + resultfee.toLocaleString());
         $("#sale-profit-result").text("¥" + resultprofit.toLocaleString());
