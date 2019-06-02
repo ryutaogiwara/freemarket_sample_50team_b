@@ -15,7 +15,9 @@
 |last_name |string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana |string|null: false|
-|birth_date|integer|null: false|
+|provider |string||
+|uid |string||
+|birth_date|date|null: false|
 |profile|references|null: false, index: true, foreign_key: true|
 |address|references|null: false, index: true, foreign_key: true|
 |card_info|references|null: false, index: true, foreign_key: true|
