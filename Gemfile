@@ -88,6 +88,7 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'payjp'
 gem 'gimei'
+
 gem 'active_hash'
 gem 'gretel'
 gem 'ransack'
